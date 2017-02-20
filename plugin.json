@@ -1,0 +1,13 @@
+{
+  "name": "ElasticExportCheck24DE",
+  "description": "This plugin adds the format Check24DE to the Elastic Export.",
+  "namespace": "ElasticExportCheck24DE",
+  "author": "plentymarkets",
+  "type": "export",
+  "serviceProvider": "ElasticExportCheck24DE\\ElasticExportCheck24DEServiceProvider",
+  "version": 0.1,
+  "require":
+  {
+    "ElasticExportCore": 0.1
+  }
+}
