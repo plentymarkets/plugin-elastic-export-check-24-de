@@ -18,6 +18,7 @@ class ElasticExportCheck24DEServiceProvider extends DataExchangeServiceProvider
             'Check24DE-Plugin',
             'ElasticExportCheck24DE\ResultField\Check24DE',
             'ElasticExportCheck24DE\Generator\Check24DE',
+            '',
             true
         );
     }

@@ -3,13 +3,13 @@
 namespace ElasticExportCheck24DE\Generator;
 
 use ElasticExport\Helper\ElasticExportCoreHelper;
-use Plenty\Modules\DataExchange\Contracts\CSVGenerator;
+use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Services\ArrayHelper;
 use Plenty\Modules\Item\DataLayer\Models\Record;
 use Plenty\Modules\Item\DataLayer\Models\RecordList;
 use Plenty\Modules\DataExchange\Models\FormatSetting;
 
-class Check24DE extends CSVGenerator
+class Check24DE extends CSVPluginGenerator
 {
     const CHECK24_DE = 150.00;
 
@@ -42,7 +42,7 @@ class Check24DE extends CSVGenerator
      * @param array $formatSettings
      * @param array $filter
      */
-    protected function generateContent($resultData, array $formatSettings = [], array $filter = [])
+    protected function generatePluginContent($resultData, array $formatSettings = [], array $filter = [])
     {
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
         if(is_array($resultData['documents']) && count($resultData['documents']) > 0)
