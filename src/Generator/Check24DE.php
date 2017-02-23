@@ -40,8 +40,9 @@ class Check24DE extends CSVGenerator
     /**
      * @param array $resultData
      * @param array $formatSettings
+     * @param array $filter
      */
-    protected function generateContent($resultData, array $formatSettings = [])
+    protected function generateContent($resultData, array $formatSettings = [], array $filter = [])
     {
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
         if(is_array($resultData['documents']) && count($resultData['documents']) > 0)
