@@ -2,12 +2,19 @@
   "name": "ElasticExportCheck24DE",
   "description": "This plugin adds the format Check24DE to the Elastic Export.",
   "namespace": "ElasticExportCheck24DE",
-  "author": "plentymarkets",
+  "author": "plentymarkets GmbH",
   "type": "export",
+  "authorIcon": "icon_author_xs.png",
   "serviceProvider": "ElasticExportCheck24DE\\ElasticExportCheck24DEServiceProvider",
-  "version": 0.1,
-  "require":
-  {
-    "ElasticExport": 0.1
-  }
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
+  "pluginIcon": "icon_plugin_md.png",
+  "price": 0.00,
+  "shortDescription": {
+    "de": "Das Plugin ElasticExportCheck24DE fügt das Datenformat Check24DE zum Elastischen Export hinzu.",
+    "en": "This plugin adds the format Check24DE to the Elastic Export."
+  },
+  "categories": [
+    "3523"
+  ],
+  "version": "1.0.0"
 }
