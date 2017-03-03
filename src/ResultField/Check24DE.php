@@ -161,12 +161,17 @@ class Check24DE extends ResultFields
             ],
 
             [
-                $imageMutator,
                 $languageMutator,
                 $skuMutator,
                 $defaultCategoryMutator
             ],
         ];
+
+        if($reference != -1)
+        {
+            $fields[1][] = $imageMutator;
+        }
+
         foreach($itemDescriptionFields as $itemDescriptionField)
         {
             $fields[0][] = $itemDescriptionField;
@@ -175,130 +180,4 @@ class Check24DE extends ResultFields
         return $fields;
     }
 
-//    /**
-//     * Generate result fields.
-//     * @param  array $formatSettings = []
-//     * @return array
-//     */
-//    public function generateResultFields(array $formatSettings = []):array
-//    {
-//        $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
-//
-//        $itemDescriptionFields = ['urlContent']; done
-//        $itemDescriptionFields[] = ($settings->get('nameId')) ? 'name' . $settings->get('nameId') : 'name1';
-//
-//        if($settings->get('descriptionType') == 'itemShortDescription'
-//            || $settings->get('previewTextType') == 'itemShortDescription')
-//        {
-//            $itemDescriptionFields[] = 'shortDescription';
-//        }
-//
-//        if($settings->get('descriptionType') == 'itemDescription'
-//            || $settings->get('descriptionType') == 'itemDescriptionAndTechnicalData'
-//            || $settings->get('previewTextType') == 'itemDescription'
-//            || $settings->get('previewTextType') == 'itemDescriptionAndTechnicalData')
-//        {
-//            $itemDescriptionFields[] = 'description';
-//        }
-//
-//        if($settings->get('descriptionType') == 'technicalData'
-//            || $settings->get('descriptionType') == 'itemDescriptionAndTechnicalData'
-//            || $settings->get('previewTextType') == 'technicalData'
-//            || $settings->get('previewTextType') == 'itemDescriptionAndTechnicalData')
-//        {
-//            $itemDescriptionFields[] = 'technicalData';
-//        } done
-//
-//        return [
-//            'itemBase'=> [
-//                'id',     done
-//                'producerId',     done
-//            ],
-//
-//            'itemDescription' => [
-//                'params' => [
-//                    'language' => $settings->get('lang') ? $settings->get('lang') : 'de',
-//                ],
-//                'fields' => $itemDescriptionFields,       done
-//            ],
-//
-//            'variationImageList' => [
-//                'params' => [
-//                    'type' => 'item_variation',
-//                    'referenceMarketplace' => $settings->get('referrerId') ? $settings->get('referrerId') : 150,
-//                ],
-//                'fields' => [
-//                    'type',       done
-//                    'path',       done
-//                    'position',   done
-//                ]
-//
-//            ],
-//
-//            'variationBase' => [
-//                'id',                     done
-//                'availability',           done
-//                'attributeValueSetId',    done
-//                'model',                  done
-//                'limitOrderByStockSelect',done
-//                'unitId',                 done
-//                'content',                done
-//                'weightG',                done
-//            ],
-//
-//            'variationRetailPrice' => [
-//                'params' => [
-//                    'referrerId' => $settings->get('referrerId') ? $settings->get('referrerId') : 150,
-//                ],
-//                'fields' => [
-//                    'price',              done
-//                ],
-//            ],
-//
-//            'variationStandardCategory' => [
-//                'params' => [
-//                    'plentyId' => $settings->get('plentyId'),
-//                ],
-//                'fields' => [
-//                    'categoryId',         done
-//                ],
-//            ],
-//
-//            'variationBarcodeList' => [
-//                'params' => [
-//                    'barcodeType' => $settings->get('barcode') ? $settings->get('barcode') : 'EAN',
-//                ],
-//                'fields' => [
-//                    'variationId',
-//                    'code',               done
-//                    'barcodeId',          todo
-//                    'barcodeType',        done
-//                    'barcodeName'         todo
-//                ]
-//            ],
-//
-//            'variationMarketStatus' => [
-//                'params' => [
-//                    'marketId' => 150
-//                ],
-//                'fields' => [
-//                    'sku'                 done
-//                ]
-//            ],
-//
-//            'variationStock' => [
-//                'params' => [
-//                    'type' => 'virtual'
-//                ],
-//                'fields' => [
-//                    'stockNet'            done
-//                ]
-//            ],
-//
-//            'variationAttributeValueList' => [
-//                'attributeId',            done
-//                'attributeValueId',       done
-//            ],
-//        ];
-//    }
 }
