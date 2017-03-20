@@ -83,7 +83,7 @@ class Check24DE extends CSVPluginGenerator
                 /**
                  * @var \ElasticExportCheck24DE\IDL_ResultList\Check24DE $idlResultList
                  */
-                $idlResultList = pluginApp(\ElasticExportRakutenDE\IDL_ResultList\RakutenDE::class);
+                $idlResultList = pluginApp(\ElasticExportCheck24DE\IDL_ResultList\Check24DE::class);
                 $idlResultList = $idlResultList->getResultList($variationIdList, $settings);
             }
 

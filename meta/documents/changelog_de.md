@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.0.4 (2017-03-20)
+
+### Geändert
+- Aufruf der richtigen ItemDataLayer-Klasse geändert.
+
 ## v1.0.3 (2017-03-13)
 
 ### Hinzugefügt
