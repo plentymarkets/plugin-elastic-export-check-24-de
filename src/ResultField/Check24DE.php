@@ -126,18 +126,26 @@ class Check24DE extends ResultFields
                 'variation.weightG',
 
                 //images
-                'images.all.type',
+                'images.all.urlMiddle',
+                'images.all.urlPreview',
+                'images.all.urlSecondPreview',
+                'images.all.url',
                 'images.all.path',
                 'images.all.position',
-                'images.all.fileType',
-                'images.item.type',
+
+                'images.item.urlMiddle',
+                'images.item.urlPreview',
+                'images.item.urlSecondPreview',
+                'images.item.url',
                 'images.item.path',
                 'images.item.position',
-                'images.item.fileType',
-                'images.variation.type',
+
+                'images.variation.urlMiddle',
+                'images.variation.urlPreview',
+                'images.variation.urlSecondPreview',
+                'images.variation.url',
                 'images.variation.path',
                 'images.variation.position',
-                'images.variation.fileType',
 
                 //unit
                 'unit.content',
