@@ -2,14 +2,16 @@
 
 namespace ElasticExportCheck24DE\ResultField;
 
+use Plenty\Modules\Cloud\ElasticSearch\Lib\ElasticSearch;
 use Plenty\Modules\DataExchange\Contracts\ResultFields;
 use Plenty\Modules\DataExchange\Models\FormatSetting;
 use Plenty\Modules\Helper\Services\ArrayHelper;
+use Plenty\Modules\Item\Search\Mutators\BarcodeMutator;
 use Plenty\Modules\Item\Search\Mutators\ImageMutator;
 use Plenty\Modules\Cloud\ElasticSearch\Lib\Source\Mutator\BuiltIn\LanguageMutator;
+use Plenty\Modules\Item\Search\Mutators\KeyMutator;
 use Plenty\Modules\Item\Search\Mutators\SkuMutator;
 use Plenty\Modules\Item\Search\Mutators\DefaultCategoryMutator;
-
 
 /**
  * Class Check24DE
@@ -17,15 +19,16 @@ use Plenty\Modules\Item\Search\Mutators\DefaultCategoryMutator;
  */
 class Check24DE extends ResultFields
 {
-
     const CHECK24_DE = 150.00;
-    /*
-	 * @var ArrayHelper
-	 */
+
+    /**
+     * @var ArrayHelper
+     */
     private $arrayHelper;
 
     /**
-     * Billiger constructor.
+     * Check24DE constructor.
+     *
      * @param ArrayHelper $arrayHelper
      */
     public function __construct(ArrayHelper $arrayHelper)
@@ -35,6 +38,7 @@ class Check24DE extends ResultFields
 
     /**
      * Generate result fields.
+     *
      * @param  array $formatSettings = []
      * @return array
      */
@@ -42,11 +46,11 @@ class Check24DE extends ResultFields
     {
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
 
-        $this->setOrderByList(['variation.itemId', 'ASC']);
+        $this->setOrderByList(['item.id', ElasticSearch::SORTING_ORDER_ASC]);
 
         $reference = $settings->get('referrerId') ? $settings->get('referrerId') : self::CHECK24_DE;
 
-        $itemDescriptionFields = ['texts.urlPath'];
+        $itemDescriptionFields = ['texts.urlPath', 'texts.lang'];
 
         switch($settings->get('nameId'))
         {
@@ -88,10 +92,22 @@ class Check24DE extends ResultFields
         {
             $imageMutator->addMarket($reference);
         }
+
+        /**
+         * @var KeyMutator $keyMutator
+         */
+        $keyMutator = pluginApp(KeyMutator::class);
+        if($keyMutator instanceof KeyMutator)
+        {
+            $keyMutator->setKeyList($this->getKeyList());
+            $keyMutator->setNestedKeyList($this->getNestedKeyList());
+        }
+
         /**
          * @var LanguageMutator $languageMutator
          */
         $languageMutator = pluginApp(LanguageMutator::class, [[$settings->get('lang')]]);
+
         /**
          * @var SkuMutator $skuMutator
          */
@@ -100,6 +116,7 @@ class Check24DE extends ResultFields
         {
             $skuMutator->setMarket($reference);
         }
+
         /**
          * @var DefaultCategoryMutator $defaultCategoryMutator
          */
@@ -109,6 +126,14 @@ class Check24DE extends ResultFields
             $defaultCategoryMutator->setPlentyId($settings->get('plentyId'));
         }
 
+        /**
+         * @var BarcodeMutator $barcodeMutator
+         */
+        $barcodeMutator = pluginApp(BarcodeMutator::class);
+        if($barcodeMutator instanceof BarcodeMutator)
+        {
+            $barcodeMutator->addMarket($reference);
+        }
 
         $fields = [
             [
@@ -171,7 +196,9 @@ class Check24DE extends ResultFields
             [
                 $languageMutator,
                 $skuMutator,
-                $defaultCategoryMutator
+                $defaultCategoryMutator,
+                $barcodeMutator,
+                $keyMutator
             ],
         ];
 
@@ -188,4 +215,126 @@ class Check24DE extends ResultFields
         return $fields;
     }
 
+    /**
+     * Returns the list of keys.
+     *
+     * @return array
+     */
+    private function getKeyList()
+    {
+        $keyList = [
+            //item
+            'item.id',
+            'item.manufacturer.id',
+
+            //variation
+            'variation.availability.id',
+            'variation.stockLimitation',
+            'variation.vatId',
+            'variation.model',
+            'variation.isMain',
+            'variation.weightG',
+
+            //unit
+            'unit.content',
+            'unit.id'
+        ];
+
+        return $keyList;
+    }
+
+    /**
+     * Returns the list of nested keys.
+     *
+     * @return mixed
+     */
+    private function getNestedKeyList()
+    {
+        $nestedKeyList['keys'] = [
+            //images
+            'images.all',
+            'images.item',
+            'images.variation',
+
+            //sku
+            'skus',
+
+            //texts
+            'texts',
+
+            //defaultCategories
+            'defaultCategories',
+
+            //barcodes
+            'barcodes',
+
+            //attributes
+            'attributes'
+        ];
+
+        $nestedKeyList['nestedKeys'] = [
+            //images
+            'images.all' => [
+                'urlMiddle',
+                'urlPreview',
+                'urlSecondPreview',
+                'url',
+                'path',
+                'position',
+            ],
+            'images.item' => [
+                'urlMiddle',
+                'urlPreview',
+                'urlSecondPreview',
+                'url',
+                'path',
+                'position',
+            ],
+            'images.variation' => [
+                'urlMiddle',
+                'urlPreview',
+                'urlSecondPreview',
+                'url',
+                'path',
+                'position',
+            ],
+
+            //sku
+            'skus' => [
+                'sku'
+            ],
+
+            //texts
+            'texts' => [
+                'urlPath',
+                'lang',
+                'name1',
+                'name2',
+                'name3',
+                'shortDescription',
+                'description',
+                'technicalData',
+            ],
+
+            //defaultCategories
+            'defaultCategories' => [
+                'id'
+            ],
+
+            //barcodes
+            'barcodes' => [
+                'code',
+                'type',
+            ],
+
+            //attributes
+            'attributes' => [
+                'attributeValueSetId',
+                'attributeId',
+                'valueId',
+            ]
+        ];
+
+        return $nestedKeyList;
+    }
 }

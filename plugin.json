@@ -18,7 +18,7 @@
   ],
   "version": "1.0.6",
   "dependencies": {
-    "ElasticExport": "*"
+    "ElasticExport": ">=1.0.18"
   },
   "marketplaceName": {
     "de":"Check24.de",

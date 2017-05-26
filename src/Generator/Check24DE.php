@@ -3,15 +3,27 @@
 namespace ElasticExportCheck24DE\Generator;
 
 use ElasticExport\Helper\ElasticExportCoreHelper;
+use ElasticExport\Helper\ElasticExportStockHelper;
+use ElasticExportCheck24DE\Helper\PriceHelper;
+use ElasticExportCheck24DE\Helper\StockHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
+use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
-use Plenty\Modules\Item\DataLayer\Models\Record;
-use Plenty\Modules\Item\DataLayer\Models\RecordList;
 use Plenty\Modules\DataExchange\Models\FormatSetting;
+use Plenty\Modules\Item\Search\Contracts\VariationElasticSearchScrollRepositoryContract;
+use Plenty\Plugin\Log\Loggable;
 
+/**
+ * Class Check24DE
+ * @package ElasticExportCheck24DE\Generator
+ */
 class Check24DE extends CSVPluginGenerator
 {
+    use Loggable;
+
     const CHECK24_DE = 150.00;
+
+    const DELIMITER = "|"; // PIPE
 
     /**
      * @var ElasticExportCoreHelper $elasticExportHelper
@@ -19,148 +31,317 @@ class Check24DE extends CSVPluginGenerator
     private $elasticExportHelper;
 
     /**
+     * @var ElasticExportStockHelper $elasticExportStockHelper
+     */
+    private $elasticExportStockHelper;
+
+    /**
      * @var ArrayHelper $arrayHelper
      */
     private $arrayHelper;
 
     /**
-     * @var array $idlVariations
+     * @var PriceHelper
      */
-    private $idlVariations = array();
+    private $priceHelper;
 
     /**
-     * Billiger constructor.
+     * @var StockHelper
+     */
+    private $stockHelper;
+
+    /**
+     * @var array
+     */
+    private $shippingCostCache;
+
+    /**
+     * @var array
+     */
+    private $manufacturerCache;
+
+    /**
+     * Check24DE constructor.
+     *
      * @param ArrayHelper $arrayHelper
      */
-    public function __construct(ArrayHelper $arrayHelper)
+    public function __construct(
+        ArrayHelper $arrayHelper,
+        PriceHelper $priceHelper,
+        StockHelper $stockHelper)
     {
         $this->arrayHelper = $arrayHelper;
+        $this->priceHelper = $priceHelper;
+        $this->stockHelper = $stockHelper;
     }
 
     /**
-     * @param array $resultData
+     * Generates and populates the data into the CSV file.
+     *
+     * @param VariationElasticSearchScrollRepositoryContract $elasticSearch
      * @param array $formatSettings
      * @param array $filter
      */
-    protected function generatePluginContent($resultData, array $formatSettings = [], array $filter = [])
+    protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
+        $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
-        if(is_array($resultData['documents']) && count($resultData['documents']) > 0)
+
+        $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+
+        $this->setDelimiter(self::DELIMITER);
+
+        $this->addCSVContent($this->head());
+
+        $startTime = microtime(true);
+
+        if($elasticSearch instanceof VariationElasticSearchScrollRepositoryContract)
         {
-            $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+            // Initiate the counter for the variations limit
+            $limitReached = false;
+            $limit = 0;
 
-            $this->setDelimiter("|");
+            do
+            {
+                $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.writtenLines', [
+                    'Lines written' => $limit,
+                ]);
 
-            $this->addCSVContent([
-                'id',
-                'manufacturer',
-                'mpnr',
-                'ean',
-                'name',
-                'description',
-                'category_path',
-                'price',
-                'price_per_unit',
-                'link',
-                'image_url',
-                'delivery_time',
-                'delivery_cost',
-                'pzn',
-                'stock',
-                'weight',
+                if($limitReached === true)
+                {
+                    break;
+                }
+
+                $esStartTime = microtime(true);
+
+                // Get the data from Elastic Search
+                $resultList = $elasticSearch->execute();
+
+                $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.esDuration', [
+                    'Elastic Search duration' => microtime(true) - $esStartTime,
+                ]);
+
+                if(count($resultList['error']) > 0)
+                {
+                    $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.occurredElasticSearchErrors', [
+                        'Error message' => $resultList['error'],
+                    ]);
+
+                    break;
+                }
+
+                $buildRowStartTime = microtime(true);
+
+                if(is_array($resultList['documents']) && count($resultList['documents']) > 0)
+                {
+                    $previousId = null;
+
+                    foreach($resultList['documents'] as $variation)
+                    {
+                        // Stop and set the flag if limit is reached
+                        if($limit == $filter['limit'])
+                        {
+                            $limitReached = true;
+                            break;
+                        }
+
+                        // If filtered by stock is set and stock is negative, then skip the variation
+                        if ($this->elasticExportStockHelper->isFilteredByStock($variation, $filter) === true)
+                        {
+                            $this->getLogger(__METHOD__)->info('ElasticExportCheck24DE::logs.variationNotPartOfExportStock', [
+                                'VariationId' => $variation['id']
+                            ]);
+
+                            continue;
+                        }
+
+                        try
+                        {
+                            // Set the caches if we have the first variation or when we have the first variation of an item
+                            if($previousId === null || $previousId != $variation['data']['item']['id'])
+                            {
+                                $previousId = $variation['data']['item']['id'];
+                                unset($this->shippingCostCache, $this->manufacturerCache);
+
+                                // Build the caches arrays
+                                $this->buildCaches($variation, $settings);
+                            }
+
+                            // Build the new row for printing in the CSV file
+                            $this->buildRow($variation, $settings);
+                        }
+                        catch(\Throwable $throwable)
+                        {
+                            $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.fillRowError', [
+                                'Error message ' => $throwable->getMessage(),
+                                'Error line'     => $throwable->getLine(),
+                                'VariationId'    => $variation['id']
+                            ]);
+                        }
+
+                        // New line was added
+                        $limit++;
+                    }
+
+                    $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.buildRowDuration', [
+                        'Build rows duration' => microtime(true) - $buildRowStartTime,
+                    ]);
+                }
+
+            } while ($elasticSearch->hasNext());
+        }
+
+        $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.fileGenerationDuration', [
+            'Whole file generation duration' => microtime(true) - $startTime,
+        ]);
+    }
+
+    /**
+     * Creates the header of the CSV file.
+     *
+     * @return array
+     */
+    private function head():array
+    {
+        return array(
+            'id',
+            'manufacturer',
+            'mpnr',
+            'ean',
+            'name',
+            'description',
+            'category_path',
+            'price',
+            'price_per_unit',
+            'link',
+            'image_url',
+            'delivery_time',
+            'delivery_cost',
+            'pzn',
+            'stock',
+            'weight'
+        );
+    }
+
+    /**
+     * Creates the variation row and prints it into the CSV file.
+     *
+     * @param $variation
+     * @param KeyValue $settings
+     */
+    private function buildRow($variation, KeyValue $settings)
+    {
+        // get the price
+        $price = $this->priceHelper->getPrice($variation, $settings);
+
+        // only variations with the Retail Price greater than zero will be handled
+        if(!is_null($price['variationRetailPrice.price']) && $price['variationRetailPrice.price'] > 0)
+        {
+            $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
+
+            $shippingCost = $this->getShippingCost($variation);
+
+            $manufacturer = $this->getManufacturer($variation);
+
+            $stock = $this->stockHelper->getStock($variation);
+
+            $data = [
+                'id' 				=> $this->getSku($variation),
+                'manufacturer' 		=> $manufacturer,
+                'mpnr' 				=> $variation['data']['variation']['model'],
+                'ean' 				=> $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
+                'name' 				=> $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
+                'description' 		=> $this->elasticExportHelper->getMutatedDescription($variation, $settings),
+                'category_path' 	=> $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
+                'price' 			=> number_format((float)$price['variationRetailPrice.price'], 2, '.', ''),
+                'price_per_unit'	=> $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
+                'link' 				=> $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
+                'image_url'			=> $this->elasticExportHelper->getMainImage($variation, $settings),
+                'delivery_time' 	=> $this->elasticExportHelper->getAvailability($variation, $settings, false),
+                'delivery_cost' 	=> $shippingCost,
+                'pzn' 				=> '',
+                'stock' 			=> $stock,
+                'weight' 			=> $variation['data']['variation']['weightG']
+            ];
+
+            $this->addCSVContent(array_values($data));
+        }
+        else
+        {
+            $this->getLogger(__METHOD__)->info('ElasticExportCheck24DE::logs.variationNotPartOfExportPrice', [
+                'VariationId' => $variation['id']
             ]);
-
-            //Create a List of all VariationIds
-            $variationIdList = array();
-            foreach($resultData['documents'] as $variation)
-            {
-                $variationIdList[] = $variation['id'];
-            }
-
-            //Get the missing fields in ES from IDL
-            if(is_array($variationIdList) && count($variationIdList) > 0)
-            {
-                /**
-                 * @var \ElasticExportCheck24DE\IDL_ResultList\Check24DE $idlResultList
-                 */
-                $idlResultList = pluginApp(\ElasticExportCheck24DE\IDL_ResultList\Check24DE::class);
-                $idlResultList = $idlResultList->getResultList($variationIdList, $settings);
-            }
-
-            //Creates an array with the variationId as key to surpass the sorting problem
-            if(isset($idlResultList) && $idlResultList instanceof RecordList)
-            {
-                $this->createIdlArray($idlResultList);
-            }
-
-            foreach($resultData['documents'] as $item)
-            {
-                $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($item, $settings);
-
-                $shippingCost = $this->elasticExportHelper->getShippingCost($item['data']['item']['id'], $settings);
-                if(!is_null($shippingCost))
-                {
-                    $shippingCost = number_format((float)$shippingCost, 2, ',', '');
-                }
-                else
-                {
-                    $shippingCost = '';
-                }
-
-                $data = [
-                    'id' 				=> $this->getSku($item),
-                    'manufacturer' 		=> $this->elasticExportHelper->getExternalManufacturerName((int)$item['data']['item']['manufacturer']['id']),
-                    'mpnr' 				=> $item['data']['variation']['model'],
-                    'ean' 				=> $this->elasticExportHelper->getBarcodeByType($item, $settings->get('barcode')),
-                    'name' 				=> $this->elasticExportHelper->getName($item, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
-                    'description' 		=> $this->elasticExportHelper->getDescription($item, $settings),
-                    'category_path' 	=> $this->elasticExportHelper->getCategory((int)$item['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
-                    'price' 			=> number_format((float)$this->idlVariations[$item['id']]['variationRetailPrice.price'], 2, '.', ''),
-                    'price_per_unit'	=> $this->elasticExportHelper->getBasePrice($item, $this->idlVariations),
-                    'link' 				=> $this->elasticExportHelper->getUrl($item, $settings, true, false),
-                    'image_url'			=> $this->elasticExportHelper->getMainImage($item, $settings),
-                    'delivery_time' 	=> $this->elasticExportHelper->getAvailability($item, $settings, false),
-                    'delivery_cost' 	=> $shippingCost,
-                    'pzn' 				=> '',
-                    'stock' 			=> $this->idlVariations[$item['id']]['variationStock.stockNet'],
-                    'weight' 			=> $item['data']['variation']['weightG'],
-                ];
-
-                $this->addCSVContent(array_values($data));
-            }
         }
     }
 
     /**
      * Get the SKU.
-     * @param  array $item
+     *
+     * @param  array $variation
      * @return string
      */
-    private function getSku($item):string
+    private function getSku($variation):string
     {
-        return (string) $this->elasticExportHelper->generateSku($item['id'], self::CHECK24_DE, 0, (string)$item['data']['skus']['sku']);
+        if(!is_null($variation['data']['skus'][0]['sku']) && strlen($variation['data']['skus'][0]['sku']) > 0)
+        {
+            return $variation['data']['skus'][0]['sku'];
+        }
+
+        return $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['id']);
     }
 
     /**
-     * @param RecordList $idlResultList
+     * Get the shipping cost.
+     *
+     * @param $variation
+     * @return string
      */
-    private function createIdlArray($idlResultList)
+    private function getShippingCost($variation):string
     {
-        if($idlResultList instanceof RecordList)
+        $shippingCost = null;
+        if(isset($this->shippingCostCache) && array_key_exists($variation['data']['item']['id'], $this->shippingCostCache))
         {
-            foreach($idlResultList as $idlVariation)
-            {
-                if($idlVariation instanceof Record)
-                {
-                    $this->idlVariations[$idlVariation->variationBase->id] = [
-                        'itemBase.id' => $idlVariation->itemBase->id,
-                        'variationBase.id' => $idlVariation->variationBase->id,
-                        'variationStock.stockNet' => $idlVariation->variationStock->stockNet,
-                        'variationRetailPrice.price' => $idlVariation->variationRetailPrice->price,
-                        'variationRetailPrice.vatValue' => $idlVariation->variationRetailPrice->vatValue,
-                    ];
-                }
-            }
+            $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
+        }
+
+        if(!is_null($shippingCost))
+        {
+            $shippingCost = number_format((float)$shippingCost, 2, '.', '');
+            return $shippingCost;
+        }
+
+        return '';
+    }
+
+    /**
+     * Get the manufacturer name.
+     *
+     * @param $variation
+     * @return string
+     */
+    private function getManufacturer($variation):string
+    {
+        if(isset($this->manufacturerCache) && array_key_exists($variation['data']['item']['id'], $this->manufacturerCache))
+        {
+            return $this->manufacturerCache[$variation['data']['item']['id']];
+        }
+
+        return '';
+    }
+
+    /**
+     * Build the cache arrays for the item variation.
+     *
+     * @param $variation
+     * @param $settings
+     */
+    private function buildCaches($variation, $settings)
+    {
+        if(!is_null($variation) && !is_null($variation['data']['item']['id']))
+        {
+            $this->shippingCostCache[$variation['data']['item']['id']] = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
+
+            $this->manufacturerCache[$variation['data']['item']['id']] = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
         }
     }
 }

@@ -1,5 +1,13 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.0.6 (2017-05-26)
+
+### Behoben
+- Es wurde ein Fehler behoben, der dazu geführt hat, dass bei dem Barcode die Markplatzfreigabe ignoriert wurde.
+- Es wurde ein Fehler behoben, bei dem Bestand nicht korrekt ausgewertet wurden.
+- Es wurde ein Fehler behoben, bei dem Varianten nicht in der richtigen Reihenfolge gelistet wurden.
+- Es wurde ein Fehler behoben, der dazu geführt hat, dass das Exportformat Texte in der falschen Sprache exportierte.
+
 ## v1.0.5 (2017-03-22)
 
 ### Behoben

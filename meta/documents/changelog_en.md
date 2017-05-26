@@ -1,5 +1,13 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.0.6 (2017-05-26)
+
+### Fixed
+- An issue was fixed which caused elastic search to ignore the set referrers for the barcodes.
+- An issue was fixed which caused the stock filter not to be correctly evaluated.
+- An issue was fixed which caused the variations not to be exported in the correct order.
+- An issue was fixed which caused the export format to export texts in the wrong language.
+
 ## v1.0.5 (2017-03-22)
 
 ### Fixed
