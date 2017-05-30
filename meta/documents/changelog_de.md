@@ -2,12 +2,14 @@
 
 ## v1.0.6 (2017-05-30)
 
+### Geändert
+- Das Plugin Elastic Export ist nun Voraussetzung zur Nutzung des Pluginformats Check24DE.
+
 ### Behoben
 - Es wurde ein Fehler behoben, der dazu geführt hat, dass bei dem Barcode die Markplatzfreigabe ignoriert wurde.
 - Es wurde ein Fehler behoben, bei dem Bestand nicht korrekt ausgewertet wurden.
 - Es wurde ein Fehler behoben, bei dem Varianten nicht in der richtigen Reihenfolge gelistet wurden.
 - Es wurde ein Fehler behoben, der dazu geführt hat, dass das Exportformat Texte in der falschen Sprache exportierte.
-- Es wurde ein Fehler behoben, das Plugin-Format TwengaCOM veranlasste, in seiner Konfiguration das Plugin ElasticExport zu verlangen.
 
 ## v1.0.5 (2017-03-22)
 
