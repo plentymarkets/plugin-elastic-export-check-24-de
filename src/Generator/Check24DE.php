@@ -3,8 +3,8 @@
 namespace ElasticExportCheck24DE\Generator;
 
 use ElasticExport\Helper\ElasticExportCoreHelper;
+use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
-use ElasticExportCheck24DE\Helper\PriceHelper;
 use ElasticExportCheck24DE\Helper\StockHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
@@ -36,14 +36,14 @@ class Check24DE extends CSVPluginGenerator
     private $elasticExportStockHelper;
 
     /**
+     * @var ElasticExportPriceHelper $elasticExportPriceHelper
+     */
+    private $elasticExportPriceHelper;
+
+    /**
      * @var ArrayHelper $arrayHelper
      */
     private $arrayHelper;
-
-    /**
-     * @var PriceHelper
-     */
-    private $priceHelper;
 
     /**
      * @var StockHelper
@@ -67,11 +67,9 @@ class Check24DE extends CSVPluginGenerator
      */
     public function __construct(
         ArrayHelper $arrayHelper,
-        PriceHelper $priceHelper,
         StockHelper $stockHelper)
     {
         $this->arrayHelper = $arrayHelper;
-        $this->priceHelper = $priceHelper;
         $this->stockHelper = $stockHelper;
     }
 
@@ -84,8 +82,11 @@ class Check24DE extends CSVPluginGenerator
      */
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
-        $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
+
+        $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
+
+        $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
 
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
 
@@ -232,10 +233,10 @@ class Check24DE extends CSVPluginGenerator
     private function buildRow($variation, KeyValue $settings)
     {
         // get the price
-        $price = $this->priceHelper->getPrice($variation, $settings);
+        $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
         // only variations with the Retail Price greater than zero will be handled
-        if(!is_null($price['variationRetailPrice.price']) && $price['variationRetailPrice.price'] > 0)
+        if(!is_null($priceList['price']) && $priceList['price'] > 0)
         {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
 
@@ -245,6 +246,8 @@ class Check24DE extends CSVPluginGenerator
 
             $stock = $this->stockHelper->getStock($variation);
 
+            $price['variationRetailPrice.price'] = $priceList['price'];
+
             $data = [
                 'id' 				=> $this->getSku($variation),
                 'manufacturer' 		=> $manufacturer,
@@ -253,7 +256,7 @@ class Check24DE extends CSVPluginGenerator
                 'name' 				=> $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
                 'description' 		=> $this->elasticExportHelper->getMutatedDescription($variation, $settings),
                 'category_path' 	=> $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
-                'price' 			=> number_format((float)$price['variationRetailPrice.price'], 2, '.', ''),
+                'price' 			=> $priceList['price'],
                 'price_per_unit'	=> $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
                 'link' 				=> $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'image_url'			=> $this->elasticExportHelper->getMainImage($variation, $settings),
@@ -304,9 +307,8 @@ class Check24DE extends CSVPluginGenerator
             $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
         }
 
-        if(!is_null($shippingCost))
+        if(!is_null($shippingCost) && $shippingCost != '0.00')
         {
-            $shippingCost = number_format((float)$shippingCost, 2, '.', '');
             return $shippingCost;
         }
 
@@ -339,9 +341,11 @@ class Check24DE extends CSVPluginGenerator
     {
         if(!is_null($variation) && !is_null($variation['data']['item']['id']))
         {
-            $this->shippingCostCache[$variation['data']['item']['id']] = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
+            $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
+            $this->shippingCostCache[$variation['data']['item']['id']] = number_format((float)$shippingCost, 2, '.', '');
 
-            $this->manufacturerCache[$variation['data']['item']['id']] = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
+            $manufacturer = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
+            $this->manufacturerCache[$variation['data']['item']['id']] = $manufacturer;
         }
     }
 }

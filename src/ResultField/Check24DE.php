@@ -194,11 +194,11 @@ class Check24DE extends ResultFields
             ],
 
             [
+                $keyMutator,
                 $languageMutator,
                 $skuMutator,
                 $defaultCategoryMutator,
                 $barcodeMutator,
-                $keyMutator
             ],
         ];
 
