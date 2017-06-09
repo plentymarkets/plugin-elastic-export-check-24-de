@@ -162,7 +162,7 @@ class Check24DE extends CSVPluginGenerator
                             if($previousItemId === null || $previousItemId != $variation['data']['item']['id'])
                             {
                                 $previousItemId = $variation['data']['item']['id'];
-                                unset($this->shippingCostCache, $this->manufacturerCache);
+                                unset($this->shippingCostCache);
 
                                 // Build the caches arrays
                                 $this->buildCaches($variation, $settings);
@@ -285,12 +285,15 @@ class Check24DE extends CSVPluginGenerator
      */
     private function getSku($variation):string
     {
+        // Get the sku if it's already indexed
+        $sku = null;
         if(!is_null($variation['data']['skus'][0]['sku']) && strlen($variation['data']['skus'][0]['sku']) > 0)
         {
-            return $variation['data']['skus'][0]['sku'];
+            $sku = (string)$variation['data']['skus'][0]['sku'];
         }
 
-        return $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['id']);
+        // Update and return the sku
+        return $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, $sku);
     }
 
     /**
@@ -323,9 +326,9 @@ class Check24DE extends CSVPluginGenerator
      */
     private function getManufacturer($variation):string
     {
-        if(isset($this->manufacturerCache) && array_key_exists($variation['data']['item']['id'], $this->manufacturerCache))
+        if(isset($this->manufacturerCache) && array_key_exists($variation['data']['item']['manufacturer']['id'], $this->manufacturerCache))
         {
-            return $this->manufacturerCache[$variation['data']['item']['id']];
+            return $this->manufacturerCache[$variation['data']['item']['manufacturer']['id']];
         }
 
         return '';
@@ -344,8 +347,14 @@ class Check24DE extends CSVPluginGenerator
             $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
             $this->shippingCostCache[$variation['data']['item']['id']] = number_format((float)$shippingCost, 2, '.', '');
 
-            $manufacturer = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
-            $this->manufacturerCache[$variation['data']['item']['id']] = $manufacturer;
+            if(!is_null($variation['data']['item']['manufacturer']['id']))
+            {
+                if(!isset($this->manufacturerCache) || (isset($this->manufacturerCache) && !array_key_exists($variation['data']['item']['manufacturer']['id'], $this->manufacturerCache)))
+                {
+                    $manufacturer = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
+                    $this->manufacturerCache[$variation['data']['item']['manufacturer']['id']] = $manufacturer;
+                }
+            }
         }
     }
 }
