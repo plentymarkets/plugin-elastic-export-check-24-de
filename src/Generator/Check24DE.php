@@ -5,7 +5,6 @@ namespace ElasticExportCheck24DE\Generator;
 use ElasticExport\Helper\ElasticExportCoreHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
-use ElasticExportCheck24DE\Helper\StockHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
@@ -46,11 +45,6 @@ class Check24DE extends CSVPluginGenerator
     private $arrayHelper;
 
     /**
-     * @var StockHelper
-     */
-    private $stockHelper;
-
-    /**
      * @var array
      */
     private $shippingCostCache;
@@ -65,12 +59,9 @@ class Check24DE extends CSVPluginGenerator
      *
      * @param ArrayHelper $arrayHelper
      */
-    public function __construct(
-        ArrayHelper $arrayHelper,
-        StockHelper $stockHelper)
+    public function __construct(ArrayHelper $arrayHelper)
     {
         $this->arrayHelper = $arrayHelper;
-        $this->stockHelper = $stockHelper;
     }
 
     /**
@@ -244,12 +235,10 @@ class Check24DE extends CSVPluginGenerator
 
             $manufacturer = $this->getManufacturer($variation);
 
-            $stock = $this->stockHelper->getStock($variation);
-
             $price['variationRetailPrice.price'] = $priceList['price'];
 
             $data = [
-                'id' 				=> $this->getSku($variation),
+                'id' 				=> $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
                 'manufacturer' 		=> $manufacturer,
                 'mpnr' 				=> $variation['data']['variation']['model'],
                 'ean' 				=> $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
@@ -263,7 +252,7 @@ class Check24DE extends CSVPluginGenerator
                 'delivery_time' 	=> $this->elasticExportHelper->getAvailability($variation, $settings, false),
                 'delivery_cost' 	=> $shippingCost,
                 'pzn' 				=> '',
-                'stock' 			=> $stock,
+                'stock' 			=> $this->elasticExportStockHelper->getStock($variation),
                 'weight' 			=> $variation['data']['variation']['weightG']
             ];
 
@@ -275,25 +264,6 @@ class Check24DE extends CSVPluginGenerator
                 'VariationId' => $variation['id']
             ]);
         }
-    }
-
-    /**
-     * Get the SKU.
-     *
-     * @param  array $variation
-     * @return string
-     */
-    private function getSku($variation):string
-    {
-        // Get the sku if it's already indexed
-        $sku = null;
-        if(!is_null($variation['data']['skus'][0]['sku']) && strlen($variation['data']['skus'][0]['sku']) > 0)
-        {
-            $sku = (string)$variation['data']['skus'][0]['sku'];
-        }
-
-        // Update and return the sku
-        return $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, $sku);
     }
 
     /**
