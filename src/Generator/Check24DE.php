@@ -238,22 +238,22 @@ class Check24DE extends CSVPluginGenerator
             $price['variationRetailPrice.price'] = $priceList['price'];
 
             $data = [
-                'id' 				=> $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
-                'manufacturer' 		=> $manufacturer,
-                'mpnr' 				=> $variation['data']['variation']['model'],
-                'ean' 				=> $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
-                'name' 				=> $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
-                'description' 		=> $this->elasticExportHelper->getMutatedDescription($variation, $settings),
-                'category_path' 	=> $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
-                'price' 			=> $priceList['price'],
-                'price_per_unit'	=> $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
-                'link' 				=> $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
-                'image_url'			=> $this->elasticExportHelper->getMainImage($variation, $settings),
-                'delivery_time' 	=> $this->elasticExportHelper->getAvailability($variation, $settings, false),
-                'delivery_cost' 	=> $shippingCost,
-                'pzn' 				=> '',
-                'stock' 			=> $this->elasticExportStockHelper->getStock($variation),
-                'weight' 			=> $variation['data']['variation']['weightG']
+                'id'                => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
+                'manufacturer'      => $manufacturer,
+                'mpnr'              => $variation['data']['variation']['model'],
+                'ean'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
+                'name'              => $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
+                'description'       => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
+                'category_path'     => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
+                'price'             => $priceList['price'],
+                'price_per_unit'    => $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
+                'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
+                'image_url'         => $this->elasticExportHelper->getMainImage($variation, $settings),
+                'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
+                'delivery_cost'     => $shippingCost,
+                'pzn'               => '',
+                'stock'             => $this->elasticExportStockHelper->getStock($variation),
+                'weight'            => $variation['data']['variation']['weightG']
             ];
 
             $this->addCSVContent(array_values($data));

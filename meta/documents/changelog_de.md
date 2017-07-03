@@ -1,6 +1,6 @@
 # Release Notes für Elastic Export Check24.de
 
-## v1.0.6 (2017-06-03)
+## v1.0.6 (2017-07-03)
 
 ### Geändert
 - Das Plugin Elastic Export ist nun Voraussetzung zur Nutzung des Pluginformats Check24DE.

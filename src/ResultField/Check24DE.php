@@ -52,21 +52,7 @@ class Check24DE extends ResultFields
 
         $itemDescriptionFields = ['texts.urlPath', 'texts.lang'];
 
-        switch($settings->get('nameId'))
-        {
-            case 1:
-                $itemDescriptionFields[] = 'texts.name1';
-                break;
-            case 2:
-                $itemDescriptionFields[] = 'texts.name2';
-                break;
-            case 3:
-                $itemDescriptionFields[] = 'texts.name3';
-                break;
-            default:
-                $itemDescriptionFields[] = 'texts.name1';
-                break;
-        }
+        $itemDescriptionFields[] = ($settings->get('nameId')) ? 'texts.name' . $settings->get('nameId') : 'texts.name1';
 
         if($settings->get('descriptionType') == 'itemShortDescription'
             || $settings->get('previewTextType') == 'itemShortDescription')
