@@ -223,7 +223,7 @@ class Check24DE extends ResultFields
 
             //unit
             'unit.content',
-            'unit.id'
+            'unit.id',
         ];
 
         return $keyList;
@@ -255,7 +255,7 @@ class Check24DE extends ResultFields
             'barcodes',
 
             //attributes
-            'attributes'
+            'attributes',
         ];
 
         $nestedKeyList['nestedKeys'] = [
@@ -287,7 +287,7 @@ class Check24DE extends ResultFields
 
             //sku
             'skus' => [
-                'sku'
+                'sku',
             ],
 
             //texts
@@ -304,7 +304,7 @@ class Check24DE extends ResultFields
 
             //defaultCategories
             'defaultCategories' => [
-                'id'
+                'id',
             ],
 
             //barcodes
@@ -318,7 +318,7 @@ class Check24DE extends ResultFields
                 'attributeValueSetId',
                 'attributeId',
                 'valueId',
-            ]
+            ],
         ];
 
         return $nestedKeyList;

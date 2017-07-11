@@ -211,7 +211,7 @@ class Check24DE extends CSVPluginGenerator
             'delivery_cost',
             'pzn',
             'stock',
-            'weight'
+            'weight',
         );
     }
 
@@ -231,15 +231,11 @@ class Check24DE extends CSVPluginGenerator
         {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
 
-            $shippingCost = $this->getShippingCost($variation);
-
-            $manufacturer = $this->getManufacturer($variation);
-
             $price['variationRetailPrice.price'] = $priceList['price'];
 
             $data = [
                 'id'                => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
-                'manufacturer'      => $manufacturer,
+                'manufacturer'      => $this->getManufacturer($variation),
                 'mpnr'              => $variation['data']['variation']['model'],
                 'ean'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'name'              => $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
@@ -250,10 +246,10 @@ class Check24DE extends CSVPluginGenerator
                 'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'image_url'         => $this->elasticExportHelper->getMainImage($variation, $settings),
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
-                'delivery_cost'     => $shippingCost,
+                'delivery_cost'     => $this->getShippingCost($variation),
                 'pzn'               => '',
                 'stock'             => $this->elasticExportStockHelper->getStock($variation),
-                'weight'            => $variation['data']['variation']['weightG']
+                'weight'            => $variation['data']['variation']['weightG'],
             ];
 
             $this->addCSVContent(array_values($data));
