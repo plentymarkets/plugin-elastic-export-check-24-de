@@ -132,7 +132,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-			<b>Content:</b> The Check24.de <b>SKU</b> for the variation.
+			The Check24.de <b>SKU</b> for the variation.
 		</td>        
 	</tr>
 	<tr>
@@ -140,7 +140,7 @@ The following table lists details for settings, format settings and recommended 
 			manufacturer
 		</td>
 		<td>
-		    <b>Content:</b> The <b>name of the manufacturer</b> of the item. The <b>external name</b> from the menu <b>Settings » Items » Manufacturer</b> will be preferred if existing.
+		    The <b>name of the manufacturer</b> of the item. The <b>external name</b> from the menu <b>Settings » Items » Manufacturer</b> will be preferred if existing.
 		</td>        
 	</tr>
 	<tr>
@@ -148,7 +148,7 @@ The following table lists details for settings, format settings and recommended 
 			mpnr
 		</td>
 		<td>
-		    <b>Content:</b> The <b>Model</b> of the variation.
+		    The <b>Model</b> of the variation.
 		</td>        
 	</tr>
 	<tr>
@@ -157,7 +157,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-		    <b>Content:</b> According to the format setting <b>Barcode</b>.
+		    According to the format setting <b>Barcode</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -166,7 +166,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-		    <b>Content:</b> According to the format setting <b>Item Name</b>.
+		    According to the format setting <b>Item Name</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -174,7 +174,7 @@ The following table lists details for settings, format settings and recommended 
 			description
 		</td>
 		<td>
-		    <b>Content:</b> According to the format setting <b>Description</b>.
+		    According to the format setting <b>Description</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -182,7 +182,7 @@ The following table lists details for settings, format settings and recommended 
 			category_path
 		</td>
 		<td>
-		    <b>Content:</b> The <b>category path of the default cateogory</b> for the chosen <b>client</b> in the format settings.
+		    The <b>category path of the default cateogory</b> for the chosen <b>client</b> in the format settings.
 		</td>        
 	</tr>
 	<tr>
@@ -191,7 +191,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-		    <b>Content:</b> The <b>sales price</b> of the variation.
+		    The <b>sales price</b> of the variation.
 		</td>        
 	</tr>
 	<tr>
@@ -199,7 +199,7 @@ The following table lists details for settings, format settings and recommended 
 			price_per_unit
 		</td>
 		<td>
-		    <b>Content:</b> The <b>base price information</b> in the format "price / unit". (Example: 10,00 EUR / kilogram)
+		    The <b>base price information</b> in the format "price / unit". (Example: 10,00 EUR / kilogram)
 		</td>        
 	</tr>
 	<tr>
@@ -208,7 +208,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-		    <b>Content:</b> The <b>URL path</b> of the item depending on the chosen <b>client</b> in the format settings.
+		    The <b>URL path</b> of the item depending on the chosen <b>client</b> in the format settings.
 		</td>        
 	</tr>
 	<tr>
@@ -217,7 +217,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
             <b>Allowed file types:</b> jpg, gif, bmp, png.<br>
-            <b>Content:</b> The <b>URL path</b> of the first item image according to the format setting <b>image</b>. Variation images are prioritizied over item images.
+            The <b>URL path</b> of the first item image according to the format setting <b>image</b>. Variation images are prioritizied over item images.
 		</td>        
 	</tr>
 	<tr>
@@ -226,7 +226,7 @@ The following table lists details for settings, format settings and recommended 
 		</td>
 		<td>
 		    <b>Required</b><br>
-			<b>Content:</b> The <b>name of the item availability</b> under <b>Settings » Item » Item availability</b> or the translation according to the format setting <b>Item availability</b>.
+			<The <b>name of the item availability</b> under <b>Settings » Item » Item availability</b> or the translation according to the format setting <b>Item availability</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -234,7 +234,7 @@ The following table lists details for settings, format settings and recommended 
 			delivery_cost
 		</td>
 		<td>
-			<b>Content:</b> According to the format setting <b>Shipping costs</b>.
+			According to the format setting <b>Shipping costs</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -242,7 +242,7 @@ The following table lists details for settings, format settings and recommended 
 			pzn
 		</td>
 		<td>
-			Empty.
+			No content.
 		</td>        
 	</tr>
 	<tr>
@@ -250,7 +250,7 @@ The following table lists details for settings, format settings and recommended 
 			stock
 		</td>
 		<td>
-			<b>Content:</b> The <b>net stock of the variation</b>. If the variation is not limited to net stock, then <b>999</b> will be set as value.
+			The <b>net stock of the variation</b>. If the variation is not limited to net stock, then <b>999</b> will be set as value.
 		</td>        
 	</tr>
 	<tr>
