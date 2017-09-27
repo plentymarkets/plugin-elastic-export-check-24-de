@@ -132,7 +132,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-			<b>Inhalt:</b> Die <b>SKU</b> für Check24.de der Variante.
+		 Die <b>SKU</b> für Check24.de der Variante.
 		</td>        
 	</tr>
 	<tr>
@@ -140,7 +140,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			manufacturer
 		</td>
 		<td>
-		    <b>Inhalt:</b> Der <b>Name des Herstellers</b> des Artikels. Der <b>Externe Name</b> unter <b>Einstellungen » Artikel » Hersteller</b> wird bevorzugt, wenn vorhanden.
+		     Der <b>Name des Herstellers</b> des Artikels. Der <b>Externe Name</b> unter <b>Einstellungen » Artikel » Hersteller</b> wird bevorzugt, wenn vorhanden.
 		</td>        
 	</tr>
 	<tr>
@@ -148,7 +148,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			mpnr
 		</td>
 		<td>
-		    <b>Inhalt:</b> Das <b>Model</b> der Variante.
+		    Das <b>Model</b> der Variante.
 		</td>        
 	</tr>
 	<tr>
@@ -157,7 +157,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-		    <b>Inhalt:</b> Entsprechend der Formateinstellung <b>Barcode</b>.
+		    Entsprechend der Formateinstellung <b>Barcode</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -166,7 +166,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-		    <b>Inhalt:</b> Entsprechend der Formateinstellung <b>Artikelname</b>.
+		   Entsprechend der Formateinstellung <b>Artikelname</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -174,7 +174,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			description
 		</td>
 		<td>
-		    <b>Inhalt:</b> Entsprechend der Formateinstellung <b>Beschreibung</b>.
+		    Entsprechend der Formateinstellung <b>Beschreibung</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -182,7 +182,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			category_path
 		</td>
 		<td>
-		    <b>Inhalt:</b> Der <b>Kategoriepfad der Standardkategorie</b> für den in den Formateinstellungen definierten <b>Mandanten</b>.
+		    Der <b>Kategoriepfad der Standardkategorie</b> für den in den Formateinstellungen definierten <b>Mandanten</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -191,7 +191,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-		    <b>Inhalt:</b> Der <b>Verkaufspreis</b>.
+		    Der <b>Verkaufspreis</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -199,7 +199,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			price_per_unit
 		</td>
 		<td>
-		    <b>Inhalt:</b> Die <b>Grundpreisinformation</b> im Format "Preis / Einheit". (Beispiel: 10,00 EUR / Kilogramm)
+		    Die <b>Grundpreisinformation</b> im Format "Preis / Einheit". (Beispiel: 10,00 EUR / Kilogramm)
 		</td>        
 	</tr>
 	<tr>
@@ -208,7 +208,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-		    <b>Inhalt:</b> Der <b>URL-Pfad</b> des Artikels abhängig vom gewählten <b>Mandanten</b> in den Formateinstellungen.
+		    Der <b>URL-Pfad</b> des Artikels abhängig vom gewählten <b>Mandanten</b> in den Formateinstellungen.
 		</td>        
 	</tr>
 	<tr>
@@ -217,7 +217,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
             <b>Erlaubte Dateitypen:</b> jpg, gif, bmp, png.<br>
-            <b>Inhalt:</b> Der <b>URL-Pfad</b> des ersten Artikelbilds entsprechend der Formateinstellung <b>Bild</b>. Variantenbilder werden vor Artikelbilder priorisiert.
+            Der <b>URL-Pfad</b> des ersten Artikelbilds entsprechend der Formateinstellung <b>Bild</b>. Variantenbilder werden vor Artikelbilder priorisiert.
 		</td>        
 	</tr>
 	<tr>
@@ -226,7 +226,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 		</td>
 		<td>
 		    <b>Pflichtfeld</b><br>
-		    <b>Inhalt:</b> Der <b>Name der Artikelverfügbarkeit</b> unter <b>Einstellungen » Artikel » Artikelverfügbarkeit</b> oder die Übersetzung gemäß der Formateinstellung <b>Artikelverfügbarkeit überschreiben</b>.
+		    Der <b>Name der Artikelverfügbarkeit</b> unter <b>Einstellungen » Artikel » Artikelverfügbarkeit</b> oder die Übersetzung gemäß der Formateinstellung <b>Artikelverfügbarkeit überschreiben</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -234,7 +234,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			delivery_cost
 		</td>
 		<td>
-		    <b>Inhalt:</b> Entsprechend der Formateinstellung <b>Versandkosten</b>.
+		    Entsprechend der Formateinstellung <b>Versandkosten</b>.
 		</td>        
 	</tr>
 	<tr>
@@ -242,7 +242,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			pzn
 		</td>
 		<td>
-			Leer.
+			Kein Inhalt.
 		</td>        
 	</tr>
 	<tr>
@@ -250,7 +250,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			stock
 		</td>
 		<td>
-			<b>Inhalt:</b> Der <b>Netto-Warenbestand der Variante</b>. Bei Artikeln, die nicht auf den Netto-Warenbestand beschränkt sind, wird <b>999</b> übertragen.
+			Der <b>Netto-Warenbestand der Variante</b>. Bei Artikeln, die nicht auf den Netto-Warenbestand beschränkt sind, wird <b>999</b> übertragen.
 		</td>        
 	</tr>
 	<tr>
@@ -258,7 +258,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstel
 			weight
 		</td>
 		<td>
-		    <b>Inhalt:</b> Das <b>Gewicht</b> wie unter <b>Artikel » Artikel bearbeiten » Artikel öffnen » Variante öffnen » Einstellungen » Maße</b> definiert.
+		    Das <b>Gewicht</b> wie unter <b>Artikel » Artikel bearbeiten » Artikel öffnen » Variante öffnen » Einstellungen » Maße</b> definiert.
 		</td>        
 	</tr>
 </table>
