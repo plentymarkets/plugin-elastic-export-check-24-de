@@ -3,7 +3,7 @@
 ## v1.0.7 (2017-09-27)
 
 ### Geändert
-- Anpassung für die Bedienungsanleitungen.
+- Der User Guide wurde aktualisiert.
 - Die Performance wurde verbessert.
 
 ## v1.0.6 (2017-07-11)
