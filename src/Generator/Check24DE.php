@@ -50,11 +50,6 @@ class Check24DE extends CSVPluginGenerator
     private $shippingCostCache;
 
     /**
-     * @var array
-     */
-    private $manufacturerCache;
-
-    /**
      * Check24DE constructor.
      *
      * @param ArrayHelper $arrayHelper
@@ -85,8 +80,6 @@ class Check24DE extends CSVPluginGenerator
 
         $this->addCSVContent($this->head());
 
-        $startTime = microtime(true);
-
         if($elasticSearch instanceof VariationElasticSearchScrollRepositoryContract)
         {
             // Initiate the counter for the variations limit
@@ -95,23 +88,13 @@ class Check24DE extends CSVPluginGenerator
 
             do
             {
-                $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.writtenLines', [
-                    'Lines written' => $limit,
-                ]);
-
                 if($limitReached === true)
                 {
                     break;
                 }
 
-                $esStartTime = microtime(true);
-
                 // Get the data from Elastic Search
                 $resultList = $elasticSearch->execute();
-
-                $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.esDuration', [
-                    'Elastic Search duration' => microtime(true) - $esStartTime,
-                ]);
 
                 if(count($resultList['error']) > 0)
                 {
@@ -121,8 +104,6 @@ class Check24DE extends CSVPluginGenerator
 
                     break;
                 }
-
-                $buildRowStartTime = microtime(true);
 
                 if(is_array($resultList['documents']) && count($resultList['documents']) > 0)
                 {
@@ -140,10 +121,6 @@ class Check24DE extends CSVPluginGenerator
                         // If filtered by stock is set and stock is negative, then skip the variation
                         if ($this->elasticExportStockHelper->isFilteredByStock($variation, $filter) === true)
                         {
-                            $this->getLogger(__METHOD__)->info('ElasticExportCheck24DE::logs.variationNotPartOfExportStock', [
-                                'VariationId' => $variation['id']
-                            ]);
-
                             continue;
                         }
 
@@ -174,18 +151,10 @@ class Check24DE extends CSVPluginGenerator
                         // New line was added
                         $limit++;
                     }
-
-                    $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.buildRowDuration', [
-                        'Build rows duration' => microtime(true) - $buildRowStartTime,
-                    ]);
                 }
 
             } while ($elasticSearch->hasNext());
         }
-
-        $this->getLogger(__METHOD__)->debug('ElasticExportCheck24DE::logs.fileGenerationDuration', [
-            'Whole file generation duration' => microtime(true) - $startTime,
-        ]);
     }
 
     /**
@@ -223,26 +192,24 @@ class Check24DE extends CSVPluginGenerator
      */
     private function buildRow($variation, KeyValue $settings)
     {
-        // get the price
+        // Get the price
         $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
-        // only variations with the Retail Price greater than zero will be handled
+        // Only variations with the Retail Price greater than zero will be handled
         if(!is_null($priceList['price']) && $priceList['price'] > 0)
         {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
 
-            $price['variationRetailPrice.price'] = $priceList['price'];
-
             $data = [
                 'id'                => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
-                'manufacturer'      => $this->getManufacturer($variation),
+                'manufacturer'      => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
                 'mpnr'              => $variation['data']['variation']['model'],
                 'ean'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'name'              => $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
                 'description'       => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
                 'category_path'     => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
                 'price'             => $priceList['price'],
-                'price_per_unit'    => $this->elasticExportHelper->getBasePrice($variation, $price, $settings->get('lang')),
+                'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, $priceList['price'], $settings->get('lang')),
                 'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'image_url'         => $this->elasticExportHelper->getMainImage($variation, $settings),
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
@@ -253,12 +220,6 @@ class Check24DE extends CSVPluginGenerator
             ];
 
             $this->addCSVContent(array_values($data));
-        }
-        else
-        {
-            $this->getLogger(__METHOD__)->info('ElasticExportCheck24DE::logs.variationNotPartOfExportPrice', [
-                'VariationId' => $variation['id']
-            ]);
         }
     }
 
@@ -276,25 +237,9 @@ class Check24DE extends CSVPluginGenerator
             $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
         }
 
-        if(!is_null($shippingCost) && $shippingCost != '0.00')
+        if(!is_null($shippingCost) && $shippingCost > 0)
         {
-            return $shippingCost;
-        }
-
-        return '';
-    }
-
-    /**
-     * Get the manufacturer name.
-     *
-     * @param $variation
-     * @return string
-     */
-    private function getManufacturer($variation):string
-    {
-        if(isset($this->manufacturerCache) && array_key_exists($variation['data']['item']['manufacturer']['id'], $this->manufacturerCache))
-        {
-            return $this->manufacturerCache[$variation['data']['item']['manufacturer']['id']];
+            return number_format((float)$shippingCost, 2, '.', '');
         }
 
         return '';
@@ -311,16 +256,7 @@ class Check24DE extends CSVPluginGenerator
         if(!is_null($variation) && !is_null($variation['data']['item']['id']))
         {
             $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
-            $this->shippingCostCache[$variation['data']['item']['id']] = number_format((float)$shippingCost, 2, '.', '');
-
-            if(!is_null($variation['data']['item']['manufacturer']['id']))
-            {
-                if(!isset($this->manufacturerCache) || (isset($this->manufacturerCache) && !array_key_exists($variation['data']['item']['manufacturer']['id'], $this->manufacturerCache)))
-                {
-                    $manufacturer = $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']);
-                    $this->manufacturerCache[$variation['data']['item']['manufacturer']['id']] = $manufacturer;
-                }
-            }
+            $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
     }
 }
