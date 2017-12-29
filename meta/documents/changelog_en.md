@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.0 (2017-12-28)
+
+### Added
+- The plugin takes the new fields "Stockbuffer", "Stock for variations without stock limitation" and "Stock for variations with not stock administration" into account.
+
 ## v1.0.7 (2017-09-27)
 
 ### Changed
