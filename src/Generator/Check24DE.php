@@ -257,7 +257,7 @@ class Check24DE extends CSVPluginGenerator
     {
         if(!is_null($variation) && !is_null($variation['data']['item']['id']))
         {
-            $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings, 0);
+            $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings);
             $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
     }

@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.1 (2018-01-23)
+
+### Fixed
+- An issue was fixed, which caused the shipping costs not to be exported.
+
 ## v1.1.0 (2017-12-28)
 
 ### Added
