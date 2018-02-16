@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.2 (2018-02-16)
+
+### Changed
+- Updated plugin short description.
+
 ## v1.1.1 (2018-01-23)
 
 ### Fixed
