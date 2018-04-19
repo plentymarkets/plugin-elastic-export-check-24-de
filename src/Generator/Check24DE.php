@@ -5,6 +5,7 @@ namespace ElasticExportCheck24DE\Generator;
 use ElasticExport\Helper\ElasticExportCoreHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
+use ElasticExport\Services\FiltrationService;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
@@ -50,6 +51,11 @@ class Check24DE extends CSVPluginGenerator
     private $shippingCostCache;
 
     /**
+     * @var FiltrationService
+     */
+    private $filtrationService;
+
+    /**
      * Check24DE constructor.
      *
      * @param ArrayHelper $arrayHelper
@@ -69,12 +75,11 @@ class Check24DE extends CSVPluginGenerator
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
-
         $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
-
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
 
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+        $this->filtrationService = pluginApp(FiltrationService::class, [$settings, $filter]);
         
         $this->elasticExportStockHelper->setAdditionalStockInformation($settings);
 
@@ -121,7 +126,7 @@ class Check24DE extends CSVPluginGenerator
                         }
 
                         // If filtered by stock is set and stock is negative, then skip the variation
-                        if ($this->elasticExportStockHelper->isFilteredByStock($variation, $filter) === true)
+                        if ($this->filtrationService->filter($variation))
                         {
                             continue;
                         }
