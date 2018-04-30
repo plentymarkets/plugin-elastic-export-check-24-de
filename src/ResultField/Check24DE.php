@@ -94,7 +94,7 @@ class Check24DE extends ResultFields
         /**
          * @var LanguageMutator $languageMutator
          */
-        $languageMutator = pluginApp(LanguageMutator::class, [[$settings->get('lang')]]);
+		$languageMutator = pluginApp(LanguageMutator::class, ['language' => [$settings->get('lang')]]);
 
         /**
          * @var SkuMutator $skuMutator
