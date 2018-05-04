@@ -4,7 +4,7 @@
 
 ### Added
 - The tables in the user guide were extended.
-- Information about the price portal was added.
+- Information about the price comparison portal was added.
 
 ## v1.1.4 (2018-04-30)
 
