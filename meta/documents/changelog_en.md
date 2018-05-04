@@ -1,5 +1,11 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.4 (2018-05-04)
+
+### Added
+- The tables in the user guide were extended.
+- Information about the price portal was added.
+
 ## v1.1.3 (2018-03-28)
 
 ### Changed
