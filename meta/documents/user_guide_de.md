@@ -5,287 +5,86 @@
 
 ## 1 Bei Check24.de registrieren
 
-Check24.de ist ein Online-Vergleichsportal, das Verbrauchern bei der Suche nach dem für sie passenden Preis- /Leistungsumfang hilft. Auch Sie können auf dem Marktplatz Check24.de Ihre Artikel zum verkaufen.
+Check24.de ist ein Online-Vergleichsportal, das Verbrauchern bei der Suche nach dem für sie passenden Preis-/Leistungsumfang hilft. Auch Sie können auf dem Marktplatz Check24.de Ihre Artikel verkaufen.
 
 Auf dem Marktplatz Check24 bieten Sie Ihre Artikel zum Verkauf an. Weitere Informationen zu diesem Marktplatz finden Sie auf der Handbuchseite [Check24 einrichten](https://knowledge.plentymarkets.com/omni-channel/multi-channel/check24). Um das Plugin für Check24.de einzurichten, registrieren Sie sich zunächst als Händler.
 
-## 2 Elastic Export Check24DE-Plugin in plentymarkets einrichten
+## 2 Das Format Check24DE-Plugin in plentymarkets einrichten
 
-Um dieses Format nutzen zu können, benötigen Sie das Plugin Elastic Export.
+Mit der Installation dieses Plugins erhalten Sie das Exportformat **Check24DE-Plugin**, mit dem Sie Daten über den elastischen Export zu Check24.de übertragen. Um dieses Format für den elastischen Export nutzen zu können, installieren Sie zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
 
-Auf der Handbuchseite [Daten exportieren](https://knowledge.plentymarkets.com/basics/datenaustausch/daten-exportieren#30) werden die einzelnen Formateinstellungen beschrieben.
+Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **Check24DE-Plugin** erstellt werden. Mehr Informationen finden Sie auch auf der Handbuchseite [Daten exportieren](https://knowledge.plentymarkets.com/basics/datenaustausch/daten-exportieren#60).
 
-In der folgenden Tabelle finden Sie Hinweise zu den Einstellungen, Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE-Plugin**.
-<table>
-    <tr>
-        <th>
-            Einstellung
-        </th>
-        <th>
-            Erläuterung
-        </th>
-    </tr>
-    <tr>
-        <td class="th" colspan="2">
-            Einstellungen
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Format
-        </td>
-        <td>
-            <b>Check24DE-Plugin</b> wählen.
-        </td>        
-    </tr>
-    <tr>
-        <td>
-            Bereitstellung
-        </td>
-        <td>
-            <b>URL</b> wählen.
-        </td>        
-    </tr>
-    <tr>
-        <td>
-            Dateiname
-        </td>
-        <td>
-            Der Dateiname muss auf <b>.csv</b> oder <b>.txt</b> enden, damit Check24.de die Datei erfolgreich importieren kann.
-        </td>        
-    </tr>
-    <tr>
-        <td class="th" colspan="2">
-            Artikelfilter
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Aktiv
-        </td>
-        <td>
-            <b>Aktiv</b> wählen.
-        </td>        
-    </tr>
-    <tr>
-        <td>
-            Märkte
-        </td>
-        <td>
-            Eine oder mehrere Auftragsherkünfte wählen. Die gewählten Auftragsherkünfte müssen an der Variante aktiviert sein, damit der Artikel exportiert wird.
-        </td>        
-    </tr>
-    <tr>
-        <td class="th" colspan="2">
-            Formateinstellungen
-        </td>
-    </tr>
-    <tr>
-        <td>
-            Auftragsherkunft
-        </td>
-        <td>
-            Die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll.
-        </td>        
-    </tr>
-    <tr>
-    	<td>
-    		Bestandspuffer
-    	</td>
-    	<td>
-    		Der Bestandspuffer für Varianten mit der Beschränkung auf den Netto Warenbestand.
-    	</td>        
-    </tr>
-    <tr>
-    	<td>
-    		Bestand für Varianten ohne Bestandsbeschränkung
-    	</td>
-    	<td>
-    		Der Bestand für Varianten ohne Bestandsbeschränkung.
-    	</td>        
-    </tr>
-    <tr>
-    	<td>
-    		Bestand für Varianten ohne Bestandsführung
-    	</td>
-    	<td>
-    		Der Bestand für Varianten ohne Bestandsführung.
-    	</td>        
-    </tr>
-    <tr>
-		<td>
-			Vorschautext
-		</td>
-		<td>
-			Diese Option ist für dieses Format nicht relevant.
-		</td>        
-	</tr>
-    <tr>
-        <td>
-            UVP
-        </td>
-        <td>
-            Diese Option ist für dieses Format nicht relevant.
-        </td>        
-    </tr>
-    <tr>
-        <td>
-            MwSt.-Hinweis
-        </td>
-        <td>
-            Diese Option ist für dieses Format nicht relevant.
-        </td>        
-    </tr>
-</table>
+Neues Exportformat erstellen:
 
+1. Öffnen Sie das Menü **Daten » Elastischer Export**.
+2. Klicken Sie auf **Neuer Export**.
+3. Nehmen Sie die Einstellungen vor. Beachten Sie dazu die Erläuterungen in Tabelle 1.
+4. **Speichern** Sie die Einstellungen.
+→ Eine ID für das Exportformat **Check24DE-Plugin** wird vergeben und das Exportformat erscheint in der Übersicht **Exporte**.
 
-## 3 Übersicht der verfügbaren Spalten
+In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE-Plugin**.
 
-<table>
-    <tr>
-        <th>
-            Spaltenbezeichnung
-        </th>
-        <th>
-            Erläuterung
-        </th>
-    </tr>
-    <tr>
-		<td>
-			id
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		 Die <b>SKU</b> für Check24.de der Variante.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			manufacturer
-		</td>
-		<td>
-		     Der <b>Name des Herstellers</b> des Artikels. Der <b>Externe Name</b> unter <b>Einstellungen » Artikel » Hersteller</b> wird bevorzugt, wenn vorhanden.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			mpnr
-		</td>
-		<td>
-		    Das <b>Model</b> der Variante.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			ean
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		    Entsprechend der Formateinstellung <b>Barcode</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			name
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		   Entsprechend der Formateinstellung <b>Artikelname</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			description
-		</td>
-		<td>
-		    Entsprechend der Formateinstellung <b>Beschreibung</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			category_path
-		</td>
-		<td>
-		    Der <b>Kategoriepfad der Standardkategorie</b> für den in den Formateinstellungen definierten <b>Mandanten</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			price
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		    Der <b>Verkaufspreis</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			price_per_unit
-		</td>
-		<td>
-		    Die <b>Grundpreisinformation</b> im Format "Preis / Einheit". (Beispiel: 10,00 EUR / Kilogramm)
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			link
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		    Der <b>URL-Pfad</b> des Artikels abhängig vom gewählten <b>Mandanten</b> in den Formateinstellungen.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			image_url
-		</td>
-		<td>
-            <b>Erlaubte Dateitypen:</b> jpg, gif, bmp, png.<br>
-            Der <b>URL-Pfad</b> des ersten Artikelbilds entsprechend der Formateinstellung <b>Bild</b>. Variantenbilder werden vor Artikelbilder priorisiert.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			delivery_time
-		</td>
-		<td>
-		    <b>Pflichtfeld</b><br>
-		    Der <b>Name der Artikelverfügbarkeit</b> unter <b>Einstellungen » Artikel » Artikelverfügbarkeit</b> oder die Übersetzung gemäß der Formateinstellung <b>Artikelverfügbarkeit überschreiben</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			delivery_cost
-		</td>
-		<td>
-		    Entsprechend der Formateinstellung <b>Versandkosten</b>.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			pzn
-		</td>
-		<td>
-			Kein Inhalt.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			stock
-		</td>
-		<td>
-			Der <b>Netto-Warenbestand der Variante</b>. Bei Artikeln, die nicht auf den Netto-Warenbestand beschränkt sind, wird <b>999</b> übertragen.
-		</td>        
-	</tr>
-	<tr>
-		<td>
-			weight
-		</td>
-		<td>
-		    Das <b>Gewicht</b> wie unter <b>Artikel » Artikel bearbeiten » Artikel öffnen » Variante öffnen » Einstellungen » Maße</b> definiert.
-		</td>        
-	</tr>
-</table>
+| **Einstellung**                                     | **Erläuterung** | 
+| :---                                                | :--- |
+| **Einstellungen**                                   |
+| **Name**                                            | Name eingeben. Unter diesem Namen erscheint das Exportformat in der Übersicht im Tab **Exporte**. |
+| **Typ**                                             | Typ **Artikel** aus der Dropdown-Liste wählen. |
+| **Format**                                          | **Check24DE-Plugin** wählen. |
+| **Limit**                                           | Zahl eingeben. Wenn mehr als 9999 Datensätze an die Preissuchmaschine übertragen werden sollen, wird die Ausgabedatei wird für 24 Stunden nicht noch einmal neu generiert, um Ressourcen zu sparen. Wenn mehr mehr als 9999 Datensätze benötigt werden, muss die Option **Cache-Datei generieren** aktiv sein. |
+| **Cache-Datei generieren**                          | Häkchen setzen, wenn mehr als 9999 Datensätze an die Preissuchmaschine übertragen werden sollen. Um eine optimale Performance des elastischen Exports zu gewährleisten, darf diese Option bei maximal 20 Exportformaten aktiv sein. |
+| **Bereitstellung**                                  | **URL** wählen. Mit dieser Option kann ein Token für die Authentifizierung generiert werden, damit ein externer Zugriff möglich ist. |
+| **Token, URL**                                      | Wenn unter **Bereitstellung** die Option **URL** gewählt wurde, auf **Token generieren** klicken. Der Token wird dann automatisch eingetragen. Die URL wird automatisch eingetragen, wenn unter **Token** der Token generiert wurde. |
+| **Dateiname**                                       | Der Dateiname muss auf **.csv** oder **.txt** enden, damit Check24.de die Datei erfolgreich importieren kann. |
+| **Artikelfilter**                                   |
+| **Artikelfilter hinzufügen**                        | Artikelfilter aus der Dropdown-Liste wählen und auf **Hinzufügen** klicken. Standardmäßig sind keine Filter voreingestellt. Es ist möglich, alle Artikelfilter aus der Dropdown-Liste nacheinander hinzuzufügen.<br/> **Varianten** = **Alle übertragen** oder **Nur Hauptvarianten übertragen** wählen.<br/> **Märkte** = Einen, mehrere oder **ALLE** Märkte wählen. Die Verfügbarkeit muss für alle hier gewählten Märkte am Artikel hinterlegt sein. Andernfalls findet kein Export statt.<br/> **Währung** = Währung wählen.<br/> **Kategorie** = Aktivieren, damit der Artikel mit Kategorieverknüpfung übertragen wird. Es werden nur Artikel, die dieser Kategorie zugehören, übertragen.<br/> **Bild** = Aktivieren, damit der Artikel mit Bild übertragen wird. Es werden nur Artikel mit Bildern übertragen.<br/> **Mandant** = Mandant wählen.<br/> **Bestand** = Wählen, welche Bestände exportiert werden sollen.<br/> **Markierung 1 - 2** = Markierung wählen.<br/> **Hersteller** = Einen, mehrere oder **ALLE** Hersteller wählen.<br/> **Aktiv** = Nur aktive Varianten werden übertragen. |
+| **Formateinstellungen**                             |
+| **Produkt-URL**                                     | Wählen, ob die URL des Artikels oder der Variante an das Preisportal übertragen wird. Varianten URLs können nur in Kombination mit dem Ceres Webshop übertragen werden. |
+| **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau verwendet. |
+| **URL-Parameter**                                   | Suffix für die Produkt-URL eingeben, wenn dies für den Export erforderlich ist. Die Produkt-URL wird dann um die eingegebene Zeichenkette erweitert, wenn weiter oben die Option **übertragen** für die Produkt-URL aktiviert wurde. |
+| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. |
+| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
+| **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
+| **Vorschautext**                                    | Diese Option ist für dieses Format nicht relevant. |
+| **Beschreibung**                                    | Wählen, welcher Text als Beschreibungstext übertragen werden soll.<br/> Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge der Beschreibung beim Export vorgibt.<br/> Option **HTML-Tags entfernen** aktivieren, damit die HTML-Tags beim Export entfernt werden.<br/> Im Feld **Erlaubte HTML-Tags, kommagetrennt (def. Text)** optional die HTML-Tags eingeben, die beim Export erlaubt sind. Wenn mehrere Tags eingegeben werden, mit Komma trennen. |
+| **Zielland**                                        | Zielland aus der Dropdown-Liste wählen. |
+| **Barcode**                                         | ASIN, ISBN oder eine EAN aus der Dropdown-Liste wählen. Der gewählte Barcode muss mit der oben gewählten Auftragsherkunft verknüpft sein. Andernfalls wird der Barcode nicht exportiert. |
+| **Bild**                                            | **Position 0** oder **Erstes Bild** wählen, um dieses Bild zu exportieren.<br/> **Position 0** = Ein Bild mit der Position 0 wird übertragen.<br/> **Erstes Bild** = Das erste Bild wird übertragen. |
+| **Bildposition des Energieetiketts**                | Diese Option ist für dieses Format nicht relevant. |
+| **Bestandspuffer**                                  | Der Bestandspuffer für Varianten mit der Beschränkung auf den Netto-Warenbestand. |
+| **Bestand für Varianten ohne Bestandsbeschränkung** | Der Bestand für Varianten ohne Bestandsbeschränkung. |
+| **Bestand für Varianten ohne Bestandsführung**      | Der Bestand für Varianten ohne Bestandsführung. |
+| **Währung live umrechnen**                          | Aktivieren, damit der Preis je nach eingestelltem Lieferland in die Währung des Lieferlandes umgerechnet wird. Der Preis muss für die entsprechende Währung freigegeben sein. |
+| **Verkaufspreis**                                   | Brutto- oder Nettopreis aus der Dropdown-Liste wählen. |
+| **Angebotspreis**                                   | Diese Option ist für dieses Format nicht relevant. |
+| **UVP**                                             | Diese Option ist für dieses Format nicht relevant. |
+| **Versandkosten**                                   | Aktivieren, damit die Versandkosten aus der Konfiguration übernommen werden. Wenn die Option aktiviert ist, stehen in den beiden Dropdown-Listen Optionen für die Konfiguration und die Zahlungsart zur Verfügung. Option **Pauschale Versandkosten übertragen** aktivieren, damit die pauschalen Versandkosten übertragen werden. Wenn diese Option aktiviert ist, muss im Feld darunter ein Betrag eingegeben werden. |
+| **MwSt.-Hinweis**                                   | Diese Option ist für dieses Format nicht relevant. |
+| **Artikelverfügbarkeit**                            | Option **überschreiben** aktivieren und in die Felder **1** bis **10**, die die ID der Verfügbarkeit darstellen, Artikelverfügbarkeiten eintragen. Somit werden die Artikelverfügbarkeiten, die im Menü **System » Artikel » Verfügbarkeit** eingestellt wurden, überschrieben. |
+       
+_Tab. 1: Einstellungen für das Datenformat **Check24DE-Plugin**_
+
+## 3 Verfügbare Spalten der Exportdatei
+
+| **Spaltenbezeichnung** | **Erläuterung** |
+| :---                   | :--- |
+| id                     | **Pflichtfeld**<br/> Die **SKU** der Variante für Check24.de. |
+| manufacturer           | Der **Name des Herstellers** des Artikels. Der **Externe Name** unter **Einstellungen » Artikel »  Hersteller** wird bevorzugt, wenn vorhanden. |
+| mpnr                   | Das **Modell** der Variante. |
+| ean                    | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode**. |
+| name                   | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname**. |
+| description            | Entsprechend der Formateinstellung **Beschreibung**. |
+| category_path          | Der **Kategoriepfad der Standardkategorie** für den in den Formateinstellungen definierten **Mandanten**. |
+| price                  | **Pflichtfeld**<br/> Der **Verkaufspreis**. |
+| price_per_unit         | Die **Grundpreisinformation** im Format "Preis / Einheit". (Beispiel: 10,00 EUR / Kilogramm) |
+| link                   | **Pflichtfeld**<br/> Der **URL-Pfad** des Artikels abhängig vom gewählten Mandanten in den Formateinstellungen. |
+| image_url              | **Erlaubte Dateitypen:** jpg, gif, bmp, png<br/> Der **URL-Pfad** des ersten Artikelbilds entsprechend der Formateinstellung **Bild**. Variantenbilder werden vor Artikelbildern priorisiert. |
+| delivery_time          | **Pflichtfeld**<br/> Der **Name der Artikelverfügbarkeit** unter **Einstellungen » Artikel » Artikelverfügbarkeit** oder die Übersetzung gemäß der Formateinstellung **Artikelverfügbarkeit überschreiben**. |
+| delivery_cost          | Entsprechend der Formateinstellung **Versandkosten**. |
+| pzn                    | Leer. |
+| stock                  | Der **Netto-Warenbestand** der Variante. Bei Artikeln, die nicht auf den Netto-Warenbestand beschränkt sind, wird **999** übertragen. |
+| weight                 | Das **Gewicht** wie unter **Artikel »  Artikel bearbeiten » Artikel öffnen » Variante öffnen »  Einstellungen »  Maße** definiert. |
 
 ## 4 Lizenz
 
