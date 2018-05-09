@@ -14,7 +14,10 @@
     "en": "The integration of the data format Check24-Plugin enables the transfer of item data to the comparison engine Check24.de via the elastic export."
   },
   "categories": ["3523"],
-  "version": "1.1.4",
+  "version": "1.1.5",
   "require": ["ElasticExport"],
-  "marketplaceName": "CHECK24"
+  "marketplaceName": {
+    "de":"CHECK24",
+    "en":"CHECK24"
+  },
 }
