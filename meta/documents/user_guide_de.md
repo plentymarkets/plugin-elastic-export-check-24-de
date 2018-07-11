@@ -13,7 +13,7 @@ Auf dem Marktplatz Check24 bieten Sie Ihre Artikel zum Verkauf an. Weitere Infor
 
 Mit der Installation dieses Plugins erhalten Sie das Exportformat **Check24DE-Plugin**, mit dem Sie Daten über den elastischen Export zu Check24.de übertragen. Um dieses Format für den elastischen Export nutzen zu können, installieren Sie zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
 
-Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **Check24DE-Plugin** erstellt werden. Mehr Informationen finden Sie auch auf der Handbuchseite [Daten exportieren](https://knowledge.plentymarkets.com/basics/datenaustausch/daten-exportieren#60).
+Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **Check24DE-Plugin** erstellt werden. Mehr Informationen finden Sie auch auf der Handbuchseite [Datenformate für Preissuchmaschinen exportieren](https://knowledge.plentymarkets.com/basics/datenaustausch/export-import/daten-exportieren#30).
 
 Neues Exportformat erstellen:
 
@@ -27,7 +27,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 
 | **Einstellung**                                     | **Erläuterung** | 
 | :---                                                | :--- |
-| **Einstellungen**                                   |
+| **Einstellungen**                                   | |
 | **Name**                                            | Name eingeben. Unter diesem Namen erscheint das Exportformat in der Übersicht im Tab **Exporte**. |
 | **Typ**                                             | Typ **Artikel** aus der Dropdown-Liste wählen. |
 | **Format**                                          | **Check24DE-Plugin** wählen. |
@@ -36,9 +36,9 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 | **Bereitstellung**                                  | **URL** wählen. Mit dieser Option kann ein Token für die Authentifizierung generiert werden, damit ein externer Zugriff möglich ist. |
 | **Token, URL**                                      | Wenn unter **Bereitstellung** die Option **URL** gewählt wurde, auf **Token generieren** klicken. Der Token wird dann automatisch eingetragen. Die URL wird automatisch eingetragen, wenn unter **Token** der Token generiert wurde. |
 | **Dateiname**                                       | Der Dateiname muss auf **.csv** oder **.txt** enden, damit Check24.de die Datei erfolgreich importieren kann. |
-| **Artikelfilter**                                   |
+| **Artikelfilter**                                   | |
 | **Artikelfilter hinzufügen**                        | Artikelfilter aus der Dropdown-Liste wählen und auf **Hinzufügen** klicken. Standardmäßig sind keine Filter voreingestellt. Es ist möglich, alle Artikelfilter aus der Dropdown-Liste nacheinander hinzuzufügen.<br/> **Varianten** = **Alle übertragen** oder **Nur Hauptvarianten übertragen** wählen.<br/> **Märkte** = Einen, mehrere oder **ALLE** Märkte wählen. Die Verfügbarkeit muss für alle hier gewählten Märkte am Artikel hinterlegt sein. Andernfalls findet kein Export statt.<br/> **Währung** = Währung wählen.<br/> **Kategorie** = Aktivieren, damit der Artikel mit Kategorieverknüpfung übertragen wird. Es werden nur Artikel, die dieser Kategorie zugehören, übertragen.<br/> **Bild** = Aktivieren, damit der Artikel mit Bild übertragen wird. Es werden nur Artikel mit Bildern übertragen.<br/> **Mandant** = Mandant wählen.<br/> **Bestand** = Wählen, welche Bestände exportiert werden sollen.<br/> **Markierung 1 - 2** = Markierung wählen.<br/> **Hersteller** = Einen, mehrere oder **ALLE** Hersteller wählen.<br/> **Aktiv** = Nur aktive Varianten werden übertragen. |
-| **Formateinstellungen**                             |
+| **Formateinstellungen**                             | |
 | **Produkt-URL**                                     | Wählen, ob die URL des Artikels oder der Variante an das Preisportal übertragen wird. Varianten URLs können nur in Kombination mit dem Ceres Webshop übertragen werden. |
 | **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau verwendet. |
 | **URL-Parameter**                                   | Suffix für die Produkt-URL eingeben, wenn dies für den Export erforderlich ist. Die Produkt-URL wird dann um die eingegebene Zeichenkette erweitert, wenn weiter oben die Option **übertragen** für die Produkt-URL aktiviert wurde. |
