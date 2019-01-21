@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.7 (2019-01-21)
+
+### Changed
+- An incorrect link in the user guide was corrected.
+
 ## v1.1.6 (2018-07-11)
 
 ### Changed
