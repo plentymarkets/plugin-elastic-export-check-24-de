@@ -3,7 +3,7 @@
 ## v1.1.8 (2019-02-14)
 
 ### Behoben
-- Die Bildpositionen werden jetzt berücksichtigt.
+- Bildpositionen werden beim Übertragen der Bild-URL berücksichtigt.
 
 ## v1.1.7 (2019-01-21)
 
