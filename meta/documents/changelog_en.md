@@ -3,7 +3,7 @@
 ## v1.1.8 (2019-02-14)
 
 ### Fixed
-- Image positions will be considered.
+- Image positions will be considered when transferring the image URL.
 
 ## v1.1.7 (2019-01-21)
 
