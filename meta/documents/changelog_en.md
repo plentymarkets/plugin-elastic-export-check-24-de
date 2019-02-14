@@ -3,7 +3,7 @@
 ## v1.1.8 (2019-02-14)
 
 ### Fixed
-- The position of the images will now be considered.
+- Image positions will be considered.
 
 ## v1.1.7 (2019-01-21)
 
