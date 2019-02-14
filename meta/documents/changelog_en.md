@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.8 (2019-02-14)
+
+### Fixed
+- The position of the images will now be considered.
+
 ## v1.1.7 (2019-01-21)
 
 ### Changed

@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.1.8 (2019-02-14)
+
+### Behoben
+- Die Bildpositionen werden jetzt berücksichtigt.
+
 ## v1.1.7 (2019-01-21)
 
 ### Geändert
