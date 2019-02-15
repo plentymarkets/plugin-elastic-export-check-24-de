@@ -206,6 +206,7 @@ class Check24DE extends CSVPluginGenerator
         if(!is_null($priceList['price']) && $priceList['price'] > 0)
         {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
+			$imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 1, 'variationImages');
 
             $data = [
                 'id'                => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
@@ -218,7 +219,7 @@ class Check24DE extends CSVPluginGenerator
                 'price'             => $priceList['price'],
                 'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, $priceList['price'], $settings->get('lang')),
                 'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
-                'image_url'         => $this->elasticExportHelper->getMainImage($variation, $settings),
+                'image_url'         => $imageList[0],
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
                 'delivery_cost'     => $this->getShippingCost($variation),
                 'pzn'               => '',
