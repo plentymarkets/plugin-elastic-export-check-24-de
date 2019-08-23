@@ -245,7 +245,7 @@ class Check24DE extends CSVPluginGenerator
             $shippingCost = $this->shippingCostCache[$variation['data']['item']['id']];
         }
 
-        if(!is_null($shippingCost) && $shippingCost > 0)
+        if(!is_null($shippingCost))
         {
             return number_format((float)$shippingCost, 2, '.', '');
         }
