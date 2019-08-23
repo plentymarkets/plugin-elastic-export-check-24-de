@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.1.9 (2019-08-23)
+
+### Fixed
+- Shipping costs will no longer be exported empty if the variation is free of shipping costs.
+
 ## v1.1.8 (2019-02-14)
 
 ### Fixed

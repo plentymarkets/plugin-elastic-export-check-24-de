@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.1.9 (2019-08-23)
+
+### Behoben
+- Versandkosten werden nicht mehr leer übertragen, wenn die Variante versandkostenfrei ist.
+
 ## v1.1.8 (2019-02-14)
 
 ### Behoben
