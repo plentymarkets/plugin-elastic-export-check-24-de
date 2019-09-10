@@ -3,7 +3,7 @@
 ## v1.2.0 (2019-09-10)
 
 ### Hinzugefügt
-- Das neue Format **Check24DE Fashion** wurde hinzugefügt. Dieses kann verwendet werden um Produkte der **Fashion** Kategorie , bei Check24 anzulegen. Nähere Informationen zu dem Format findest Du im **User Guide** in der **Beschreibung**.
+- Das Format **Check24DE Fashion** wurde hinzugefügt. Das Format kann verwendet werden, um Produkte der **Fashion**-Kategorie bei Check24 anzulegen. Weitere Informationen zu dem Format findest du im **User Guide** in der **Beschreibung**.
 
 ## v1.1.9 (2019-08-23)
 
