@@ -7,7 +7,7 @@
 
 Check24.de ist ein Online-Vergleichsportal, das Verbrauchern bei der Suche nach dem für sie passenden Preis-/Leistungsumfang hilft. Auch du kannst auf dem Marktplatz Check24.de deine Artikel verkaufen.
 
-Auf dem Marktplatz Check24 bietest du deine Artikel zum Verkauf an. Weitere Informationen zu diesem Marktplatz findest du auf der Handbuchseite [Check24 einrichten](https://knowledge.plentymarkets.com/omni-channel/multi-channel/check24). Um das Plugin für Check24.de einzurichten, registriere dich zunächst als Händler.
+Auf dem Marktplatz Check24 bietest du deine Artikel zum Verkauf an. Weitere Informationen zu diesem Marktplatz findest du auf der Handbuchseite [Check24 einrichten](https://knowledge.plentymarkets.com/maerkte/check24). Um das Plugin für Check24.de einzurichten, registriere dich zunächst als Händler.
 
 ## 2 Das Format Check24DE-Plugin 
 
