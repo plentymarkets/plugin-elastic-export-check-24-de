@@ -5,27 +5,27 @@
 
 ## 1 Bei Check24.de registrieren
 
-Check24.de ist ein Online-Vergleichsportal, das Verbrauchern bei der Suche nach dem für sie passenden Preis-/Leistungsumfang hilft. Auch Sie können auf dem Marktplatz Check24.de Ihre Artikel verkaufen.
+Check24.de ist ein Online-Vergleichsportal, das Verbrauchern bei der Suche nach dem für sie passenden Preis-/Leistungsumfang hilft. Auch du kannst auf dem Marktplatz Check24.de deine Artikel verkaufen.
 
-Auf dem Marktplatz Check24 bieten Sie Ihre Artikel zum Verkauf an. Weitere Informationen zu diesem Marktplatz finden Sie auf der Handbuchseite [Check24 einrichten](https://knowledge.plentymarkets.com/omni-channel/multi-channel/check24). Um das Plugin für Check24.de einzurichten, registrieren Sie sich zunächst als Händler.
+Auf dem Marktplatz Check24 bietest du deine Artikel zum Verkauf an. Weitere Informationen zu diesem Marktplatz findest du auf der Handbuchseite [Check24 einrichten](https://knowledge.plentymarkets.com/omni-channel/multi-channel/check24). Um das Plugin für Check24.de einzurichten, registriere dich zunächst als Händler.
 
 ## 2 Das Format Check24DE-Plugin 
 
 ### 2.1 Das Format Check24DE-Plugin in plentymarkets einrichten
 
-Mit der Installation dieses Plugins erhalten Sie das Exportformat **Check24DE-Plugin**, mit dem Sie Daten über den elastischen Export zu Check24.de übertragen. Um dieses Format für den elastischen Export nutzen zu können, installieren Sie zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
+Mit der Installation dieses Plugins erhältst du das Exportformat **Check24DE-Plugin**, mit dem du Daten über den elastischen Export zu Check24.de überträgst. Um dieses Format für den elastischen Export nutzen zu können, installiere zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
 
-Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **Check24DE-Plugin** erstellt werden. Weitere Informationen finden Sie auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/basics/datenaustausch/elastischer-export).
+Sobald beide Plugins in deinem System installiert sind, kann das Exportformat **Check24DE-Plugin** erstellt werden. Weitere Informationen findest du auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/daten/daten-exportieren/elastischer-export).
 
 Neues Exportformat erstellen:
 
-1. Öffnen Sie das Menü **Daten » Elastischer Export**.
-2. Klicken Sie auf **Neuer Export**.
-3. Nehmen Sie die Einstellungen vor. Beachten Sie dazu die Erläuterungen in Tabelle 1.
-4. **Speichern** Sie die Einstellungen.
+1. Öffne das Menü **Daten » Elastischer Export**.
+2. Klicke auf **Neuer Export**.
+3. Nimm die Einstellungen vor. Beachte dazu die Erläuterungen in Tabelle 1.
+4. **Speichere** die Einstellungen.<br/>
 → Eine ID für das Exportformat **Check24DE-Plugin** wird vergeben und das Exportformat erscheint in der Übersicht **Exporte**.
 
-In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE-Plugin**.
+In der folgenden Tabelle findest du Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE-Plugin**.
 
 | **Einstellung**                                     | **Erläuterung** | 
 | :---                                                | :--- |
@@ -33,7 +33,7 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 | **Name**                                            | Name eingeben. Unter diesem Namen erscheint das Exportformat in der Übersicht im Tab **Exporte**. |
 | **Typ**                                             | Typ **Artikel** aus der Dropdown-Liste wählen. |
 | **Format**                                          | **Check24DE-Plugin** wählen. |
-| **Limit**                                           | Zahl eingeben. Wenn mehr als 9999 Datensätze an die Preissuchmaschine übertragen werden sollen, wird die Ausgabedatei wird für 24 Stunden nicht noch einmal neu generiert, um Ressourcen zu sparen. Wenn mehr mehr als 9999 Datensätze benötigt werden, muss die Option **Cache-Datei generieren** aktiv sein. |
+| **Limit**                                           | Zahl eingeben. Wenn mehr als 9999 Datensätze an die Preissuchmaschine übertragen werden sollen, wird die Ausgabedatei wird für 24 Stunden nicht noch einmal neu generiert, um Ressourcen zu sparen. Wenn mehr als 9999 Datensätze benötigt werden, muss die Option **Cache-Datei generieren** aktiv sein. |
 | **Cache-Datei generieren**                          | Häkchen setzen, wenn mehr als 9999 Datensätze an die Preissuchmaschine übertragen werden sollen. Um eine optimale Performance des elastischen Exports zu gewährleisten, darf diese Option bei maximal 20 Exportformaten aktiv sein. |
 | **Bereitstellung**                                  | **URL** wählen. Mit dieser Option kann ein Token für die Authentifizierung generiert werden, damit ein externer Zugriff möglich ist. |
 | **Token, URL**                                      | Wenn unter **Bereitstellung** die Option **URL** gewählt wurde, auf **Token generieren** klicken. Der Token wird dann automatisch eingetragen. Die URL wird automatisch eingetragen, wenn unter **Token** der Token generiert wurde. |
@@ -42,9 +42,9 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 | **Artikelfilter hinzufügen**                        | Artikelfilter aus der Dropdown-Liste wählen und auf **Hinzufügen** klicken. Standardmäßig sind keine Filter voreingestellt. Es ist möglich, alle Artikelfilter aus der Dropdown-Liste nacheinander hinzuzufügen.<br/> **Varianten** = **Alle übertragen** oder **Nur Hauptvarianten übertragen** wählen.<br/> **Märkte** = Einen, mehrere oder **ALLE** Märkte wählen. Die Verfügbarkeit muss für alle hier gewählten Märkte am Artikel hinterlegt sein. Andernfalls findet kein Export statt.<br/> **Währung** = Währung wählen.<br/> **Kategorie** = Aktivieren, damit der Artikel mit Kategorieverknüpfung übertragen wird. Es werden nur Artikel, die dieser Kategorie zugehören, übertragen.<br/> **Bild** = Aktivieren, damit der Artikel mit Bild übertragen wird. Es werden nur Artikel mit Bildern übertragen.<br/> **Mandant** = Mandant wählen.<br/> **Bestand** = Wählen, welche Bestände exportiert werden sollen.<br/> **Markierung 1 - 2** = Markierung wählen.<br/> **Hersteller** = Einen, mehrere oder **ALLE** Hersteller wählen.<br/> **Aktiv** = Nur aktive Varianten werden übertragen. |
 | **Formateinstellungen**                             | |
 | **Produkt-URL**                                     | Wählen, ob die URL des Artikels oder der Variante an das Preisportal übertragen wird. Varianten URLs können nur in Kombination mit dem Ceres Webshop übertragen werden. |
-| **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau und zum herausfiltern gültiger Verkaufspreise verwendet. |
+| **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau und zum Filtern gültiger Verkaufspreise verwendet. |
 | **URL-Parameter**                                   | Suffix für die Produkt-URL eingeben, wenn dies für den Export erforderlich ist. Die Produkt-URL wird dann um die eingegebene Zeichenkette erweitert, wenn weiter oben die Option **übertragen** für die Produkt-URL aktiviert wurde. |
-| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. Diese wird ebenfalls zum herausfiltern gültiger Verkaufspreise und Bilder verwendet. |
+| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. Die Auftragsherkunft wird zum Filtern gültiger Verkaufspreise und Bilder verwendet. |
 | **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
 | **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
 | **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
@@ -94,19 +94,19 @@ _Tab. 2: Spalten des Datenformats **Check24DE-Plugin**_
 
 ### 3.1 Das Format Check24DE Fashion in plentymarkets einrichten
 
-Mit der Installation dieses Plugins erhalten Sie das Exportformat **CCheck24DE Fashionn**, mit dem Sie Daten über den elastischen Export zu Check24.de übertragen. Um dieses Format für den elastischen Export nutzen zu können, installieren Sie zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
+Mit der Installation dieses Plugins erhältst du das Exportformat **Check24DE Fashion**, mit dem du Daten über den elastischen Export zu Check24.de überträgst. Um dieses Format für den elastischen Export nutzen zu können, installiere zunächst das Plugin **Elastic Export** aus dem plentyMarketplace, wenn noch nicht geschehen. 
 
-Sobald beide Plugins in Ihrem System installiert sind, kann das Exportformat **Check24DE Fashion** erstellt werden. Weitere Informationen finden Sie auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/basics/datenaustausch/elastischer-export).
+Sobald beide Plugins in deinem System installiert sind, kann das Exportformat **Check24DE Fashion** erstellt werden. Weitere Informationen findest du auf der Handbuchseite [Elastischer Export](https://knowledge.plentymarkets.com/daten/daten-exportieren/elastischer-export).
 
 Neues Exportformat erstellen:
 
-1. Öffnen Sie das Menü **Daten » Elastischer Export**.
-2. Klicken Sie auf **Neuer Export**.
-3. Nehmen Sie die Einstellungen vor. Beachten Sie dazu die Erläuterungen in Tabelle 1.
-4. **Speichern** Sie die Einstellungen.
+1. Öffne das Menü **Daten » Elastischer Export**.
+2. Klicke auf **Neuer Export**.
+3. Nimm die Einstellungen vor. Beachte dazu die Erläuterungen in Tabelle 3.
+4. **Speichere** die Einstellungen.<br/>
 → Eine ID für das Exportformat **Check24DE Fashion** wird vergeben und das Exportformat erscheint in der Übersicht **Exporte**.
 
-In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE Fashion**.
+In der folgenden Tabelle findest du Hinweise zu den einzelnen Formateinstellungen und empfohlenen Artikelfiltern für das Format **Check24DE Fashion**.
 
 | **Einstellung**                                     | **Erläuterung** | 
 | :---                                                | :--- |
@@ -123,9 +123,9 @@ In der folgenden Tabelle finden Sie Hinweise zu den einzelnen Formateinstellunge
 | **Artikelfilter hinzufügen**                        | Artikelfilter aus der Dropdown-Liste wählen und auf **Hinzufügen** klicken. Standardmäßig sind keine Filter voreingestellt. Es ist möglich, alle Artikelfilter aus der Dropdown-Liste nacheinander hinzuzufügen.<br/> **Varianten** = **Alle übertragen** oder **Nur Hauptvarianten übertragen** wählen.<br/> **Märkte** = Einen, mehrere oder **ALLE** Märkte wählen. Die Verfügbarkeit muss für alle hier gewählten Märkte am Artikel hinterlegt sein. Andernfalls findet kein Export statt.<br/> **Währung** = Währung wählen.<br/> **Kategorie** = Aktivieren, damit der Artikel mit Kategorieverknüpfung übertragen wird. Es werden nur Artikel, die dieser Kategorie zugehören, übertragen.<br/> **Bild** = Aktivieren, damit der Artikel mit Bild übertragen wird. Es werden nur Artikel mit Bildern übertragen.<br/> **Mandant** = Mandant wählen.<br/> **Bestand** = Wählen, welche Bestände exportiert werden sollen.<br/> **Markierung 1 - 2** = Markierung wählen.<br/> **Hersteller** = Einen, mehrere oder **ALLE** Hersteller wählen.<br/> **Aktiv** = Nur aktive Varianten werden übertragen. |
 | **Formateinstellungen**                             | |
 | **Produkt-URL**                                     | Diese Option ist für dieses Format nicht relevant. |
-| **Mandant**                                         | Mandant wählen. Diese Einstellung wird zum herausfiltern gültiger Verkaufspreise verwendet.  |
+| **Mandant**                                         | Mandant wählen. Diese Einstellung wird zum Filtern gültiger Verkaufspreise verwendet.  |
 | **URL-Parameter**                                   | Diese Option ist für dieses Format nicht relevant. |
-| **Auftragsherkunft**                                | Auftragsherkunft  aus der Dropdown-Liste wählen. Diese Einstellung wird zum herausfiltern gültiger Verkaufspreise verwendet. |
+| **Auftragsherkunft**                                | Auftragsherkunft  aus der Dropdown-Liste wählen. Diese Einstellung wird zum Filtern gültiger Verkaufspreise verwendet. |
 | **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
 | **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
 | **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
@@ -152,48 +152,48 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 
 | **Spaltenbezeichnung**            | **Erläuterung** |
 | :---                              | :--- |
-| Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder über ein Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Produktname**.  |
-| Variation-ID                      | **Pflichtfeld**<br/> Die **Varianten-ID** der Variante oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Variation-ID**. Merkmale werden bevorzugt. |
-| Model-ID                          | **Pflichtfeld**<br/> Die **Variantennummer** der Variante oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Model-ID**. Merkmale werden bevorzugt. |
-| Kategorie-ID                      | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Kategorie-ID**. |
-| Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder über ein Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
-| Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder über ein Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
-| Amazon Sales Rank                 | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **Amazon Sales Rank**. |
+| Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder über ein Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
+| Variation-ID                      | **Pflichtfeld**<br/> Die **Varianten-ID** der Variante oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Variation-ID**. Merkmale werden bevorzugt. |
+| Model-ID                          | **Pflichtfeld**<br/> Die **Variantennummer** der Variante oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Model-ID**. Merkmale werden bevorzugt. |
+| Kategorie-ID                      | Merkmal mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-ID**. |
+| Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder über ein Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
+| Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder über ein Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
+| Amazon Sales Rank                 | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Amazon Sales Rank**. |
 | Unverbindliche Preisempfehlung    | Der **Verkaufspreis** vom Typ **UVP**. |
-| EAN                               | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode** oder über ein Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **EAN**. Merkmale werden bevorzugt.|
-| ASIN                              | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **ASIN**. |
-| MPNR                              | Das **Modell** der Variante oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
+| EAN                               | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode** oder über ein Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **EAN**. Merkmale werden bevorzugt.|
+| ASIN                              | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **ASIN**. |
+| MPNR                              | Das **Modell** der Variante oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
 | SKU                               | Die **SKU** der Variante für Check24.de. |
-| UPC                               | Barcode vom Typ **UPC** oder über ein Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
+| UPC                               | Barcode vom Typ **UPC** oder über ein Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
 | Bild-URL #1 - #10                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Variantenbilder werden vor Artikelbilder sortiert. |
-| (Attribut) Absatzform             | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Absatzform**. |
-| (Attribut) Schuhspitze            | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Schuhspitze**. |
-| (Attribut) Farbe                  | Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Farbe**. Attribute werden bevorzugt. |
-| (Attribut) Geschlecht             | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Geschlecht**. |
-| (Attribut) Altersgruppe           | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Altersgruppe**. |
-| (Attribut) Größe                  | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Größe**. Attribute werden bevorzugt. |
-| (Attribut) Größensystem           | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Größensystem**. |
-| (Attribut) Marke                  | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einstellungen » Artikel »  Hersteller** wird bevorzugt, wenn vorhanden.|
-| (Attribut) Material               | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Material** für Google Shopping oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Material**. Attribute werden bevorzugt.|
-| (Attribut) Innenfutter            | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Innenfutter**. |
-| (Attribut) Absatzhöhe             | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Absatzhöhe**. |
-| (Attribut) Sohlenmaterial         | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Sohlenmaterial**. |
-| (Attribut) Passform               | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Passform**. |
-| (Attribut) Verschluss             | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Verschluss**. |
-| (Attribut) Schafthöhe             | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Schafthöhe**. |
-| (Attribut) Schaftweite            | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Schaftweite**. |
-| (Attribut) Weite                  | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Weite**. |
-| (Attribut) Muster                 | Attribut mit der Attributverknüpfung **Muster** für Google Shopping oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Muster**. Attribute werden bevorzugt. |
-| (Attribut) Herstellerfarbe        | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Herstellerfarbe**. Attribute werden bevorzugt.|
-| (Attribut) Innensohlenmaterial    | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Attribut) Innensohlenmaterial**. |
-| (Tag) Anlass                      | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Tag) Anlass**.|
-| (Tag) Saison                      | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Tag) Saison**. |
-| (Tag) Sonstige                    | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Tag) Sonstige**. |
-| (Tag) Applikationen               | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Tag) Applikationen**. |
-| (Tag) Modestil                    | Merkmal mit der **Check24 Fashion Merkmal** Verknüpfung: **(Tag) Modestil**. |
+| (Attribut) Absatzform             | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Absatzform**. |
+| (Attribut) Schuhspitze            | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Schuhspitze**. |
+| (Attribut) Farbe                  | Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Farbe**. Attribute werden bevorzugt. |
+| (Attribut) Geschlecht             | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Geschlecht**. |
+| (Attribut) Altersgruppe           | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Altersgruppe**. |
+| (Attribut) Größe                  | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Größe**. Attribute werden bevorzugt. |
+| (Attribut) Größensystem           | **Pflichtfeld**<br/> Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Größensystem**. |
+| (Attribut) Marke                  | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einstellungen » Artikel » Hersteller** wird bevorzugt, wenn vorhanden.|
+| (Attribut) Material               | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Material** für Google Shopping oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Material**. Attribute werden bevorzugt.|
+| (Attribut) Innenfutter            | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Innenfutter**. |
+| (Attribut) Absatzhöhe             | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Absatzhöhe**. |
+| (Attribut) Sohlenmaterial         | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Sohlenmaterial**. |
+| (Attribut) Passform               | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Passform**. |
+| (Attribut) Verschluss             | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Verschluss**. |
+| (Attribut) Schafthöhe             | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Schafthöhe**. |
+| (Attribut) Schaftweite            | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Schaftweite**. |
+| (Attribut) Weite                  | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Weite**. |
+| (Attribut) Muster                 | Attribut mit der Attributverknüpfung **Muster** für Google Shopping oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Muster**. Attribute werden bevorzugt. |
+| (Attribut) Herstellerfarbe        | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Herstellerfarbe**. Attribute werden bevorzugt.|
+| (Attribut) Innensohlenmaterial    | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Attribut) Innensohlenmaterial**. |
+| (Tag) Anlass                      | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Tag) Anlass**.|
+| (Tag) Saison                      | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Tag) Saison**. |
+| (Tag) Sonstige                    | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Tag) Sonstige**. |
+| (Tag) Applikationen               | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Tag) Applikationen**. |
+| (Tag) Modestil                    | Merkmal mit der **Check24 Fashion-Merkmal**-Verknüpfung: **(Tag) Modestil**. |
 
 _Tab. 4: Spalten des Datenformats **Check24DE Fashion**_
 
 ## 4 Lizenz
 
-Das gesamte Projekt unterliegt der GNU AFFERO GENERAL PUBLIC LICENSE – weitere Informationen finden Sie in der [LICENSE.md](https://github.com/plentymarkets/plugin-elastic-export-check-24-de/blob/master/LICENSE.md).
+Das gesamte Projekt unterliegt der GNU AFFERO GENERAL PUBLIC LICENSE – weitere Informationen findest du in der [LICENSE.md](https://github.com/plentymarkets/plugin-elastic-export-check-24-de/blob/master/LICENSE.md).
