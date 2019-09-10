@@ -7,23 +7,23 @@
 
 Check24.de is an online comparison portal that helps consumers find the right price/quality products. Beside price comparisons, items are also sold on the Check24.de market. 
 
-For further information about this market, refer to the [Setting up Check24.de](https://knowledge.plentymarkets.com/en/omni-channel/multi-channel/check24) page of the manual.
+For further information about this market, refer to the [Check24.de](https://knowledge.plentymarkets.com/en/markets/check24) page of the manual.
 
 ## 2 The data format Check24DE-Plugin
 
-###2.1 Setting up the data format Check24DE-Plugin in plentymarkets
+### 2.1 Setting up the data format Check24DE-Plugin in plentymarkets
 
 By installing this plugin you will receive the export format **Check24DE-Plugin**. Use this format to exchange data between plentymarkets and Check24.de. It is required to install the Plugin **Elastic Export** from the plentyMarketplace first before you can use the format **Check24DE-Plugin** in plentymarkets.
 
-Once both plugins are installed, you can create the export format **Check24DE-Plugin**. Refer to the [Elastic Export](https://knowledge.plentymarkets.com/en/basics/data-exchange/elastic-export) page of the manual for further details about the individual format settings.
+Once both plugins are installed, you can create the export format **Check24DE-Plugin**. Refer to the [Elastic Export](https://knowledge.plentymarkets.com/en/data/exporting-data/elastic-export) page of the manual for further details about the individual format settings.
 
 Creating a new export format:
 
 1. Go to **Data » Elastic export**.
 2. Click on **New export**.
 3. Carry out the settings as desired. Pay attention to the information given in table 1.
-4. **Save** the settings.
-→ The export format will be given an ID and it will appear in the overview within the **Exports** tab.
+4. **Save** the settings.<br/>
+→ The export format is given an ID and it appears in the overview within the **Exports** tab.
 
 The following table lists details for settings, format settings and recommended item filters for the format **Check24DE-Plugin**.
 
@@ -44,7 +44,7 @@ The following table lists details for settings, format settings and recommended 
 | **Product URL**                                       | Choose which URL should be transferred to the price comparison portal, the item’s URL or the variation’s URL. Variation SKUs can only be transferred in combination with the Ceres store. |
 | **Client**                                            | Select a client. This setting is used for the URL structure and to filter valid sales prices. |
 | **URL parameter**                                     | Enter a suffix for the product URL if this is required for the export. If you have activated the transfer option for the product URL further up, then this character string will be added to the product URL. |
-| **Order referrer**                                    | Choose the order referrer that should be assigned during the order import from the drop-down list. It will also be used to filter valid sales prices and images. |
+| **Order referrer**                                    | Select the order referrer that should be assigned during the order import from the drop-down list. The order referrer is also used to filter valid sales prices and images. |
 | **Marketplace account**                               | Select the marketplace account from the drop-down list. The selected referrer is added to the product URL so that sales can be analysed later. |
 | **Language**                                          | Select the language from the drop-down list. |
 | **Item name**                                         | Select **Name 1**, **Name 2** or **Name 3**. These names are saved in the **Texts** tab of the item. Enter a number into the **Maximum number of characters (def. Text)** field if desired. This specifies how many characters should be exported for the item name. |
@@ -66,7 +66,7 @@ The following table lists details for settings, format settings and recommended 
        
 _Tab. 1: Settings for the data format **Check24DE-Plugin**_
 
-### 2.2 Available columns of the data format Check24DE-Plugin.
+### 2.2 Available columns of the data format Check24DE plugin
 
 | **Column name**        | **Explanation** |
 | :---                   | :--- |
@@ -91,19 +91,19 @@ _Tab. 2: Columns of the data format **Check24DE-Plugin**_
 
 ## 3 The data format Check24DE Fashion 
 
-###3.1 Setting up the data format Check24DE Fashion in plentymarkets
+### 3.1 Setting up the data format Check24DE Fashion in plentymarkets
 
 By installing this plugin you will receive the export format **Check24DE Fashion**. Use this format to exchange data between plentymarkets and Check24.de. It is required to install the Plugin **Elastic Export** from the plentyMarketplace first before you can use the format **Check24DE Fashion** in plentymarkets.
 
-Once both plugins are installed, you can create the export format **Check24DE Fashion**. Refer to the [Elastic Export](https://knowledge.plentymarkets.com/en/basics/data-exchange/elastic-export) page of the manual for further details about the individual format settings.
+Once both plugins are installed, you can create the export format **Check24DE Fashion**. Refer to the [Elastic Export](https://knowledge.plentymarkets.com/en/data/exporting-data/elastic-export) page of the manual for further details about the individual format settings.
 
 Creating a new export format:
 
 1. Go to **Data » Elastic export**.
 2. Click on **New export**.
 3. Carry out the settings as desired. Pay attention to the information given in table 1.
-4. **Save** the settings.
-→ The export format will be given an ID and it will appear in the overview within the **Exports** tab.
+4. **Save** the settings.<br/>
+→ The export format is given an ID and it appears in the overview within the **Exports** tab.
 
 The following table lists details for settings, format settings and recommended item filters for the format **Check24DE Fashion**.
 
@@ -146,33 +146,33 @@ The following table lists details for settings, format settings and recommended 
        
 _Tab. 3: Settings for the data format **Check24DE Fashion**_
 
-### 3.2 Available columns of the data format Check24DE Fashion .
+### 3.2 Available columns of the data format Check24DE Fashion
 
 | **Column name**                   | **Explanation** |
 | :---                              | :--- |
-| Produktname                       | **Required**<br/> According to the format setting **Item name** or from a characteristic with the **Check24 Fashion Property** link: **Produktname**. Characteristics will be prioritized.  |
-| Variation-ID                      | **Required**<br/> The variations variation ID or from a characteristic with the **Check24 Fashion Property** link: **Variation-ID**. Characteristics will be prioritized. |
-| Model-ID                          | **Required**<br/> Die **Variantennummer** der Variante or from a characteristic with the **Check24 Fashion Property** link: **Model-ID**. Characteristics will be prioritized. |
+| Produktname                       | **Required**<br/> According to the format setting **Item name** or from a characteristic with the **Check24 Fashion Property** link: **Produktname**. Characteristics will be prioritised.  |
+| Variation-ID                      | **Required**<br/> The **variation ID** of the variation or from a characteristic with the **Check24 Fashion Property** link: **Variation-ID**. Characteristics will be prioritised. |
+| Model-ID                          | **Required**<br/> The **variation number** of the variation or from a characteristic with the **Check24 Fashion Property** link: **Model-ID**. Characteristics will be prioritised. |
 | Kategorie-ID                      | Characteristic with the **Check24 Fashion Property** link: **Kategorie-ID**. |
-| Kurzbeschreibung                  | According to the format setting **Preview text** or from a characteristic with the **Check24 Fashion Property** link: **Kurzbeschreibung**. Characteristics will be prioritized. |
-| Ausführliche Beschreibung         | **Required**<br/> According to the format setting **Description** or from a characteristic with the **Check24 Fashion Property** link: **Ausführliche Beschreibung**. Characteristics will be prioritized. |
+| Kurzbeschreibung                  | According to the format setting **Preview text** or from a characteristic with the **Check24 Fashion Property** link: **Kurzbeschreibung**. Characteristics will be prioritised. |
+| Ausführliche Beschreibung         | **Required**<br/> According to the format setting **Description** or from a characteristic with the **Check24 Fashion Property** link: **Ausführliche Beschreibung**. Characteristics will be prioritised. |
 | Amazon Sales Rank                 | Characteristic with the **Check24 Fashion Property** link: **Amazon Sales Rank**. |
 | Unverbindliche Preisempfehlung    | The **Sales Price** of type **RRP**. |
-| EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic with the **Check24 Fashion Property** link: **EAN**. Characteristics will be prioritized. |
+| EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic with the **Check24 Fashion Property** link: **EAN**. Characteristics will be prioritised. |
 | ASIN                              | Characteristic with the **Check24 Fashion Property** link: **ASIN**. |
-| MPNR                              | The variants **Model** or from a characteristic with the **Check24 Fashion Property** link: **MPNR**. Characteristics will be prioritized. |
-| SKU                               | The variants **SKU** for Check24.de. |
-| UPC                               | Barcode of type **UPC** or from a characteristic with the **Check24 Fashion Property** link: **UPC**. Characteristics will be prioritized. |
+| MPNR                              | The **model** of the variation or from a characteristic with the **Check24 Fashion Property** link: **MPNR**. Characteristics will be prioritised. |
+| SKU                               | The **SKU** of the variation for Check24.de. |
+| UPC                               | Barcode of type **UPC** or from a characteristic with the **Check24 Fashion Property** link: **UPC**. Characteristics will be prioritised. |
 | Bild-URL #1 - #10                 | **Required**<br/> The **URL path** of the images according to the format setting **Image**. Variation images are prioritised over item images. |
 | (Attribut) Absatzform             | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Absatzform**. |
 | (Attribut) Schuhspitze            | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Schuhspitze**. |
-| (Attribut) Farbe                  | Attribute with the attribute link **Color** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Farbe**. Attributes will be prioritized. |
+| (Attribut) Farbe                  | Attribute with the attribute link **Color** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Farbe**. Attributes will be prioritised. |
 | (Attribut) Geschlecht             | **Required**<br/> Characteristic with the **Check24 Fashion Property** link: **(Attribut) Geschlecht**. |
 | (Attribut) Altersgruppe           | **Required**<br/> Characteristic with the **Check24 Fashion Property** link: **(Attribut) Altersgruppe**. |
-| (Attribut) Größe                  | **Required**<br/> Attribute with the attribute link **Size** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Größe**. Attributes will be prioritized. |
+| (Attribut) Größe                  | **Required**<br/> Attribute with the attribute link **Size** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Größe**. Attributes will be prioritised. |
 | (Attribut) Größensystem           | **Required**<br/> Characteristic with the **Check24 Fashion Property** link: **(Attribut) Größensystem**. |
-| (Attribut) Marke                  | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic with the **Check24 Fashion Property** link: **Marke**. Characteristics will be prioritized. The **external name** within the menu **Settings » Items » Manufacturer** will be preferred if existing. |
-| (Attribut) Material               | **Required**<br/> Attribute with the attribute link **Material** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Material**. Attributes will be prioritized. |
+| (Attribut) Marke                  | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic with the **Check24 Fashion Property** link: **Marke**. Characteristics will be prioritised. The **external name** within the menu **Settings » Items » Manufacturer** will be preferred if existing. |
+| (Attribut) Material               | **Required**<br/> Attribute with the attribute link **Material** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Material**. Attributes will be prioritised. |
 | (Attribut) Innenfutter            | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Innenfutter**. |
 | (Attribut) Absatzhöhe             | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Absatzhöhe**. |
 | (Attribut) Sohlenmaterial         | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Sohlenmaterial**. |
@@ -181,8 +181,8 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 | (Attribut) Schafthöhe             | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Schafthöhe**. |
 | (Attribut) Schaftweite            | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Schaftweite**. |
 | (Attribut) Weite                  | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Weite**. |
-| (Attribut) Muster                 | Attribute with the attribute link **Pattern** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Muster**. Attributes will be prioritized. |
-| (Attribut) Herstellerfarbe        | **Required**<br/> Attribute with the attribute link **Color** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Herstellerfarbe**. Attributes will be prioritized. |
+| (Attribut) Muster                 | Attribute with the attribute link **Pattern** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Muster**. Attributes will be prioritised. |
+| (Attribut) Herstellerfarbe        | **Required**<br/> Attribute with the attribute link **Color** for Google Shopping or from a characteristic with the **Check24 Fashion Property** link: **Herstellerfarbe**. Attributes will be prioritised. |
 | (Attribut) Innensohlenmaterial    | Characteristic with the **Check24 Fashion Property** link: **(Attribut) Innensohlenmaterial**. |
 | (Tag) Anlass                      | Characteristic with the **Check24 Fashion Property** link: **(Tag) Anlass**. |
 | (Tag) Saison                      | Characteristic with the **Check24 Fashion Property** link: **(Tag) Saison**. |
