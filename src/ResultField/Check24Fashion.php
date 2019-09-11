@@ -126,20 +126,6 @@ class Check24Fashion extends ResultFields
                 'variation.model',
 
                 //images
-                'images.all.urlMiddle',
-                'images.all.urlPreview',
-                'images.all.urlSecondPreview',
-                'images.all.url',
-                'images.all.path',
-                'images.all.position',
-
-                'images.item.urlMiddle',
-                'images.item.urlPreview',
-                'images.item.urlSecondPreview',
-                'images.item.url',
-                'images.item.path',
-                'images.item.position',
-
                 'images.variation.urlMiddle',
                 'images.variation.urlPreview',
                 'images.variation.urlSecondPreview',
@@ -167,6 +153,9 @@ class Check24Fashion extends ResultFields
                 'properties.texts.lang',
                 'properties.valueInt',
                 'properties.valueFloat',
+
+                //defaultCategories
+                'defaultCategories.id',
 
                 //barcodes
                 'barcodes.code',
@@ -222,8 +211,6 @@ class Check24Fashion extends ResultFields
     {
         $nestedKeyList['keys'] = [
             //images
-            'images.all',
-            'images.item',
             'images.variation',
             
             //sku
@@ -231,6 +218,9 @@ class Check24Fashion extends ResultFields
 
             //texts
             'texts',
+
+            //defaultCategories
+            'defaultCategories',
 
             //barcodes
             'barcodes',
@@ -248,22 +238,6 @@ class Check24Fashion extends ResultFields
 
         $nestedKeyList['nestedKeys'] = [
             //images
-            'images.all' => [
-                'urlMiddle',
-                'urlPreview',
-                'urlSecondPreview',
-                'url',
-                'path',
-                'position',
-            ],
-            'images.item' => [
-                'urlMiddle',
-                'urlPreview',
-                'urlSecondPreview',
-                'url',
-                'path',
-                'position',
-            ],
             'images.variation' => [
                 'urlMiddle',
                 'urlPreview',
@@ -287,6 +261,11 @@ class Check24Fashion extends ResultFields
                 'parentSku',
             ],
 
+            //defaultCategories
+            'defaultCategories' => [
+                'id',
+            ],
+            
             //texts
             'texts' => [
                 'lang',

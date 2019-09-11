@@ -20,7 +20,6 @@ class AttributeHelper
     ];
 
     const TRANS_KEYS_GOOGLE_TO_CHECK24 = [
-        Check24Fashion::COLUMN_COLOR => self::GOOGLE_ATTRIBUTE_TYPE_COLOR,
         Check24Fashion::COLUMN_MANUFACTURER_COLOR => self::GOOGLE_ATTRIBUTE_TYPE_COLOR,
         Check24Fashion::COLUMN_PATTERN => self::GOOGLE_ATTRIBUTE_TYPE_PATTERN,
         Check24Fashion::COLUMN_SIZE => self::GOOGLE_ATTRIBUTE_TYPE_SIZE,

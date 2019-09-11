@@ -155,7 +155,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
 | Variation-ID                      | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24 oder eine Zeichenkette gemäß "Parent-SKU"-"Attributswert-ID", wenn ein Farb-Attribut an der Variante hinterlegt ist. |
 | Model-ID                          | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24. |
-| Kategorie-ID                      | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-ID**. |
+| Kategoriepfad                     | **Required**<br/> Kategoriepfad der Standard-Kategorie des Mandanten, der oben in den Einstellungen gewählt wurde oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategoriepfad**. |
 | Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
 | Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
 | Amazon Sales Rank                 | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Amazon Sales Rank**. |
@@ -165,10 +165,9 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | MPNR                              | Das **Modell** der Variante oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
 | SKU                               | Die **SKU** der Variante für Check24.de. |
 | UPC                               | Barcode vom Typ **UPC** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
-| Bild-URL #1 - #10                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Variantenbilder werden vor Artikelbilder sortiert. |
+| Bild-URL #1 - #20                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Nur Bilder, die mit der Variante verknüpft sind, werden übertragen. |
 | Absatzform                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzform**. |
 | Schuhspitze                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schuhspitze**. |
-| Farbe                             | Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Farbe**. Attribute werden bevorzugt. |
 | Geschlecht                        | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Geschlecht**. |
 | Altersgruppe                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Altersgruppe**. |
 | Größe                             | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größe**. Attribute werden bevorzugt. |

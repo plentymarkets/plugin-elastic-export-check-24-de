@@ -5,6 +5,7 @@ namespace ElasticExportCheck24DE\Generator;
 use ElasticExportCheck24DE\Helper\AttributeHelper;
 use ElasticExportCheck24DE\Helper\SkuHelper;
 use ElasticExport\Helper\ElasticExportCoreHelper;
+use ElasticExport\Helper\ElasticExportCategoryHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportPropertyHelper;
 use ElasticExport\Helper\ElasticExportItemHelper;
@@ -30,7 +31,7 @@ class Check24Fashion extends CSVPluginGenerator
     const COLUMN_PRODUCT_NAME						= 'Produktname';
     const COLUMN_VARIATION_ID       				= 'Variation-ID';
     const COLUMN_MODEL_ID       					= 'Model-ID';
-    const COLUMN_CATEGORY_ID				        = 'Kategorie-ID';
+    const COLUMN_CATEGORY_PATH				        = 'Kategorie-Pfad';
     const COLUMN_SHORT_DESCRIPTION                  = 'Kurzbeschreibung';
     const COLUMN_DETAILED_DESCRIPTION               = 'Ausführliche Beschreibung';
     const COLUMN_AMAZON_SALES_RANK                  = 'Amazon Sales Rank';
@@ -50,9 +51,18 @@ class Check24Fashion extends CSVPluginGenerator
     const COLUMN_IMAGE_URI_8                        = 'Bild-URL #8';
     const COLUMN_IMAGE_URI_9                        = 'Bild-URL #9';
     const COLUMN_IMAGE_URI_10                       = 'Bild-URL #10';
+    const COLUMN_IMAGE_URI_11                       = 'Bild-URL #11';
+    const COLUMN_IMAGE_URI_12                       = 'Bild-URL #12';
+    const COLUMN_IMAGE_URI_13                       = 'Bild-URL #13';
+    const COLUMN_IMAGE_URI_14                       = 'Bild-URL #14';
+    const COLUMN_IMAGE_URI_15                       = 'Bild-URL #15';
+    const COLUMN_IMAGE_URI_16                       = 'Bild-URL #16';
+    const COLUMN_IMAGE_URI_17                       = 'Bild-URL #17';
+    const COLUMN_IMAGE_URI_18                       = 'Bild-URL #18';
+    const COLUMN_IMAGE_URI_19                       = 'Bild-URL #19';
+    const COLUMN_IMAGE_URI_20                       = 'Bild-URL #20';
     const COLUMN_TYPE_OF_HEEL                       = 'Absatzform';
     const COLUMN_TOE                                = 'Schuhspitze';
-    const COLUMN_COLOR                              = 'Farbe';
     const COLUMN_GENDER                             = 'Geschlecht';
     const COLUMN_AGE_GROUP                          = 'Altersgruppe';
     const COLUMN_SIZE                               = 'Größe';
@@ -76,6 +86,10 @@ class Check24Fashion extends CSVPluginGenerator
     const COLUMN_APPLIQUES                          = 'Applikationen';
     const COLUMN_FASHION_STYLE                      = 'Modestil';
 
+    /**
+     * @var ElasticExportCategoryHelper
+     */
+    private $elasticExportCategoryHelper;
 
     /**
      * @var ElasticExportCoreHelper $elasticExportHelper
@@ -136,6 +150,7 @@ class Check24Fashion extends CSVPluginGenerator
      */
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
+        $this->elasticExportCategoryHelper = pluginApp(ElasticExportCategoryHelper::class);
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
         $this->elasticExportPropertyHelper = pluginApp(ElasticExportPropertyHelper::class);
@@ -221,7 +236,7 @@ class Check24Fashion extends CSVPluginGenerator
             self::COLUMN_PRODUCT_NAME,
             self::COLUMN_VARIATION_ID,
             self::COLUMN_MODEL_ID,
-            self::COLUMN_CATEGORY_ID,
+            self::COLUMN_CATEGORY_PATH,
             self::COLUMN_SHORT_DESCRIPTION,
             self::COLUMN_DETAILED_DESCRIPTION,
             self::COLUMN_AMAZON_SALES_RANK,
@@ -241,9 +256,18 @@ class Check24Fashion extends CSVPluginGenerator
             self::COLUMN_IMAGE_URI_8,
             self::COLUMN_IMAGE_URI_9,
             self::COLUMN_IMAGE_URI_10,
+            self::COLUMN_IMAGE_URI_11,
+            self::COLUMN_IMAGE_URI_12,
+            self::COLUMN_IMAGE_URI_13,
+            self::COLUMN_IMAGE_URI_14,
+            self::COLUMN_IMAGE_URI_15,
+            self::COLUMN_IMAGE_URI_16,
+            self::COLUMN_IMAGE_URI_17,
+            self::COLUMN_IMAGE_URI_18,
+            self::COLUMN_IMAGE_URI_19,
+            self::COLUMN_IMAGE_URI_20,
             self::COLUMN_TYPE_OF_HEEL,
             self::COLUMN_TOE,
-            self::COLUMN_COLOR,
             self::COLUMN_GENDER,
             self::COLUMN_AGE_GROUP,
             self::COLUMN_SIZE,
@@ -281,14 +305,21 @@ class Check24Fashion extends CSVPluginGenerator
         $recommendedRetailPriceInformation = $this->elasticExportPriceHelper->getRecommendedRetailPriceInformation($variation, $settings);
         
         // Get images
-        $imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 10, 'variationImages');
+        if (isset($variation['data']['images']['variation']) &&
+            is_array($variation['data']['images']['variation'])
+            && count($variation['data']['images']['variation']))
+        {
+            $imageList = $variation['data']['images']['variation'];
+        } else {
+            $imageList = [];
+        }
         
         // Set SKU information
         $this->skuHelper->setSku($variation, self::CHECK24_DE, (int) $settings->get('marketAccountId'));
         
         if (isset($variation['data']['attributes']) && is_array($variation['data']['attributes'])) {
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
-            $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_COLOR);
+            $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_MANUFACTURER_COLOR);
         }
         
         $lang = $settings->get('lang');
@@ -300,8 +331,8 @@ class Check24Fashion extends CSVPluginGenerator
                 isset($colorAttributeValueId) ? $variation['data']['skus'][0]['parentSku'].'-'.$colorAttributeValueId : $variation['data']['skus'][0]['parentSku'],
             self::COLUMN_MODEL_ID =>
                 $variation['data']['skus'][0]['parentSku'],
-            self::COLUMN_CATEGORY_ID =>
-                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_CATEGORY_ID, self::CHECK24_DE, $lang),
+            self::COLUMN_CATEGORY_PATH =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_CATEGORY_PATH),
             self::COLUMN_SHORT_DESCRIPTION =>
                 $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_SHORT_DESCRIPTION),
             self::COLUMN_DETAILED_DESCRIPTION =>
@@ -320,22 +351,30 @@ class Check24Fashion extends CSVPluginGenerator
                 $variation['data']['skus'][0]['sku'],
             self::COLUMN_UPC =>
                 $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_UPC),
-            self::COLUMN_IMAGE_URI_1 => isset($imageList[0]) ? $imageList[0] : '',
-            self::COLUMN_IMAGE_URI_2 => isset($imageList[1]) ? $imageList[1] : '',
-            self::COLUMN_IMAGE_URI_3 => isset($imageList[2]) ? $imageList[2] : '',
-            self::COLUMN_IMAGE_URI_4 => isset($imageList[3]) ? $imageList[3] : '',
-            self::COLUMN_IMAGE_URI_5 => isset($imageList[4]) ? $imageList[4] : '',
-            self::COLUMN_IMAGE_URI_6 => isset($imageList[5]) ? $imageList[5] : '',
-            self::COLUMN_IMAGE_URI_7 => isset($imageList[6]) ? $imageList[6] : '',
-            self::COLUMN_IMAGE_URI_8 => isset($imageList[7]) ? $imageList[7] : '',
-            self::COLUMN_IMAGE_URI_9 => isset($imageList[8]) ? $imageList[8] : '',
-            self::COLUMN_IMAGE_URI_10 => isset($imageList[9]) ? $imageList[9] : '',
+            self::COLUMN_IMAGE_URI_1 => isset($imageList[0]['url']) ? $imageList[0]['url'] : '',
+            self::COLUMN_IMAGE_URI_2 => isset($imageList[1]['url']) ? $imageList[1]['url'] : '',
+            self::COLUMN_IMAGE_URI_3 => isset($imageList[2]['url']) ? $imageList[2]['url'] : '',
+            self::COLUMN_IMAGE_URI_4 => isset($imageList[3]['url']) ? $imageList[3]['url'] : '',
+            self::COLUMN_IMAGE_URI_5 => isset($imageList[4]['url']) ? $imageList[4]['url'] : '',
+            self::COLUMN_IMAGE_URI_6 => isset($imageList[5]['url']) ? $imageList[5]['url'] : '',
+            self::COLUMN_IMAGE_URI_7 => isset($imageList[6]['url']) ? $imageList[6]['url'] : '',
+            self::COLUMN_IMAGE_URI_8 => isset($imageList[7]['url']) ? $imageList[7]['url'] : '',
+            self::COLUMN_IMAGE_URI_9 => isset($imageList[8]['url']) ? $imageList[8]['url'] : '',
+            self::COLUMN_IMAGE_URI_10 => isset($imageList[9]['url']) ? $imageList[9]['url'] : '',
+            self::COLUMN_IMAGE_URI_11 => isset($imageList[10]['url']) ? $imageList[10]['url'] : '',
+            self::COLUMN_IMAGE_URI_12 => isset($imageList[11]['url']) ? $imageList[11]['url'] : '',
+            self::COLUMN_IMAGE_URI_13 => isset($imageList[12]['url']) ? $imageList[12]['url'] : '',
+            self::COLUMN_IMAGE_URI_14 => isset($imageList[13]['url']) ? $imageList[13]['url'] : '',
+            self::COLUMN_IMAGE_URI_15 => isset($imageList[14]['url']) ? $imageList[14]['url'] : '',
+            self::COLUMN_IMAGE_URI_16 => isset($imageList[15]['url']) ? $imageList[15]['url'] : '',
+            self::COLUMN_IMAGE_URI_17 => isset($imageList[16]['url']) ? $imageList[16]['url'] : '',
+            self::COLUMN_IMAGE_URI_18 => isset($imageList[17]['url']) ? $imageList[17]['url'] : '',
+            self::COLUMN_IMAGE_URI_19 => isset($imageList[18]['url']) ? $imageList[18]['url'] : '',
+            self::COLUMN_IMAGE_URI_20 => isset($imageList[19]['url']) ? $imageList[19]['url'] : '',
             self::COLUMN_TYPE_OF_HEEL =>
                 $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TYPE_OF_HEEL, self::CHECK24_DE, $lang),
             self::COLUMN_TOE =>
                 $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TOE, self::CHECK24_DE, $lang),
-            self::COLUMN_COLOR =>
-                $this->getPropertyOrAttribute($variation, self::COLUMN_COLOR, $settings),
             self::COLUMN_GENDER =>
                 $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_GENDER, self::CHECK24_DE, $lang),
             self::COLUMN_AGE_GROUP =>
@@ -399,6 +438,8 @@ class Check24Fashion extends CSVPluginGenerator
             switch ($targetColumn) {
                 case self::COLUMN_PRODUCT_NAME:
                     return $this->elasticExportHelper->getMutatedName($variation, $settings);
+                case self::COLUMN_CATEGORY_PATH:
+                    return $this->elasticExportCategoryHelper->getCategoryPath((int)$variation['data']['defaultCategories'][0]['id'], $settings);
                 case self::COLUMN_SHORT_DESCRIPTION:
                     return $this->elasticExportHelper->getMutatedPreviewText($variation, $settings);
                 case self::COLUMN_DETAILED_DESCRIPTION:
