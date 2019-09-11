@@ -3,6 +3,7 @@
 namespace ElasticExportCheck24DE\Generator;
 
 use ElasticExportCheck24DE\Helper\AttributeHelper;
+use ElasticExportCheck24DE\Helper\SkuHelper;
 use ElasticExport\Helper\ElasticExportCoreHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportPropertyHelper;
@@ -49,31 +50,31 @@ class Check24Fashion extends CSVPluginGenerator
     const COLUMN_IMAGE_URI_8                        = 'Bild-URL #8';
     const COLUMN_IMAGE_URI_9                        = 'Bild-URL #9';
     const COLUMN_IMAGE_URI_10                       = 'Bild-URL #10';
-    const COLUMN_TYPE_OF_HEEL                       = '(Attribut) Absatzform';
-    const COLUMN_TOE                                = '(Attribut) Schuhspitze';
-    const COLUMN_COLOR                              = '(Attribut) Farbe';
-    const COLUMN_GENDER                             = '(Attribut) Geschlecht';
-    const COLUMN_AGE_GROUP                          = '(Attribut) Altersgruppe';
-    const COLUMN_SIZE                               = '(Attribut) Größe';
-    const COLUMN_SIZE_SYSTEM                        = '(Attribut) Größensystem';
-    const COLUMN_BRAND                              = '(Attribut) Marke';
-    const COLUMN_MATERIAL                           = '(Attribut) Material';
-    const COLUMN_LINING                             = '(Attribut) Innenfutter';
-    const COLUMN_HEEL_HEIGHT                        = '(Attribut) Absatzhöhe';
-    const COLUMN_SOLE_MATERIAL                      = '(Attribut) Sohlenmaterial';
-    const COLUMN_FIT                                = '(Attribut) Passform';
-    const COLUMN_FASTENER                           = '(Attribut) Verschluss';
-    const COLUMN_LEG_HEIGHT                         = '(Attribut) Schafthöhe';
-    const COLUMN_LEG_WIDTH                          = '(Attribut) Schaftweite';
-    const COLUMN_SHOE_WIDTH                         = '(Attribut) Weite';
-    const COLUMN_PATTERN                            = '(Attribut) Muster';
-    const COLUMN_MANUFACTURER_COLOR                 = '(Attribut) Herstellerfarbe';
-    const COLUMN_INSOLE                             = '(Attribut) Innensohlenmaterial';
-    const COLUMN_OCCASION                           = '(Tag) Anlass';
-    const COLUMN_SEASON                             = '(Tag) Saison';
-    const COLUMN_OTHER                              = '(Tag) Sonstige';
-    const COLUMN_APPLIQUES                          = '(Tag) Applikationen';
-    const COLUMN_FASHION_STYLE                      = '(Tag) Modestil';
+    const COLUMN_TYPE_OF_HEEL                       = 'Absatzform';
+    const COLUMN_TOE                                = 'Schuhspitze';
+    const COLUMN_COLOR                              = 'Farbe';
+    const COLUMN_GENDER                             = 'Geschlecht';
+    const COLUMN_AGE_GROUP                          = 'Altersgruppe';
+    const COLUMN_SIZE                               = 'Größe';
+    const COLUMN_SIZE_SYSTEM                        = 'Größensystem';
+    const COLUMN_BRAND                              = 'Marke';
+    const COLUMN_MATERIAL                           = 'Material';
+    const COLUMN_LINING                             = 'Innenfutter';
+    const COLUMN_HEEL_HEIGHT                        = 'Absatzhöhe';
+    const COLUMN_SOLE_MATERIAL                      = 'Sohlenmaterial';
+    const COLUMN_FIT                                = 'Passform';
+    const COLUMN_FASTENER                           = 'Verschluss';
+    const COLUMN_LEG_HEIGHT                         = 'Schafthöhe';
+    const COLUMN_LEG_WIDTH                          = 'Schaftweite';
+    const COLUMN_SHOE_WIDTH                         = 'Weite';
+    const COLUMN_PATTERN                            = 'Muster';
+    const COLUMN_MANUFACTURER_COLOR                 = 'Herstellerfarbe';
+    const COLUMN_INSOLE                             = 'Innensohlenmaterial';
+    const COLUMN_OCCASION                           = 'Anlass';
+    const COLUMN_SEASON                             = 'Saison';
+    const COLUMN_OTHER                              = 'Sonstige';
+    const COLUMN_APPLIQUES                          = 'Applikationen';
+    const COLUMN_FASHION_STYLE                      = 'Modestil';
 
 
     /**
@@ -95,6 +96,12 @@ class Check24Fashion extends CSVPluginGenerator
      * @var ElasticExportItemHelper
      */
     private $elasticExportItemHelper;
+
+    /**
+     * @var SkuHelper
+     */
+    private $skuHelper;
+    
     /**
      * @var ArrayHelper $arrayHelper
      */
@@ -134,6 +141,7 @@ class Check24Fashion extends CSVPluginGenerator
         $this->elasticExportPropertyHelper = pluginApp(ElasticExportPropertyHelper::class);
         $this->elasticExportItemHelper = pluginApp(ElasticExportItemHelper::class);
         $this->attributeHelper = pluginApp(AttributeHelper::class);
+        $this->skuHelper = pluginApp(SkuHelper::class);
 
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
         $this->filtrationService = pluginApp(FiltrationService::class, ['settings' => $settings, 'filterSettings' => $filter]);
@@ -271,26 +279,47 @@ class Check24Fashion extends CSVPluginGenerator
     {
         // Get the price
         $recommendedRetailPriceInformation = $this->elasticExportPriceHelper->getRecommendedRetailPriceInformation($variation, $settings);
+        
+        // Get images
         $imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 10, 'variationImages');
-
+        
+        // Set SKU information
+        $this->skuHelper->setSku($variation, self::CHECK24_DE, (int) $settings->get('marketAccountId'));
+        
         if (isset($variation['data']['attributes']) && is_array($variation['data']['attributes'])) {
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
+            $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_COLOR);
         }
-
+        
+        $lang = $settings->get('lang');
+        
         $data = [
-            self::COLUMN_PRODUCT_NAME => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_PRODUCT_NAME),
-            self::COLUMN_VARIATION_ID => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_VARIATION_ID),
-            self::COLUMN_MODEL_ID => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_MODEL_ID),
-            self::COLUMN_CATEGORY_ID => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_CATEGORY_ID, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_SHORT_DESCRIPTION => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_SHORT_DESCRIPTION),
-            self::COLUMN_DETAILED_DESCRIPTION => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_DETAILED_DESCRIPTION),
-            self::COLUMN_AMAZON_SALES_RANK => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_AMAZON_SALES_RANK, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_RRP => $recommendedRetailPriceInformation['price'] > 0.00 ? $recommendedRetailPriceInformation['price'] : '',
-            self::COLUMN_EAN => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_EAN),
-            self::COLUMN_ASIN => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_ASIN, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_MPNR => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_MPNR),
-            self::COLUMN_SKU => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, $variation['data']['skus']['sku']),
-            self::COLUMN_UPC => $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_UPC),
+            self::COLUMN_PRODUCT_NAME =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_PRODUCT_NAME),
+            self::COLUMN_VARIATION_ID =>
+                isset($colorAttributeValueId) ? $variation['data']['skus'][0]['parentSku'].'-'.$colorAttributeValueId : $variation['data']['skus'][0]['parentSku'],
+            self::COLUMN_MODEL_ID =>
+                $variation['data']['skus'][0]['parentSku'],
+            self::COLUMN_CATEGORY_ID =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_CATEGORY_ID, self::CHECK24_DE, $lang),
+            self::COLUMN_SHORT_DESCRIPTION =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_SHORT_DESCRIPTION),
+            self::COLUMN_DETAILED_DESCRIPTION =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_DETAILED_DESCRIPTION),
+            self::COLUMN_AMAZON_SALES_RANK =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_AMAZON_SALES_RANK, self::CHECK24_DE, $lang),
+            self::COLUMN_RRP =>
+                $recommendedRetailPriceInformation['price'] > 0.00 ? $recommendedRetailPriceInformation['price'] : '',
+            self::COLUMN_EAN =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_EAN),
+            self::COLUMN_ASIN =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_ASIN, self::CHECK24_DE, $lang),
+            self::COLUMN_MPNR =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_MPNR),
+            self::COLUMN_SKU =>
+                $variation['data']['skus'][0]['sku'],
+            self::COLUMN_UPC =>
+                $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_UPC),
             self::COLUMN_IMAGE_URI_1 => isset($imageList[0]) ? $imageList[0] : '',
             self::COLUMN_IMAGE_URI_2 => isset($imageList[1]) ? $imageList[1] : '',
             self::COLUMN_IMAGE_URI_3 => isset($imageList[2]) ? $imageList[2] : '',
@@ -301,31 +330,56 @@ class Check24Fashion extends CSVPluginGenerator
             self::COLUMN_IMAGE_URI_8 => isset($imageList[7]) ? $imageList[7] : '',
             self::COLUMN_IMAGE_URI_9 => isset($imageList[8]) ? $imageList[8] : '',
             self::COLUMN_IMAGE_URI_10 => isset($imageList[9]) ? $imageList[9] : '',
-            self::COLUMN_TYPE_OF_HEEL => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TYPE_OF_HEEL, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_TOE => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TOE, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_COLOR => $this->getPropertyOrAttribute($variation, self::COLUMN_COLOR, $settings),
-            self::COLUMN_GENDER => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_GENDER, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_AGE_GROUP => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_AGE_GROUP, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_SIZE => $this->getPropertyOrAttribute($variation, self::COLUMN_SIZE, $settings),
-            self::COLUMN_SIZE_SYSTEM => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SIZE_SYSTEM, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_BRAND => $this->elasticExportItemHelper->getExternalManufacturerName($variation),
-            self::COLUMN_MATERIAL => $this->getPropertyOrAttribute($variation, self::COLUMN_MATERIAL, $settings),
-            self::COLUMN_LINING => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LINING, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_HEEL_HEIGHT => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_HEEL_HEIGHT, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_SOLE_MATERIAL => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SOLE_MATERIAL, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_FIT => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FIT, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_FASTENER => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FASTENER, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_LEG_HEIGHT => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LEG_HEIGHT, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_LEG_WIDTH => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LEG_WIDTH, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_SHOE_WIDTH => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SHOE_WIDTH, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_PATTERN => $this->getPropertyOrAttribute($variation, self::COLUMN_PATTERN, $settings),
-            self::COLUMN_MANUFACTURER_COLOR  => $this->getPropertyOrAttribute($variation, self::COLUMN_MANUFACTURER_COLOR, $settings),
-            self::COLUMN_INSOLE => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_INSOLE, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_OCCASION => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_OCCASION, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_SEASON => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SEASON, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_OTHER => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_OTHER, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_APPLIQUES => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_APPLIQUES, self::CHECK24_DE, $settings->get('lang')),
-            self::COLUMN_FASHION_STYLE => $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FASHION_STYLE, self::CHECK24_DE, $settings->get('lang')),
+            self::COLUMN_TYPE_OF_HEEL =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TYPE_OF_HEEL, self::CHECK24_DE, $lang),
+            self::COLUMN_TOE =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_TOE, self::CHECK24_DE, $lang),
+            self::COLUMN_COLOR =>
+                $this->getPropertyOrAttribute($variation, self::COLUMN_COLOR, $settings),
+            self::COLUMN_GENDER =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_GENDER, self::CHECK24_DE, $lang),
+            self::COLUMN_AGE_GROUP =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_AGE_GROUP, self::CHECK24_DE, $lang),
+            self::COLUMN_SIZE =>
+                $this->getPropertyOrAttribute($variation, self::COLUMN_SIZE, $settings),
+            self::COLUMN_SIZE_SYSTEM =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SIZE_SYSTEM, self::CHECK24_DE, $lang),
+            self::COLUMN_BRAND =>
+                $this->getPropertyOrRegularData($variation, $settings, self::COLUMN_BRAND),
+            self::COLUMN_MATERIAL =>
+                $this->getPropertyOrAttribute($variation, self::COLUMN_MATERIAL, $settings),
+            self::COLUMN_LINING =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LINING, self::CHECK24_DE, $lang),
+            self::COLUMN_HEEL_HEIGHT =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_HEEL_HEIGHT, self::CHECK24_DE, $lang),
+            self::COLUMN_SOLE_MATERIAL =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SOLE_MATERIAL, self::CHECK24_DE, $lang),
+            self::COLUMN_FIT =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FIT, self::CHECK24_DE, $lang),
+            self::COLUMN_FASTENER =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FASTENER, self::CHECK24_DE, $lang),
+            self::COLUMN_LEG_HEIGHT =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LEG_HEIGHT, self::CHECK24_DE, $lang),
+            self::COLUMN_LEG_WIDTH =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_LEG_WIDTH, self::CHECK24_DE, $lang),
+            self::COLUMN_SHOE_WIDTH =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SHOE_WIDTH, self::CHECK24_DE, $lang),
+            self::COLUMN_PATTERN =>
+                $this->getPropertyOrAttribute($variation, self::COLUMN_PATTERN, $settings),
+            self::COLUMN_MANUFACTURER_COLOR  =>
+                $this->getPropertyOrAttribute($variation, self::COLUMN_MANUFACTURER_COLOR, $settings),
+            self::COLUMN_INSOLE =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_INSOLE, self::CHECK24_DE, $lang),
+            self::COLUMN_OCCASION =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_OCCASION, self::CHECK24_DE, $lang),
+            self::COLUMN_SEASON =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_SEASON, self::CHECK24_DE, $lang),
+            self::COLUMN_OTHER =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_OTHER, self::CHECK24_DE, $lang),
+            self::COLUMN_APPLIQUES =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_APPLIQUES, self::CHECK24_DE, $lang),
+            self::COLUMN_FASHION_STYLE =>
+                $this->elasticExportPropertyHelper->getProperty($variation, self::COLUMN_FASHION_STYLE, self::CHECK24_DE, $lang),
         ];
 
         $this->addCSVContent(array_values($data));
@@ -343,10 +397,6 @@ class Check24Fashion extends CSVPluginGenerator
 
         if (!strlen($value)) {
             switch ($targetColumn) {
-                case self::COLUMN_VARIATION_ID:
-                    return $variation['id'];
-                case self::COLUMN_MODEL_ID:
-                    return $variation['data']['variation']['number'];
                 case self::COLUMN_PRODUCT_NAME:
                     return $this->elasticExportHelper->getMutatedName($variation, $settings);
                 case self::COLUMN_SHORT_DESCRIPTION:
@@ -359,6 +409,8 @@ class Check24Fashion extends CSVPluginGenerator
                     return $variation['data']['variation']['model'];
                 case self::COLUMN_UPC:
                     return $this->elasticExportHelper->getBarcodeByType($variation, ElasticExportCoreHelper::BARCODE_UPC);
+                case self::COLUMN_BRAND:
+                    return $this->elasticExportItemHelper->getExternalManufacturerName($variation);
             }
         }
 

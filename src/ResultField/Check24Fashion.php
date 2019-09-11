@@ -149,6 +149,7 @@ class Check24Fashion extends ResultFields
 
                 //sku
                 'skus.sku',
+                'skus.parentSku',
 
                 // Attributes
                 'attributes.attributeId',
@@ -271,6 +272,7 @@ class Check24Fashion extends ResultFields
             //sku
             'skus' => [
                 'sku',
+                'parentSku',
             ],
 
             //texts

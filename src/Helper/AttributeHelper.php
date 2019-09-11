@@ -3,8 +3,6 @@
 namespace ElasticExportCheck24DE\Helper;
 
 use ElasticExportCheck24DE\Generator\Check24Fashion;
-use Plenty\Modules\Helper\Models\KeyValue;
-
 
 class AttributeHelper
 {
@@ -58,16 +56,21 @@ class AttributeHelper
     }
 
     /**
-     * @param int $attributeId
+     * @param array $attributes
      * @param string $targetAttribute
-     * @return bool
+     * @return int|null
      */
-    private function isTargetAttribute(int $attributeId, string $targetAttribute):bool
+    public function getTargetAttributeValueId(array $attributes, string $targetAttribute)
     {
-        if (isset($this->attributeLinkCache[$attributeId])) {
-            return  (bool)(self::TRANS_KEYS_GOOGLE_TO_CHECK24[$targetAttribute] == $this->attributeLinkCache[$attributeId]);
+        foreach ($attributes as $attributeValue) {
+            if (isset($attributeValue['attributeId']) &&
+                $this->isTargetAttribute($attributeValue['attributeId'], $targetAttribute) &&
+                isset($attributeValue['valueId']) && $attributeValue['valueId'] > 0)
+            {
+                return $attributeValue['valueId'];
+            }
         }
-        return false;
+        return null;
     }
     
     /**
@@ -86,5 +89,18 @@ class AttributeHelper
             }
         }
         return '';
+    }
+
+    /**
+     * @param int $attributeId
+     * @param string $targetAttribute
+     * @return bool
+     */
+    private function isTargetAttribute(int $attributeId, string $targetAttribute):bool
+    {
+        if (isset($this->attributeLinkCache[$attributeId])) {
+            return  (bool)(self::TRANS_KEYS_GOOGLE_TO_CHECK24[$targetAttribute] == $this->attributeLinkCache[$attributeId]);
+        }
+        return false;
     }
 }
