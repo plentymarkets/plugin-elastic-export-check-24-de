@@ -158,6 +158,16 @@ class Check24Fashion extends ResultFields
                 'attributes.value.names.name',
                 'attributes.value.names.lang',
 
+                //properties
+                'properties.property.id',
+                'properties.property.valueType',
+                'properties.selection.name',
+                'properties.selection.lang',
+                'properties.texts.value',
+                'properties.texts.lang',
+                'properties.valueInt',
+                'properties.valueFloat',
+
                 //barcodes
                 'barcodes.code',
                 'barcodes.type',
@@ -231,7 +241,9 @@ class Check24Fashion extends ResultFields
             'attributes.attribute.names',
             'attributes.value',
             'attributes.value.names',
-            
+
+            // Properties
+            'properties',
         ];
 
         $nestedKeyList['nestedKeys'] = [
@@ -284,6 +296,18 @@ class Check24Fashion extends ResultFields
                 'shortDescription',
                 'description',
                 'technicalData',
+            ],
+
+            // Proprieties
+            'properties' => [
+                'property.id',
+                'property.valueType',
+                'selection.name',
+                'selection.lang',
+                'texts.value',
+                'texts.lang',
+                'valueInt',
+                'valueFloat',
             ],
 
             //barcodes
