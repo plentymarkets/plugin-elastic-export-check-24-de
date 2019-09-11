@@ -153,7 +153,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | **Spaltenbezeichnung**            | **Erläuterung** |
 | :---                              | :--- |
 | Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
-| Variation-ID                      | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24 oder eine Zeichenkette gemäß "Parent-SKU"-"Attributs-Wert-ID", wenn ein Farb-Attribut an der Variante hinterlegt ist. |
+| Variation-ID                      | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24 oder eine Zeichenkette gemäß "Parent-SKU"-"Attributswert-ID", wenn ein Farb-Attribut an der Variante hinterlegt ist. |
 | Model-ID                          | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24. |
 | Kategorie-ID                      | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-ID**. |
 | Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
