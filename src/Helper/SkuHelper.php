@@ -25,50 +25,44 @@ class SkuHelper
      */
     public function setSku(array &$variation, float $marketId, int $accountId)
     {
-        if (isset($variation['id']) && (int)$variation['id'] > 0) {
-            $skuDataList = $this->variationSkuRepository->search([
-                'variationId' => $variation['id'],
-                'marketId' => $marketId,
-                'accountId' => $accountId
-            ]);
-            
-            if (count($skuDataList)) {
-                $changed = false;
-                foreach ($skuDataList as $skuData) {
-                    if (strlen($skuData->sku) == 0) {
-                        $skuData->sku = $variation['id'];
-                        $changed = true;
-                    }
-
-                    if (strlen($skuData->parentSku) == 0 &&
-                        isset($variation['data']['item']['id']) &&
-                        (int)$variation['data']['item']['id'] > 0)
-                    {
-                        $skuData->parentSku = $variation['data']['item']['id'];
-                        $changed = true;
-                    }
-
-                    if ($changed) {
-                        $skuData = $this->variationSkuRepository->update($skuData->toArray(), $skuData->id);
-                    }
-                }
-            } else {
-                if (isset($variation['data']['item']['id']) && (int)$variation['data']['item']['id'] > 0) {
-                    $parentSku = $variation['data']['item']['id'];
-                } else {
-                    $parentSku = '';
-                }
+        if (isset($variation['id']) && isset($variation['data']['item']['id'])) {
+            if(!isset($variation['data']['skus'][0]) || !isset($variation['data']['skus'][0]['sku'])) {
                 $skuData = [
                     'variationId' => $variation['id'],
                     'marketId' => $marketId,
                     'accountId' => $accountId,
                     'initialSku' => $variation['id'],
                     'sku' => $variation['id'],
-                    'parentSku' => $parentSku,
+                    'parentSku' => $variation['data']['item']['id'],
                     'createdAt' => date("Y-m-d H:i:s"),
                 ];
-
                 $skuData = $this->variationSkuRepository->create($skuData);
+            } elseif (!strlen($variation['data']['skus'][0]['sku']) || 
+                      !isset($variation['data']['skus'][0]['parentSku']) ||
+                      !strlen($variation['data']['skus'][0]['parentSku']))
+            {
+                $skuDataList = $this->variationSkuRepository->search([
+                    'variationId' => $variation['id'],
+                    'marketId' => $marketId,
+                    'accountId' => $accountId
+                ]);
+
+                if (count($skuDataList)) {
+                    $changed = false;
+                    foreach ($skuDataList as $skuData) {
+                        if (strlen($skuData->sku) == 0 && (int)$variation['id'] > 0) {
+                            $skuData->sku = $variation['id'];
+                            $changed = true;
+                        }
+                        if (strlen($skuData->parentSku) == 0 && (int)$variation['data']['item']['id'] > 0) {
+                            $skuData->parentSku = $variation['data']['item']['id'];
+                            $changed = true;
+                        }
+                        if ($changed) {
+                            $skuData = $this->variationSkuRepository->update($skuData->toArray(), $skuData->id);
+                        }
+                    }
+                }
             }
         }
         if (isset($skuData) && $skuData instanceof VariationSku) {
