@@ -34,5 +34,14 @@ class ElasticExportCheck24DEServiceProvider extends DataExchangeServiceProvider
             true,
             true
         );
+
+        $container->add(
+            'Check24DE Fashion',
+            'ElasticExportCheck24DE\ResultField\Check24Fashion',
+            'ElasticExportCheck24DE\Generator\Check24Fashion',
+            '',
+            true,
+            true
+        );
     }
 }

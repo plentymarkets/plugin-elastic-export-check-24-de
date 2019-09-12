@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.0 (2019-09-10)
+
+### Added
+- The format **Check24DE Fashion** was added. The format can be used to create products for the **Fashion** category on Check24. Further information about this format is available in the **description** of the **User Guide**.
+
 ## v1.1.9 (2019-08-23)
 
 ### Fixed
