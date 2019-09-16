@@ -1,8 +1,18 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.2 (2019-09-17)
+
+### Changed
+Format **Check24DE Fashion**:
+- If images are linked to the variation, only these images will be exported. Otherwise all images will be exported.
+### Fixed
+Format **Check24DE Fashion**:
+- Images are now exported in order according to their position.
+
 ## v1.2.1 (2019-09-16)
 
 ### Changed
+Format **Check24DE Fashion**:
 - Instead of only exporting images linked to the variation, this will now only apply for variations with a color attribute. For other variations, all images will be exported.
 
 ## v1.2.0 (2019-09-10)
