@@ -126,6 +126,13 @@ class Check24Fashion extends ResultFields
                 'variation.model',
 
                 //images
+                'images.all.urlMiddle',
+                'images.all.urlPreview',
+                'images.all.urlSecondPreview',
+                'images.all.url',
+                'images.all.path',
+                'images.all.position',
+                
                 'images.variation.urlMiddle',
                 'images.variation.urlPreview',
                 'images.variation.urlSecondPreview',
@@ -211,6 +218,7 @@ class Check24Fashion extends ResultFields
     {
         $nestedKeyList['keys'] = [
             //images
+            'images.all',
             'images.variation',
             
             //sku
@@ -238,6 +246,15 @@ class Check24Fashion extends ResultFields
 
         $nestedKeyList['nestedKeys'] = [
             //images
+            'images.all' => [
+                'urlMiddle',
+                'urlPreview',
+                'urlSecondPreview',
+                'url',
+                'path',
+                'position',
+            ],
+            
             'images.variation' => [
                 'urlMiddle',
                 'urlPreview',

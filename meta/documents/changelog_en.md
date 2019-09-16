@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.1 (2019-09-16)
+
+### Changed
+- Instead of only exporting images linked to the variation in all cases, this will now only apply for variations with an color attribute for other variations all images will be exported.
+
 ## v1.2.0 (2019-09-10)
 
 ### Added
