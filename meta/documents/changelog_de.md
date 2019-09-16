@@ -2,7 +2,7 @@
 
 ## v1.2.1 (2019-09-16)
 
-### Changed
+### Geändert
 - Statt nur Bilder zu exportieren, die mit der Variante verknüpft sind, gilt dies nun nur noch für Varianten mit Farbattribut. Für alle anderen Varianten werden alle Bilder exportiert.
 
 ## v1.2.0 (2019-09-10)
