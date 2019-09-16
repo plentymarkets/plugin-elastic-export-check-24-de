@@ -304,16 +304,6 @@ class Check24Fashion extends CSVPluginGenerator
         // Get the price
         $recommendedRetailPriceInformation = $this->elasticExportPriceHelper->getRecommendedRetailPriceInformation($variation, $settings);
         
-        // Get images
-        if (isset($variation['data']['images']['variation']) &&
-            is_array($variation['data']['images']['variation'])
-            && count($variation['data']['images']['variation']))
-        {
-            $imageList = $variation['data']['images']['variation'];
-        } else {
-            $imageList = [];
-        }
-        
         // Set SKU information
         $this->skuHelper->setSku($variation, self::CHECK24_DE, (int) $settings->get('marketAccountId'));
         
@@ -321,7 +311,19 @@ class Check24Fashion extends CSVPluginGenerator
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
             $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_MANUFACTURER_COLOR);
         }
-        
+
+        // Get images
+        $imageKey = isset($colorAttributeValueId) > 0 ? 'variation' : 'all';
+        if (isset($variation['data']['images'][$imageKey]) &&
+            is_array($variation['data']['images'][$imageKey])
+            && count($variation['data']['images'][$imageKey]))
+        {
+            $imageList = $variation['data']['images'][$imageKey];
+        } else {
+            $imageList = [];
+        }
+
+
         $lang = $settings->get('lang');
         
         $data = [
