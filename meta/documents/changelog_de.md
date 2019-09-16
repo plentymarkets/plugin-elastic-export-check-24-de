@@ -3,7 +3,7 @@
 ## v1.2.2 (2019-09-17)
 
 ### Geändert
-Format ***Check24DE Fashion**:
+Format **Check24DE Fashion**:
 - Wenn Bilder mit der Variante verknüpft sind, werden nur diese Bilder exportiert. Ansonsten werden alle Bilder des Artikels exportiert.
 ### Behoben
 Format **Check24DE Fashion**:
