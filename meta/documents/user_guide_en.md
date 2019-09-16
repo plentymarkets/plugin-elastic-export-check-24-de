@@ -163,7 +163,7 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 | MPNR                              | The **model** of the variation or from a characteristic of the type **text** with the **Check24 Fashion property** link **MPNR**. Characteristics will be prioritised. |
 | SKU                               | The **SKU** of the variation for Check24.de. |
 | UPC                               | Barcode of the type **UPC** or from a characteristic of the type **text** with the **Check24 Fashion property** link **UPC**. Characteristics will be prioritised. |
-| Bild-URL #1 - #20                 | **Required**<br/> The **URL path** of the images according to the format setting **Image**. If color variations exist, only images linked to the variation will be exported, otherwise all images will be exported. |
+| Bild-URL #1 - #20                 | **Required**<br/> The **URL path** of the images according to the format setting **Image**. If color variations exist, only images linked to the variation will be exported. Otherwise all images will be exported. |
 | Absatzform                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Absatzform**. |
 | Schuhspitze                       | Characteristic of the type **text** with the **Check24 Fashion property** link **Schuhspitze**. |
 | Geschlecht                        | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Geschlecht**. |
