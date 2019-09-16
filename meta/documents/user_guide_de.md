@@ -165,7 +165,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | MPNR                              | Das **Modell** der Variante oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
 | SKU                               | Die **SKU** der Variante für Check24.de. |
 | UPC                               | Barcode vom Typ **UPC** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
-| Bild-URL #1 - #20                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Wenn Farbvariationen vorliegen, dann werden nur die Bilder, die mit der jeweiligen Variante verknüpft sind, übertragen, ansonsten werden alle Bilder exportiert. |
+| Bild-URL #1 - #20                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Wenn Farbvariationen vorliegen, werden nur die Bilder, die mit der jeweiligen Variante verknüpft sind, übertragen. Ansonsten werden alle Bilder exportiert. |
 | Absatzform                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzform**. |
 | Schuhspitze                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schuhspitze**. |
 | Geschlecht                        | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Geschlecht**. |
