@@ -313,7 +313,7 @@ class Check24Fashion extends CSVPluginGenerator
         }
         
         // Get images
-        $imageList = $this->getImages($variation);
+        $imageList = $this->getImagesInOrder($variation);
 
         $lang = $settings->get('lang');
         
@@ -473,7 +473,7 @@ class Check24Fashion extends CSVPluginGenerator
      * @param array $variation
      * @return array
      */
-    private function getImages(array $variation):array
+    private function getImagesInOrder(array $variation):array
     {
         $imageList = [];
         
