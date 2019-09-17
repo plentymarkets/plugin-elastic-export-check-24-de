@@ -5,6 +5,7 @@
 ### Changed
 Format **Check24DE Fashion**:
 - If images are linked to the variation, only these images will be exported. Otherwise all images will be exported.
+
 ### Fixed
 Format **Check24DE Fashion**:
 - Images are now exported in order according to their position.
