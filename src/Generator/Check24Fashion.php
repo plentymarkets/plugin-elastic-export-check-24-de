@@ -311,18 +311,9 @@ class Check24Fashion extends CSVPluginGenerator
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
             $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_MANUFACTURER_COLOR);
         }
-
+        
         // Get images
-        $imageKey = isset($colorAttributeValueId) > 0 ? 'variation' : 'all';
-        if (isset($variation['data']['images'][$imageKey]) &&
-            is_array($variation['data']['images'][$imageKey])
-            && count($variation['data']['images'][$imageKey]))
-        {
-            $imageList = $variation['data']['images'][$imageKey];
-        } else {
-            $imageList = [];
-        }
-
+        $imageList = $this->getImagesInOrder($variation);
 
         $lang = $settings->get('lang');
         
@@ -476,5 +467,34 @@ class Check24Fashion extends CSVPluginGenerator
             $value = $this->elasticExportPropertyHelper->getProperty($variation, $targetColumn, self::CHECK24_DE, $settings->get('lang'));
         }
         return $value;
+    }
+
+    /**
+     * @param array $variation
+     * @return array
+     */
+    private function getImagesInOrder(array $variation):array
+    {
+        $imageList = [];
+        
+        if (isset($variation['data']['images']['variation']) &&
+            is_array($variation['data']['images']['variation']) &&
+            count($variation['data']['images']['variation']))
+        {
+            $imageList = $variation['data']['images']['variation'];
+        } elseif (isset($variation['data']['images']['all']) &&
+                  is_array($variation['data']['images']['all']) &&
+                  count($variation['data']['images']['all']))
+        {
+            $imageList = $variation['data']['images']['all'];
+        }
+
+        if (count($imageList)) {
+            usort($imageList, function($a, $b) {
+                return $a['position'] <=> $b['position'];
+            });
+        }
+        
+        return $imageList;
     }
 }
