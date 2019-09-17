@@ -5,6 +5,7 @@
 ### Geändert
 Format **Check24DE Fashion**:
 - Wenn Bilder mit der Variante verknüpft sind, werden nur diese Bilder exportiert. Ansonsten werden alle Bilder des Artikels exportiert.
+
 ### Behoben
 Format **Check24DE Fashion**:
 - Bilder werden jetzt in der Reihenfolge gemäß der gesetzten Position exportiert.
