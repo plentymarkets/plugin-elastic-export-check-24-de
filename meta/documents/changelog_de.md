@@ -1,5 +1,11 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.2.3 (2019-09-20)
+
+### Behoben
+Format **Check24DE Fashion**:
+- Wenn es beim Anlegen oder Aktualisieren einer SKU für eine Variante zu einem Fehler kommt, wird dieser Fehler nun gelogged und die Variante trotzdem exportiert.
+
 ## v1.2.2 (2019-09-17)
 
 ### Geändert
