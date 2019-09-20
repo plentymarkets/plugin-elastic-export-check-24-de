@@ -4,7 +4,6 @@ namespace ElasticExportCheck24DE\Helper;
 
 use Plenty\Modules\Item\VariationSku\Models\VariationSku;
 use Plenty\Modules\Item\VariationSku\Contracts\VariationSkuRepositoryContract;
-use ElasticExportCheck24DE\Generator\Check24Fashion;
 use Plenty\Plugin\Log\Loggable;
 
 class SkuHelper
