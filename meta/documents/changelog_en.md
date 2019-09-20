@@ -4,7 +4,7 @@
 
 ### Fixed
 Format **Check24DE Fashion**:
-- If a error occurs while creating or updating a SKU for a variation, that error will now be logged and the variation will be exported nevertheless.
+- If an error occurs while creating or updating a SKU for a variation, that error will now be logged and the variation will still be exported.
 
 ## v1.2.2 (2019-09-17)
 
