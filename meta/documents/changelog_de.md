@@ -4,7 +4,7 @@
 
 ### Behoben
 Format **Check24DE Fashion**:
-- Wenn es bei der Erstellung oder Aktualisierung einer SKU für eine Variante zu einem Fehler kommt, wird dieser nun gelogged und die Variante trotzdem exportiert.
+- Wenn es beim Anlegen oder Aktualisieren einer SKU für eine Variante zu einem Fehler kommt, wird dieser Fehler nun gelogged und die Variante trotzdem exportiert.
 
 ## v1.2.2 (2019-09-17)
 
