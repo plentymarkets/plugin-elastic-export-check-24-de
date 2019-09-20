@@ -78,7 +78,7 @@ class SkuHelper
             $variation['data']['skus'][0]['parentSku'] = $skuData->parentSku;
         } else {
             if (!isset($variation['data']['skus'][0]['parentSku']) || !strlen($variation['data']['skus'][0]['parentSku'])) {
-                if (isset($variation['data']['item']['id']) && strlen($variation['data']['item']['id'])) {
+                if (isset($variation['data']['item']['id']) && ($variation['data']['item']['id']) > 0) {
                     $variation['data']['skus'][0]['parentSku'] = $variation['data']['item']['id'];
                 } else {
                     $variation['data']['skus'][0]['parentSku'] = '';
@@ -86,7 +86,7 @@ class SkuHelper
             }
 
             if (!isset($variation['data']['skus'][0]['sku']) || !strlen($variation['data']['skus'][0]['sku'])) {
-                if (isset($variation['id']) && strlen($variation['id'])) {
+                if (isset($variation['id']) && $variation['id'] > 0) {
                     $variation['data']['skus'][0]['sku'] = $variation['id'];
                 } else {
                     $variation['data']['skus'][0]['sku'] = '';
