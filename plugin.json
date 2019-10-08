@@ -2,7 +2,7 @@
   "name": "ElasticExportCheck24DE",
   "description": "This plugin adds the format Check24DE to the Elastic Export.",
   "namespace": "ElasticExportCheck24DE",
-  "author": "plentymarkets GmbH",
+  "author": "plentysystems AG",
   "type": "export",
   "authorIcon": "icon_author_xs.png",
   "serviceProvider": "ElasticExportCheck24DE\\ElasticExportCheck24DEServiceProvider",
