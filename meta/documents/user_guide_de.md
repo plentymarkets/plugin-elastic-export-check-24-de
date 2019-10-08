@@ -44,8 +44,8 @@ In der folgenden Tabelle findest du Hinweise zu den einzelnen Formateinstellunge
 | **Produkt-URL**                                     | Wählen, ob die URL des Artikels oder der Variante an das Preisportal übertragen wird. Varianten URLs können nur in Kombination mit dem Ceres Webshop übertragen werden. |
 | **Mandant**                                         | Mandant wählen. Diese Einstellung wird für den URL-Aufbau und zum Filtern gültiger Verkaufspreise verwendet. |
 | **URL-Parameter**                                   | Suffix für die Produkt-URL eingeben, wenn dies für den Export erforderlich ist. Die Produkt-URL wird dann um die eingegebene Zeichenkette erweitert, wenn weiter oben die Option **übertragen** für die Produkt-URL aktiviert wurde. |
-| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. Die Auftragsherkunft wird zum Filtern gültiger Verkaufspreise und Bilder verwendet. |
-| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Auftragsherkunft**                                | Aus der Dropdown-Liste die Auftragsherkunft wählen, die beim Auftragsimport zugeordnet werden soll. Die Auftragsherkunft wird zum Filtern gültiger Verkaufspreise und Bilder verwendet. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. |
 | **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
 | **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
 | **Vorschautext**                                    | Diese Option ist für dieses Format nicht relevant. |
@@ -72,7 +72,7 @@ _Tab. 1: Einstellungen für das Datenformat **Check24DE-Plugin**_
 | **Spaltenbezeichnung** | **Erläuterung** |
 | :---                   | :--- |
 | id                     | **Pflichtfeld**<br/> Die **SKU** der Variante für Check24.de. |
-| manufacturer           | Der **Name des Herstellers** des Artikels. Der **Externe Name** unter **Einstellungen » Artikel »  Hersteller** wird bevorzugt, wenn vorhanden. |
+| manufacturer           | Der **Name des Herstellers** des Artikels. Der **Externe Name** unter **Einrichtung » Artikel »  Hersteller** wird bevorzugt, wenn vorhanden. |
 | mpnr                   | Das **Modell** der Variante. |
 | ean                    | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode**. |
 | name                   | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname**. |
@@ -82,7 +82,7 @@ _Tab. 1: Einstellungen für das Datenformat **Check24DE-Plugin**_
 | price_per_unit         | Die **Grundpreisinformation** im Format "Preis / Einheit". (Beispiel: 10,00 EUR / Kilogramm) |
 | link                   | **Pflichtfeld**<br/> Der **URL-Pfad** des Artikels abhängig vom gewählten Mandanten in den Formateinstellungen. |
 | image_url              | **Erlaubte Dateitypen:** jpg, gif, bmp, png<br/> Der **URL-Pfad** des ersten Artikelbilds entsprechend der Formateinstellung **Bild**. Variantenbilder werden vor Artikelbildern priorisiert. |
-| delivery_time          | **Pflichtfeld**<br/> Der **Name der Artikelverfügbarkeit** unter **Einstellungen » Artikel » Artikelverfügbarkeit** oder die Übersetzung gemäß der Formateinstellung **Artikelverfügbarkeit überschreiben**. |
+| delivery_time          | **Pflichtfeld**<br/> Der **Name der Artikelverfügbarkeit** unter **Einrichtung » Artikel » Verfügbarkeit** oder die Übersetzung gemäß der Formateinstellung **Artikelverfügbarkeit überschreiben**. |
 | delivery_cost          | Entsprechend der Formateinstellung **Versandkosten**. |
 | pzn                    | Leer. |
 | stock                  | Der **Netto-Warenbestand** der Variante. Bei Artikeln, die nicht auf den Netto-Warenbestand beschränkt sind, wird **999** übertragen. |
@@ -125,8 +125,8 @@ In der folgenden Tabelle findest du Hinweise zu den einzelnen Formateinstellunge
 | **Produkt-URL**                                     | Diese Option ist für dieses Format nicht relevant. |
 | **Mandant**                                         | Mandant wählen. Diese Einstellung wird zum Filtern gültiger Verkaufspreise verwendet.  |
 | **URL-Parameter**                                   | Diese Option ist für dieses Format nicht relevant. |
-| **Auftragsherkunft**                                | Auftragsherkunft  aus der Dropdown-Liste wählen. Diese Einstellung wird zum Filtern gültiger Verkaufspreise verwendet. |
-| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Auftragsherkunft**                                | Auftragsherkunft  aus der Dropdown-Liste wählen. Diese Einstellung wird zum Filtern gültiger Verkaufspreise verwendet. Die Produkt-URL wird um die gewählte Auftragsherkunft erweitert, damit die Verkäufe später analysiert werden können. |
+| **Marktplatzkonto**                                 | Marktplatzkonto aus der Dropdown-Liste wählen. |
 | **Sprache**                                         | Sprache aus der Dropdown-Liste wählen. |
 | **Artikelname**                                     | **Name 1**, **Name 2** oder **Name 3** wählen. Die Namen sind im Tab **Texte** eines Artikels gespeichert. Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge des Artikelnamen beim Export vorgibt. |
 | **Vorschautext**                                    | Wählen, welcher Text als Vorschautext übertragen werden soll.<br/> Im Feld **Maximale Zeichenlänge (def. Text)** optional eine Zahl eingeben, wenn die Preissuchmaschine eine Begrenzung der Länge der Beschreibung beim Export vorgibt.<br/> Option **HTML-Tags entfernen** aktivieren, damit die HTML-Tags beim Export entfernt werden.<br/> Im Feld **Erlaubte HTML-Tags, kommagetrennt (def. Text)** optional die HTML-Tags eingeben, die beim Export erlaubt sind. Wenn mehrere Tags eingegeben werden, mit Komma trennen. |
@@ -172,7 +172,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | Altersgruppe                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Altersgruppe**. |
 | Größe                             | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größe**. Attribute werden bevorzugt. |
 | Größensystem                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größensystem**. |
-| Marke                             | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einstellungen » Artikel » Hersteller** wird bevorzugt, wenn vorhanden.|
+| Marke                             | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einrichtung » Artikel » Hersteller** wird bevorzugt, wenn vorhanden.|
 | Material                          | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Material** für Google Shopping oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Material**. Attribute werden bevorzugt.|
 | Innenfutter                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Innenfutter**. |
 | Absatzhöhe                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzhöhe**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "2 cm" |
