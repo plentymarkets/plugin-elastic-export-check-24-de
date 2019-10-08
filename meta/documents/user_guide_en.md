@@ -44,8 +44,8 @@ The following table lists details for settings, format settings and recommended 
 | **Product URL**                                       | Choose which URL should be transferred to the price comparison portal, the item’s URL or the variation’s URL. Variation SKUs can only be transferred in combination with the Ceres store. |
 | **Client**                                            | Select a client. This setting is used for the URL structure and to filter valid sales prices. |
 | **URL parameter**                                     | Enter a suffix for the product URL if this is required for the export. If you have activated the transfer option for the product URL further up, then this character string will be added to the product URL. |
-| **Order referrer**                                    | Select the order referrer that should be assigned during the order import from the drop-down list. The order referrer is also used to filter valid sales prices and images. |
-| **Marketplace account**                               | Select the marketplace account from the drop-down list. The selected referrer is added to the product URL so that sales can be analysed later. |
+| **Order referrer**                                    | Select the order referrer that should be assigned during the order import from the drop-down list. The order referrer is also used to filter valid sales prices and images. The selected referrer is added to the product URL so that sales can be analysed later. |
+| **Marketplace account**                               | Select the marketplace account from the drop-down list. |
 | **Language**                                          | Select the language from the drop-down list. |
 | **Item name**                                         | Select **Name 1**, **Name 2** or **Name 3**. These names are saved in the **Texts** tab of the item. Enter a number into the **Maximum number of characters (def. Text)** field if desired. This specifies how many characters should be exported for the item name. |
 | **Preview text**                                      | This option does not affect this format. |
@@ -71,7 +71,7 @@ _Tab. 1: Settings for the data format **Check24DE-Plugin**_
 | **Column name**        | **Explanation** |
 | :---                   | :--- |
 | id                     | **Required**<br/> The Check24.de **SKU** for the variation. |
-| manufacturer           | The **name of the manufacturer** of the item. The **external name** within the menu **Settings » Items » Manufacturer** will be preferred if existing. |
+| manufacturer           | The **name of the manufacturer** of the item. The **external name** within the **Settings » Items » Manufacturer** menu is preferred if existing. |
 | mpnr                   | The **model** of the variation. |
 | ean                    | **Required**<br/> According to the format setting **Barcode**. |
 | name                   | **Required**<br/> According to the format setting **Item name**. |
@@ -81,7 +81,7 @@ _Tab. 1: Settings for the data format **Check24DE-Plugin**_
 | price_per_unit         | The **base price information** in the format "price / unit". (Example: 10.00 EUR / kilogram) |
 | link                   | **Required**<br/> The **URL path** of the item depending on the chosen **client** in the format settings. |
 | image_url              | **Allowed file types:** jpg, gif, bmp, png<br/> The **URL path** of the first item image according to the format setting **Image**. Variation images are prioritised over item images. |
-| delivery_time          | **Required**<br/> The **name of the item availability** within **Settings » Item » Item availability** or the translation according to the format setting **Item availability**. |
+| delivery_time          | **Required**<br/> The **name of the item availability** within **Setup » Item » Availability** or the translation according to the format setting **Item availability**. |
 | delivery_cost          | According to the format setting **Shipping costs**. |
 | pzn                    | Empty. |
 | stock                  | The **net stock of the variation**. If the variation is not limited to net stock, then **999** will be set as value. |
@@ -124,8 +124,8 @@ The following table lists details for settings, format settings and recommended 
 | **Product URL**                                       | This option does not affect this format. |
 | **Client**                                            | Select a client. This setting is used for the URL structure. |
 | **URL parameter**                                     | Enter a suffix for the product URL if this is required for the export. If you have activated the transfer option for the product URL further up, then this character string will be added to the product URL. |
-| **Order referrer**                                    | Choose the order referrer that should be assigned during the order import from the drop-down list. |
-| **Marketplace account**                               | Select the marketplace account from the drop-down list. The selected referrer is added to the product URL so that sales can be analysed later. |
+| **Order referrer**                                    | Select the order referrer that should be assigned during the order import from the drop-down list. The selected referrer is added to the product URL so that sales can be analysed later. |
+| **Marketplace account**                               | Select the marketplace account from the drop-down list. |
 | **Language**                                          | Select the language from the drop-down list. |
 | **Item name**                                         | Select **Name 1**, **Name 2** or **Name 3**. These names are saved in the **Texts** tab of the item. Enter a number into the **Maximum number of characters (def. Text)** field if desired. This specifies how many characters should be exported for the item name. |
 | **Preview text**                                      | Select the text that you want to transfer as preview text.<br/> Enter a number into the **Maximum number of characters (def. text)** field if desired. This specifies how many characters should be exported for the description.<br/> Activate the option **Remove HTML tags** if you want HTML tags to be removed during the export. If you only want to allow specific HTML tags to be exported, then enter these tags into the field **Permitted HTML tags, separated by comma (def. Text)**. Use commas to separate multiple tags. |
@@ -170,7 +170,7 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 | Altersgruppe                      | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Altersgruppe**. |
 | Größe                             | **Required**<br/> Attribute with the attribute link **Size** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Größe**. Attributes will be prioritised. |
 | Größensystem                      | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Größensystem**. |
-| Marke                             | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic of the type **text** with the **Check24 Fashion property** link **Marke**. Characteristics will be prioritised. The **external name** within the menu **Settings » Items » Manufacturer** will be preferred if existing. |
+| Marke                             | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic of the type **text** with the **Check24 Fashion property** link **Marke**. Characteristics will be prioritised. The **external name** within the **Setup » Items » Manufacturer** menu is preferred if existing. |
 | Material                          | **Required**<br/> Attribute with the attribute link **Material** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Material**. Attributes will be prioritised. |
 | Innenfutter                       | Characteristic of the type **text** with the **Check24 Fashion property** link **Innenfutter**. |
 | Absatzhöhe                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Absatzhöhe**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "2 cm"|
