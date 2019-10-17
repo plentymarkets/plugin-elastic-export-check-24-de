@@ -1,5 +1,12 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.2.4 (2019-10-17)
+
+### Behoben
+Format **Check24DE Fashion**:
+- Korrektur eines Schreibfehlers im User Guide-Kapitel **"3.2 Verfügbare Spalten des Formats Check24DE Fashion"**.
+Die Spaltenbezeichnung und Merkmalverknüpfung **Kategoriepfad** war falsch. Stattdessen muss es **Kategorie-Pfad** heißen.
+
 ## v1.2.3 (2019-09-20)
 
 ### Behoben
