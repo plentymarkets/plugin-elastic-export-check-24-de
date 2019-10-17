@@ -153,11 +153,11 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 | Produktname                       | **Required**<br/> According to the format setting **Item name** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Produktname**. Characteristics will be prioritised.  |
 | Variation-ID                      | **Required**<br/> The **parent SKU** of the variation for Check24 or a string of characters according to **"parent SKU"-"attribute value id"** if a colour attribute is linked to the variation. |
 | Model-ID                          | **Required**<br/> The **parent SKU** of the variation for Check24. |
+| Kategorie-Pfad                    | **Required**<br/> Category path of the default category of the client chosen in the settings above or from a characteristic of the type **text** with the **Check24 Fashion Property** link: **Kategorie-Pfad**. |
 | Kurzbeschreibung                  | According to the format setting **Preview text** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Kurzbeschreibung**. Characteristics will be prioritised. |
 | Ausführliche Beschreibung         | **Required**<br/> According to the format setting **Description** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Ausführliche Beschreibung**. Characteristics will be prioritised. |
 | Amazon Sales Rank                 | Characteristic of the type **text** with the **Check24 Fashion property** link **Amazon Sales Rank**. |
 | Unverbindliche Preisempfehlung    | The **Sales Price** of type **RRP**. |
-| Kategoriepfad                     | **Required**<br/> Category path of the default category of the client chosen in the settings above or from a characteristic of the type **text** with the **Check24 Fashion Property** link: **Kategoriepfad**. |
 | EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic of the type **text** with the **Check24 Fashion property** link **EAN**. Characteristics will be prioritised. |
 | ASIN                              | Characteristic of the type **text** with the **Check24 Fashion property** link **ASIN**. |
 | MPNR                              | The **model** of the variation or from a characteristic of the type **text** with the **Check24 Fashion property** link **MPNR**. Characteristics will be prioritised. |

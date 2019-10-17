@@ -155,7 +155,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
 | Variation-ID                      | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24 oder eine Zeichenkette gemäß "Parent-SKU"-"Attributswert-ID", wenn ein Farb-Attribut an der Variante hinterlegt ist. |
 | Model-ID                          | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24. |
-| Kategoriepfad                     | **Required**<br/> Kategoriepfad der Standard-Kategorie des Mandanten, der oben in den Einstellungen gewählt wurde oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategoriepfad**. |
+| Kategorie-Pfad                    | **Required**<br/> Kategoriepfad der Standard-Kategorie des Mandanten, der oben in den Einstellungen gewählt wurde oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-Pfad**. |
 | Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
 | Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
 | Amazon Sales Rank                 | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Amazon Sales Rank**. |
