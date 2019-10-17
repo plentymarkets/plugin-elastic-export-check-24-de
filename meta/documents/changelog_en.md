@@ -5,7 +5,7 @@
 ### Fixed
 Format **Check24DE Fashion**:
 - Correction of typo in user guide chapter **"3.2 Available columns of the data format Check24DE Fashion"**.
-The column name and property link **Kategoriepfad** were false. Instead **Kategorie-Pfad** is the correct value.
+The column name and property link **Kategoriepfad** were wrong. The correct value is **Kategorie-Pfad**.
 
 ## v1.2.3 (2019-09-20)
 
