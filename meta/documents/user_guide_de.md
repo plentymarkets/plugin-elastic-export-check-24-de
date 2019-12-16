@@ -152,44 +152,44 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 
 | **Spaltenbezeichnung**            | **Erläuterung** |
 | :---                              | :--- |
-| Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
+| Produktname                       | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Artikelname** oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Produktname**.  |
 | Variation-ID                      | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24 oder eine Zeichenkette gemäß "Parent-SKU"-"Attributswert-ID", wenn ein Farb-Attribut an der Variante hinterlegt ist. |
 | Model-ID                          | **Pflichtfeld**<br/> Die **Parent-SKU** der Variante für Check24. |
-| Kategorie-Pfad                    | **Required**<br/> Kategoriepfad der Standard-Kategorie des Mandanten, der oben in den Einstellungen gewählt wurde oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-Pfad**. |
-| Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
-| Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
-| Amazon Sales Rank                 | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Amazon Sales Rank**. |
+| Kategorie-Pfad                    | **Required**<br/> Kategoriepfad der Standard-Kategorie des Mandanten, der oben in den Einstellungen gewählt wurde oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal** Verknüpfung: **Kategorie-Pfad**. |
+| Kurzbeschreibung                  | Entsprechend der Formateinstellung **Vorschautext** oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Kurzbeschreibung**. Merkmale werden bevorzugt. |
+| Ausführliche Beschreibung         | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Beschreibung** oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Ausführliche Beschreibung**. Merkmale werden bevorzugt. |
+| Amazon Sales Rank                 | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Amazon Sales Rank**. |
 | Unverbindliche Preisempfehlung    | Der **Verkaufspreis** vom Typ **UVP**. |
-| EAN                               | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode** oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **EAN**. Merkmale werden bevorzugt.|
-| ASIN                              | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **ASIN**. |
-| MPNR                              | Das **Modell** der Variante oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
+| EAN                               | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode** oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **EAN**. Merkmale werden bevorzugt.|
+| ASIN                              | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **ASIN**. |
+| MPNR                              | Das **Modell** der Variante oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
 | SKU                               | Die **SKU** der Variante für Check24.de. |
-| UPC                               | Barcode vom Typ **UPC** oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
+| UPC                               | Barcode vom Typ **UPC** oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
 | Bild-URL #1 - #20                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Wenn Farbvariationen vorliegen, werden nur die Bilder, die mit der jeweiligen Variante verknüpft sind, übertragen. Ansonsten werden alle Bilder exportiert. |
-| Absatzform                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzform**. |
-| Schuhspitze                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schuhspitze**. |
-| Geschlecht                        | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Geschlecht**. |
-| Altersgruppe                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Altersgruppe**. |
-| Größe                             | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größe**. Attribute werden bevorzugt. |
-| Größensystem                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größensystem**. |
-| Marke                             | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einrichtung » Artikel » Hersteller** wird bevorzugt, wenn vorhanden.|
-| Material                          | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Material** für Google Shopping oder Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Material**. Attribute werden bevorzugt.|
-| Innenfutter                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Innenfutter**. |
-| Absatzhöhe                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzhöhe**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "2 cm" |
-| Sohlenmaterial                    | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Sohlenmaterial**. |
-| Passform                          | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Passform**. |
-| Verschluss                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Verschluss**. |
-| Schafthöhe                        | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schafthöhe**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
-| Schaftweite                       | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schaftweite**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
-| Weite                             | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Weite**. Bitte Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
-| Muster                            | Attribut mit der Attributverknüpfung **Muster** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Muster**. Attribute werden bevorzugt. |
-| Herstellerfarbe                   | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder ein Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Herstellerfarbe**. Attribute werden bevorzugt.|
-| Innensohlenmaterial               | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Innensohlenmaterial**. |
-| Anlass                            | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Anlass**.|
-| Saison                            | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Saison**. |
-| Sonstige                          | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Sonstige**. |
-| Applikationen                     | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Applikationen**. |
-| Modestil                          | Merkmal des Typs **Text** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Modestil**. |
+| Absatzform                        | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzform**. |
+| Schuhspitze                       | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schuhspitze**. |
+| Geschlecht                        | **Pflichtfeld**<br/> Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Geschlecht**. |
+| Altersgruppe                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Altersgruppe**. |
+| Größe                             | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Größe** für Google Shopping oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größe**. Attribute werden bevorzugt. |
+| Größensystem                      | **Pflichtfeld**<br/> Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Größensystem**. |
+| Marke                             | **Pflichtfeld**<br/> Der **Name des Herstellers** des Artikels oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Marke**. Merkmale werden bevorzugt. Der **Externe Name** unter **Einrichtung » Artikel » Hersteller** wird bevorzugt, wenn vorhanden.|
+| Material                          | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Material** für Google Shopping oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Material**. Attribute werden bevorzugt.|
+| Innenfutter                       | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Innenfutter**. |
+| Absatzhöhe                        | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzhöhe**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "2 cm" |
+| Sohlenmaterial                    | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Sohlenmaterial**. |
+| Passform                          | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Passform**. |
+| Verschluss                        | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Verschluss**. |
+| Schafthöhe                        | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schafthöhe**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
+| Schaftweite                       | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Schaftweite**. Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
+| Weite                             | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Weite**. Bitte Am Artikel bitte sowohl das Maß als auch die Maßeinheit als Merkmalwert eintragen. Beispiel: "5 cm" |
+| Muster                            | Attribut mit der Attributverknüpfung **Muster** für Google Shopping oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Muster**. Attribute werden bevorzugt. |
+| Herstellerfarbe                   | **Pflichtfeld**<br/> Attribut mit der Attributverknüpfung **Farbe** für Google Shopping oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Herstellerfarbe**. Attribute werden bevorzugt.|
+| Innensohlenmaterial               | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Innensohlenmaterial**. |
+| Anlass                            | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Anlass**.|
+| Saison                            | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Saison**. |
+| Sonstige                          | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Sonstige**. |
+| Applikationen                     | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Applikationen**. |
+| Modestil                          | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Modestil**. |
 
 _Tab. 4: Spalten des Datenformats **Check24DE Fashion**_
 

@@ -150,44 +150,44 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 
 | **Column name**                   | **Explanation** |
 | :---                              | :--- |
-| Produktname                       | **Required**<br/> According to the format setting **Item name** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Produktname**. Characteristics will be prioritised.  |
+| Produktname                       | **Required**<br/> According to the format setting **Item name** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Produktname**. Characteristics will be prioritised.  |
 | Variation-ID                      | **Required**<br/> The **parent SKU** of the variation for Check24 or a string of characters according to **"parent SKU"-"attribute value id"** if a colour attribute is linked to the variation. |
 | Model-ID                          | **Required**<br/> The **parent SKU** of the variation for Check24. |
-| Kategorie-Pfad                    | **Required**<br/> Category path of the default category of the client chosen in the settings above or from a characteristic of the type **text** with the **Check24 Fashion Property** link: **Kategorie-Pfad**. |
-| Kurzbeschreibung                  | According to the format setting **Preview text** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Kurzbeschreibung**. Characteristics will be prioritised. |
-| Ausführliche Beschreibung         | **Required**<br/> According to the format setting **Description** or from a characteristic of the type **text** with the **Check24 Fashion property** link **Ausführliche Beschreibung**. Characteristics will be prioritised. |
-| Amazon Sales Rank                 | Characteristic of the type **text** with the **Check24 Fashion property** link **Amazon Sales Rank**. |
+| Kategorie-Pfad                    | **Required**<br/> Category path of the default category of the client chosen in the settings above or from a characteristic of the type **text** or **selection** with the **Check24 Fashion Property** link: **Kategorie-Pfad**. |
+| Kurzbeschreibung                  | According to the format setting **Preview text** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Kurzbeschreibung**. Characteristics will be prioritised. |
+| Ausführliche Beschreibung         | **Required**<br/> According to the format setting **Description** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Ausführliche Beschreibung**. Characteristics will be prioritised. |
+| Amazon Sales Rank                 | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Amazon Sales Rank**. |
 | Unverbindliche Preisempfehlung    | The **Sales Price** of type **RRP**. |
-| EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic of the type **text** with the **Check24 Fashion property** link **EAN**. Characteristics will be prioritised. |
-| ASIN                              | Characteristic of the type **text** with the **Check24 Fashion property** link **ASIN**. |
-| MPNR                              | The **model** of the variation or from a characteristic of the type **text** with the **Check24 Fashion property** link **MPNR**. Characteristics will be prioritised. |
+| EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **EAN**. Characteristics will be prioritised. |
+| ASIN                              | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **ASIN**. |
+| MPNR                              | The **model** of the variation or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **MPNR**. Characteristics will be prioritised. |
 | SKU                               | The **SKU** of the variation for Check24.de. |
-| UPC                               | Barcode of the type **UPC** or from a characteristic of the type **text** with the **Check24 Fashion property** link **UPC**. Characteristics will be prioritised. |
+| UPC                               | Barcode of the type **UPC** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **UPC**. Characteristics will be prioritised. |
 | Bild-URL #1 - #20                 | **Required**<br/> The **URL path** of the images according to the format setting **Image**. If color variations exist, only images linked to the variation will be exported. Otherwise all images will be exported. |
-| Absatzform                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Absatzform**. |
-| Schuhspitze                       | Characteristic of the type **text** with the **Check24 Fashion property** link **Schuhspitze**. |
-| Geschlecht                        | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Geschlecht**. |
-| Altersgruppe                      | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Altersgruppe**. |
-| Größe                             | **Required**<br/> Attribute with the attribute link **Size** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Größe**. Attributes will be prioritised. |
-| Größensystem                      | **Required**<br/> Characteristic of the type **text** with the **Check24 Fashion property** link **Größensystem**. |
-| Marke                             | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic of the type **text** with the **Check24 Fashion property** link **Marke**. Characteristics will be prioritised. The **external name** within the **Setup » Items » Manufacturer** menu is preferred if existing. |
-| Material                          | **Required**<br/> Attribute with the attribute link **Material** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Material**. Attributes will be prioritised. |
-| Innenfutter                       | Characteristic of the type **text** with the **Check24 Fashion property** link **Innenfutter**. |
-| Absatzhöhe                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Absatzhöhe**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "2 cm"|
-| Sohlenmaterial                    | Characteristic of the type **text** with the **Check24 Fashion property** link **Sohlenmaterial**. |
-| Passform                          | Characteristic of the type **text** with the **Check24 Fashion property** link **Passform**. |
-| Verschluss                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Verschluss**. |
-| Schafthöhe                        | Characteristic of the type **text** with the **Check24 Fashion property** link **Schafthöhe**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
-| Schaftweite                       | Characteristic of the type **text** with the **Check24 Fashion property** link **Schaftweite**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
-| Weite                             | Characteristic of the type **text** with the **Check24 Fashion property** link **Weite**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
-| Muster                            | Attribute with the attribute link **Pattern** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Muster**. Attributes will be prioritised. |
-| Herstellerfarbe                   | **Required**<br/> Attribute with the attribute link **Color** for Google Shopping or from a characteristic of the type **text** with the **Check24 Fashion property** link **Herstellerfarbe**. Attributes will be prioritised. |
-| Innensohlenmaterial               | Characteristic of the type **text** with the **Check24 Fashion property** link **Innensohlenmaterial**. |
-| Anlass                            | Characteristic of the type **text** with the **Check24 Fashion property** link **Anlass**. |
-| Saison                            | Characteristic of the type **text** with the **Check24 Fashion property** link **Saison**. |
-| Sonstige                          | Characteristic of the type **text** with the **Check24 Fashion property** link **Sonstige**. |
-| Applikationen                     | Characteristic of the type **text** with the **Check24 Fashion property** link **Applikationen**. |
-| Modestil                          | Characteristic of the type **text** with the **Check24 Fashion property** link **Modestil**. |
+| Absatzform                        | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Absatzform**. |
+| Schuhspitze                       | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Schuhspitze**. |
+| Geschlecht                        | **Required**<br/> Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Geschlecht**. |
+| Altersgruppe                      | **Required**<br/> Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Altersgruppe**. |
+| Größe                             | **Required**<br/> Attribute with the attribute link **Size** for Google Shopping or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Größe**. Attributes will be prioritised. |
+| Größensystem                      | **Required**<br/> Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Größensystem**. |
+| Marke                             | **Required**<br/> The **name of the manufacturer** of the item or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Marke**. Characteristics will be prioritised. The **external name** within the **Setup » Items » Manufacturer** menu is preferred if existing. |
+| Material                          | **Required**<br/> Attribute with the attribute link **Material** for Google Shopping or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Material**. Attributes will be prioritised. |
+| Innenfutter                       | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Innenfutter**. |
+| Absatzhöhe                        | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Absatzhöhe**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "2 cm"|
+| Sohlenmaterial                    | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Sohlenmaterial**. |
+| Passform                          | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Passform**. |
+| Verschluss                        | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Verschluss**. |
+| Schafthöhe                        | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Schafthöhe**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
+| Schaftweite                       | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Schaftweite**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
+| Weite                             | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Weite**. Please insert the measurement as well as the unit of measurement as the characteristics value at the item. Example: "5 cm" |
+| Muster                            | Attribute with the attribute link **Pattern** for Google Shopping or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Muster**. Attributes will be prioritised. |
+| Herstellerfarbe                   | **Required**<br/> Attribute with the attribute link **Color** for Google Shopping or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Herstellerfarbe**. Attributes will be prioritised. |
+| Innensohlenmaterial               | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Innensohlenmaterial**. |
+| Anlass                            | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Anlass**. |
+| Saison                            | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Saison**. |
+| Sonstige                          | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Sonstige**. |
+| Applikationen                     | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Applikationen**. |
+| Modestil                          | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Modestil**. |
 
 _Tab. 4: Columns of the data format **Check24DE Fashion**_
 
