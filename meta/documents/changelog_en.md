@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.5 (2019-12-16)
+
+### Changed
+- The user guide for the **Check24DE Fashion** format was adjusted.
+
 ## v1.2.4 (2019-10-17)
 
 ### Fixed
