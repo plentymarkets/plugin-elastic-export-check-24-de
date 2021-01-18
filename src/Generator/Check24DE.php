@@ -6,6 +6,7 @@ use ElasticExport\Helper\ElasticExportCoreHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
 use ElasticExport\Services\FiltrationService;
+use ElasticExportCheck24DE\Helper\ManufacturerHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
@@ -22,47 +23,38 @@ class Check24DE extends CSVPluginGenerator
     use Loggable;
 
     const CHECK24_DE = 150.00;
-
     const DELIMITER = "|"; // PIPE
 
-    /**
-     * @var ElasticExportCoreHelper $elasticExportHelper
-     */
-    private $elasticExportHelper;
+	/** @var ElasticExportCoreHelper $elasticExportHelper */
+	private $elasticExportHelper;
 
-    /**
-     * @var ElasticExportStockHelper $elasticExportStockHelper
-     */
-    private $elasticExportStockHelper;
+	/** @var ElasticExportStockHelper $elasticExportStockHelper */
+	private $elasticExportStockHelper;
 
-    /**
-     * @var ElasticExportPriceHelper $elasticExportPriceHelper
-     */
-    private $elasticExportPriceHelper;
+	/** @var ElasticExportPriceHelper $elasticExportPriceHelper */
+	private $elasticExportPriceHelper;
 
-    /**
-     * @var ArrayHelper $arrayHelper
-     */
+	/** @var ArrayHelper $arrayHelper */
     private $arrayHelper;
 
-    /**
-     * @var array
-     */
-    private $shippingCostCache;
-
-    /**
-     * @var FiltrationService
-     */
+    /** @var FiltrationService */
     private $filtrationService;
 
-    /**
-     * Check24DE constructor.
-     *
-     * @param ArrayHelper $arrayHelper
-     */
-    public function __construct(ArrayHelper $arrayHelper)
+    /** @var ManufacturerHelper */
+    private $manufacturerHelper;
+
+    /** @var array */
+    private $shippingCostCache;
+
+	/**
+	 * Check24DE constructor.
+	 * @param ArrayHelper $arrayHelper
+	 * @param ManufacturerHelper $manufacturerHelper
+	 */
+    public function __construct(ArrayHelper $arrayHelper, ManufacturerHelper $manufacturerHelper)
     {
         $this->arrayHelper = $arrayHelper;
+        $this->manufacturerHelper = $manufacturerHelper;
     }
 
     /**
@@ -80,62 +72,50 @@ class Check24DE extends CSVPluginGenerator
 
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
 		$this->filtrationService = pluginApp(FiltrationService::class, ['settings' => $settings, 'filterSettings' => $filter]);
-        
+
         $this->elasticExportStockHelper->setAdditionalStockInformation($settings);
 
         $this->setDelimiter(self::DELIMITER);
-
         $this->addCSVContent($this->head());
 
-        if($elasticSearch instanceof VariationElasticSearchScrollRepositoryContract)
-        {
+        if($elasticSearch instanceof VariationElasticSearchScrollRepositoryContract) {
             // Initiate the counter for the variations limit
             $limitReached = false;
             $limit = 0;
+            $elasticSearch->setNumberOfDocumentsPerShard(200);
 
-            do
-            {
-                if($limitReached === true)
-                {
+            do {
+                if($limitReached === true) {
                     break;
                 }
 
                 // Get the data from Elastic Search
                 $resultList = $elasticSearch->execute();
 
-                if(count($resultList['error']) > 0)
-                {
-                    $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.occurredElasticSearchErrors', [
-                        'Error message' => $resultList['error'],
-                    ]);
-
+                if(!empty($resultList['error'])) {
+                    $this->getLogger(__METHOD__)
+						->error('ElasticExportCheck24DE::logs.occurredElasticSearchErrors', ['message' => $resultList['error'],]);
                     break;
                 }
 
-                if(is_array($resultList['documents']) && count($resultList['documents']) > 0)
-                {
+                if(is_array($resultList['documents']) && count($resultList['documents']) > 0) {
                     $previousItemId = null;
 
-                    foreach($resultList['documents'] as $variation)
-                    {
+                    foreach($resultList['documents'] as $variation) {
                         // Stop and set the flag if limit is reached
-                        if($limit == $filter['limit'])
-                        {
+                        if($limit == $filter['limit']) {
                             $limitReached = true;
                             break;
                         }
 
                         // If filtered by stock is set and stock is negative, then skip the variation
-                        if ($this->filtrationService->filter($variation))
-                        {
+                        if ($this->filtrationService->filter($variation)) {
                             continue;
                         }
 
-                        try
-                        {
+                        try {
                             // Set the caches if we have the first variation or when we have the first variation of an item
-                            if($previousItemId === null || $previousItemId != $variation['data']['item']['id'])
-                            {
+                            if($previousItemId === null || $previousItemId != $variation['data']['item']['id']) {
                                 $previousItemId = $variation['data']['item']['id'];
                                 unset($this->shippingCostCache);
 
@@ -144,14 +124,12 @@ class Check24DE extends CSVPluginGenerator
                             }
 
                             // Build the new row for printing in the CSV file
-                            $this->buildRow($variation, $settings);
-                        }
-                        catch(\Throwable $throwable)
-                        {
+							$this->buildRow($variation, $settings);
+                        } catch(\Throwable $exception) {
                             $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.fillRowError', [
-                                'Error message ' => $throwable->getMessage(),
-                                'Error line'     => $throwable->getLine(),
-                                'VariationId'    => $variation['id']
+                                'message' => $exception->getMessage(),
+								'file' => $exception->getFile() . '::' . $exception->getLine(),
+								'variationId' => $variation['id']
                             ]);
                         }
 
@@ -203,14 +181,13 @@ class Check24DE extends CSVPluginGenerator
         $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
 
         // Only variations with the Retail Price greater than zero will be handled
-        if(!is_null($priceList['price']) && $priceList['price'] > 0)
-        {
+        if(!is_null($priceList['price']) && $priceList['price'] > 0) {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
 			$imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 1, 'variationImages');
 
             $data = [
                 'id'                => $this->elasticExportHelper->generateSku($variation['id'], self::CHECK24_DE, 0, (string)$variation['data']['skus'][0]['sku']),
-                'manufacturer'      => $this->elasticExportHelper->getExternalManufacturerName((int)$variation['data']['item']['manufacturer']['id']),
+                'manufacturer'      => $this->manufacturerHelper->getName((int)$variation['data']['item']['manufacturer']['id']),
                 'mpnr'              => $variation['data']['variation']['model'],
                 'ean'               => $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode')),
                 'name'              => $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
@@ -261,8 +238,7 @@ class Check24DE extends CSVPluginGenerator
      */
     private function buildCaches($variation, $settings)
     {
-        if(!is_null($variation) && !is_null($variation['data']['item']['id']))
-        {
+        if(!is_null($variation) && !is_null($variation['data']['item']['id'])) {
             $shippingCost = $this->elasticExportHelper->getShippingCost($variation['data']['item']['id'], $settings);
             $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
