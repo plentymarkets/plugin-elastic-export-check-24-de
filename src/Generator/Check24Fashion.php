@@ -169,7 +169,6 @@ class Check24Fashion extends CSVPluginGenerator
             // Initiate the counter for the variations limit
             $limitReached = false;
             $limit = 0;
-			$elasticSearch->setNumberOfDocumentsPerShard(250);
 
             do {
                 if ($limitReached === true) {
