@@ -11,7 +11,7 @@ use Plenty\Modules\Item\Manufacturer\Models\Manufacturer;
  */
 class ManufacturerHelper
 {
-	const MAX_CACHE_SIZE = 200;
+	const MAX_CACHE_SIZE = 100;
 
 	/** @var ManufacturerRepositoryContract */
 	private $manufacturerRepository;
@@ -37,30 +37,34 @@ class ManufacturerHelper
 	 */
 	public function getName(int $manufacturerId): string
 	{
-		if ($manufacturerId > 0 && !array_key_exists($manufacturerId, $this->manufacturerCache)) {
-			try {
-				/** @var Manufacturer $manufacturer */
-				$manufacturer = $this->manufacturerRepository->findById($manufacturerId, ['externalName', 'name', 'id']);
-			} catch (\Throwable $exception) {
-				return '';
-			}
+		if ($manufacturerId < 0) {
+			return '';
+		}
 
-			// limit the cache to 200 manufacturers
-			if (count($this->manufacturerCache) > self::MAX_CACHE_SIZE) {
-				array_shift($this->manufacturerCache);
-			}
-
-			if (strlen($manufacturer->externalName)) {
-				$this->manufacturerCache[$manufacturerId] = $manufacturer->externalName;
-			} elseif (strlen($manufacturer->name)) {
-				$this->manufacturerCache[$manufacturerId] = $manufacturer->name;
-			} else {
-				$this->manufacturerCache[$manufacturerId] = '';
-			}
-
+		if (array_key_exists($manufacturerId, $this->manufacturerCache)) {
 			return $this->manufacturerCache[$manufacturerId];
 		}
 
-		return '';
+		try {
+			/** @var Manufacturer $manufacturer */
+			$manufacturer = $this->manufacturerRepository->findById($manufacturerId, ['externalName', 'name', 'id']);
+		} catch (\Throwable $exception) {
+			return $this->manufacturerCache[$manufacturerId] = '';
+		}
+
+		// limit the cache to 200 manufacturers
+		if (count($this->manufacturerCache) > self::MAX_CACHE_SIZE) {
+			array_shift($this->manufacturerCache);
+		}
+
+		if (strlen($manufacturer->externalName)) {
+			$this->manufacturerCache[$manufacturerId] = $manufacturer->externalName;
+		} elseif (strlen($manufacturer->name)) {
+			$this->manufacturerCache[$manufacturerId] = $manufacturer->name;
+		} else {
+			$this->manufacturerCache[$manufacturerId] = '';
+		}
+
+		return $this->manufacturerCache[$manufacturerId];
 	}
 }
