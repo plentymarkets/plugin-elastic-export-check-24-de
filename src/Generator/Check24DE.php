@@ -272,13 +272,13 @@ class Check24DE extends CSVPluginGenerator
     private function getPrice(int $variationId):string
 	{
 		$preloadedPrices = $this->variationExportService->getData(VariationExportServiceContract::SALES_PRICE, $variationId);
-		$price = $this->priceDetectionService->getPriceByPreloadList($preloadedPrices);
+		$priceData = $this->priceDetectionService->getPriceByPreloadList($preloadedPrices);
 
-		if (count($price)) {
-			return number_format($price['price'], 2);
+		if (!strlen($priceData['price'])) {
+			return '';
 		}
 
-		return '';
+		return number_format($price, 2);
 	}
 
 	/**
