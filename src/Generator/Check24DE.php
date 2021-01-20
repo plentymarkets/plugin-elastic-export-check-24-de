@@ -6,12 +6,15 @@ use ElasticExport\Helper\ElasticExportCoreHelper;
 use ElasticExport\Helper\ElasticExportPriceHelper;
 use ElasticExport\Helper\ElasticExportStockHelper;
 use ElasticExport\Services\FiltrationService;
+use ElasticExport\Services\PriceDetectionService;
 use ElasticExportCheck24DE\Helper\ManufacturerHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
 use Plenty\Modules\DataExchange\Models\FormatSetting;
 use Plenty\Modules\Item\Search\Contracts\VariationElasticSearchScrollRepositoryContract;
+use Plenty\Modules\Item\Variation\Contracts\VariationExportServiceContract;
+use Plenty\Modules\Item\Variation\Services\ExportPreloadValue\ExportPreloadValue;
 use Plenty\Plugin\Log\Loggable;
 
 /**
@@ -43,6 +46,12 @@ class Check24DE extends CSVPluginGenerator
     /** @var ManufacturerHelper */
     private $manufacturerHelper;
 
+    /** @var VariationExportServiceContract */
+    private $variationExportService;
+
+    /** @var PriceDetectionService */
+    private $priceDetectionService;
+
     /** @var array */
     private $shippingCostCache;
 
@@ -50,11 +59,18 @@ class Check24DE extends CSVPluginGenerator
 	 * Check24DE constructor.
 	 * @param ArrayHelper $arrayHelper
 	 * @param ManufacturerHelper $manufacturerHelper
+	 * @param VariationExportServiceContract $variationExportService
 	 */
-    public function __construct(ArrayHelper $arrayHelper, ManufacturerHelper $manufacturerHelper)
+    public function __construct(ArrayHelper $arrayHelper, ManufacturerHelper $manufacturerHelper, VariationExportServiceContract $variationExportService)
     {
         $this->arrayHelper = $arrayHelper;
         $this->manufacturerHelper = $manufacturerHelper;
+
+        $this->variationExportService = $variationExportService;
+		$this->variationExportService->addPreloadTypes([
+			VariationExportServiceContract::SALES_PRICE,
+			VariationExportServiceContract::STOCK
+		]);
     }
 
     /**
@@ -66,13 +82,15 @@ class Check24DE extends CSVPluginGenerator
      */
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
+        $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
         $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
-
-        $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
+        $this->priceDetectionService = pluginApp(PriceDetectionService::class);
 		$this->filtrationService = pluginApp(FiltrationService::class, ['settings' => $settings, 'filterSettings' => $filter]);
 
+		$this->priceDetectionService->preload($settings);
         $this->elasticExportStockHelper->setAdditionalStockInformation($settings);
 
         $this->setDelimiter(self::DELIMITER);
@@ -99,6 +117,8 @@ class Check24DE extends CSVPluginGenerator
                 }
 
                 if(is_array($resultList['documents']) && count($resultList['documents']) > 0) {
+                	$this->variationExportService->resetPreLoadedData();
+                	$this->preloadExportServiceData($resultList['documents']);
                     $previousItemId = null;
 
                     foreach($resultList['documents'] as $variation) {
@@ -177,11 +197,10 @@ class Check24DE extends CSVPluginGenerator
      */
     private function buildRow($variation, KeyValue $settings)
     {
-        // Get the price
-        $priceList = $this->elasticExportPriceHelper->getPriceList($variation, $settings);
+		$price = $this->getPrice((int)$variation['id']);
 
         // Only variations with the Retail Price greater than zero will be handled
-        if(!is_null($priceList['price']) && $priceList['price'] > 0) {
+        if(strlen($price)) {
             $variationName = $this->elasticExportHelper->getAttributeValueSetShortFrontendName($variation, $settings);
 			$imageList = $this->elasticExportHelper->getImageListInOrder($variation, $settings, 1, 'variationImages');
 
@@ -193,14 +212,14 @@ class Check24DE extends CSVPluginGenerator
                 'name'              => $this->elasticExportHelper->getMutatedName($variation, $settings) . (strlen($variationName) ? ' ' . $variationName : ''),
                 'description'       => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
                 'category_path'     => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
-                'price'             => $priceList['price'],
-                'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, $priceList['price'], $settings->get('lang')),
+                'price'             => $price,
+                'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, $price, $settings->get('lang')),
                 'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'image_url'         => $imageList[0],
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
                 'delivery_cost'     => $this->getShippingCost($variation),
                 'pzn'               => '',
-                'stock'             => $this->elasticExportStockHelper->getStock($variation),
+                'stock'             => $this->getStock($variation['id']),
                 'weight'            => $variation['data']['variation']['weightG'],
             ];
 
@@ -243,4 +262,51 @@ class Check24DE extends CSVPluginGenerator
             $this->shippingCostCache[$variation['data']['item']['id']] = (float)$shippingCost;
         }
     }
+
+	/**
+	 * Selects the first valid price for the variation and returns this formatted.
+	 *
+	 * @param int $variationId
+	 * @return string
+	 */
+    private function getPrice(int $variationId):string
+	{
+		$preloadedPrices = $this->variationExportService->getData(VariationExportServiceContract::SALES_PRICE, $variationId);
+		$price = $this->priceDetectionService->getPriceByPreloadList($preloadedPrices);
+
+		if (count($price)) {
+			return number_format($price['price'], 2);
+		}
+
+		return '';
+	}
+
+	/**
+	 * @param int $variationId
+	 * @return string
+	 */
+	private function getStock(int $variationId):string
+	{
+		$preloadedStocks = $this->variationExportService->getData(VariationExportServiceContract::STOCK, $variationId);
+		return $preloadedStocks[0]['stockNet'];
+	}
+
+	/**
+	 * Preloads the specified data for the variations of the current page.
+	 *
+	 * @param array $documents
+	 */
+	private function preloadExportServiceData(array $documents)
+	{
+		foreach ($documents as $variation) {
+			$exportPreloadValue = pluginApp(ExportPreloadValue::class, [
+				'itemId' => $variation['data']['item']['id'],
+				'variationId' => $variation['id']
+			]);
+
+			$exportPreloadValues[] = $exportPreloadValue;
+		}
+
+		$this->variationExportService->preload($exportPreloadValues);
+	}
 }
