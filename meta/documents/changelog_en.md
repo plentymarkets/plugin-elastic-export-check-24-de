@@ -1,5 +1,10 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.6 (2021-01-21)
+
+### Changed
+- The performance of the export format was improvements.
+
 ## v1.2.5 (2019-12-16)
 
 ### Changed
@@ -137,6 +142,6 @@ Format **Check24DE Fashion**:
 - Screenshot updated.
 
 ## v1.0.0 (2017-02-20)
- 
+
 ### Added
 - Added initial plugin files.
