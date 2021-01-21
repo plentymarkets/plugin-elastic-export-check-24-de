@@ -8,6 +8,7 @@ use ElasticExport\Helper\ElasticExportStockHelper;
 use ElasticExport\Services\FiltrationService;
 use ElasticExport\Services\PriceDetectionService;
 use ElasticExportCheck24DE\Helper\ManufacturerHelper;
+use ElasticExportCheck24DE\Helper\StockHelper;
 use Plenty\Modules\DataExchange\Contracts\CSVPluginGenerator;
 use Plenty\Modules\Helper\Models\KeyValue;
 use Plenty\Modules\Helper\Services\ArrayHelper;
@@ -31,8 +32,8 @@ class Check24DE extends CSVPluginGenerator
 	/** @var ElasticExportCoreHelper $elasticExportHelper */
 	private $elasticExportHelper;
 
-	/** @var ElasticExportStockHelper $elasticExportStockHelper */
-	private $elasticExportStockHelper;
+	/** @var StockHelper $stockHelper */
+	private $stockHelper;
 
 	/** @var ElasticExportPriceHelper $elasticExportPriceHelper */
 	private $elasticExportPriceHelper;
@@ -85,13 +86,12 @@ class Check24DE extends CSVPluginGenerator
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
 
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
-        $this->elasticExportStockHelper = pluginApp(ElasticExportStockHelper::class);
         $this->elasticExportPriceHelper = pluginApp(ElasticExportPriceHelper::class);
-        $this->priceDetectionService = pluginApp(PriceDetectionService::class);
+        $this->stockHelper = pluginApp(StockHelper::class, ['settings' => $settings]);
 		$this->filtrationService = pluginApp(FiltrationService::class, ['settings' => $settings, 'filterSettings' => $filter]);
 
+        $this->priceDetectionService = pluginApp(PriceDetectionService::class);
 		$this->priceDetectionService->preload($settings);
-        $this->elasticExportStockHelper->setAdditionalStockInformation($settings);
 
         $this->setDelimiter(self::DELIMITER);
         $this->addCSVContent($this->head());
@@ -144,7 +144,7 @@ class Check24DE extends CSVPluginGenerator
                             }
 
                             // Build the new row for printing in the CSV file
-							$this->buildRow($variation, $settings);
+								$this->buildRow($variation, $settings);
                         } catch(\Throwable $exception) {
                             $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.fillRowError', [
                                 'message' => $exception->getMessage(),
@@ -219,7 +219,7 @@ class Check24DE extends CSVPluginGenerator
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
                 'delivery_cost'     => $this->getShippingCost($variation),
                 'pzn'               => '',
-                'stock'             => $this->getStock($variation['id']),
+                'stock'             => $this->getStock($variation),
                 'weight'            => $variation['data']['variation']['weightG'],
             ];
 
@@ -275,7 +275,7 @@ class Check24DE extends CSVPluginGenerator
 		$priceData = $this->priceDetectionService->getPriceByPreloadList($preloadedPrices);
 		$price = '';
 
-		if (!strlen($priceData['price'])) {
+		if (strlen($priceData['price']) && $priceData['price'] > 0) {
 			$price = number_format($priceData['price'], 2);
 		}
 
@@ -283,13 +283,14 @@ class Check24DE extends CSVPluginGenerator
 	}
 
 	/**
-	 * @param int $variationId
-	 * @return string
+	 * @param array $variation
+	 * @return int
 	 */
-	private function getStock(int $variationId):string
+	private function getStock(array $variation):int
 	{
-		$preloadedStocks = $this->variationExportService->getData(VariationExportServiceContract::STOCK, $variationId);
-		return $preloadedStocks[0]['stockNet'];
+		$preloadedStocks = $this->variationExportService->getData(VariationExportServiceContract::STOCK, $variation['id']);
+		$stockNet = $this->stockHelper->calculateStock($variation, $preloadedStocks);
+		return $stockNet;
 	}
 
 	/**
