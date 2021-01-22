@@ -37,7 +37,7 @@ class ManufacturerHelper
 	 */
 	public function getName(int $manufacturerId): string
 	{
-		if ($manufacturerId < 0) {
+		if ($manufacturerId <= 0) {
 			return '';
 		}
 
