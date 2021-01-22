@@ -3,7 +3,7 @@
 ## v1.2.6 (2021-01-21)
 
 ### Changed
-- The performance of the export format was improvements.
+- The performance of the export format was improved.
 
 ## v1.2.5 (2019-12-16)
 
