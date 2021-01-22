@@ -48,7 +48,8 @@ class Check24DE extends ResultFields
 
 		$this->setOrderByList([
 			'path' => 'item.id',
-			'order' => ElasticSearch::SORTING_ORDER_ASC]);
+			'order' => ElasticSearch::SORTING_ORDER_ASC
+		]);
 
         $reference = $settings->get('referrerId') ? $settings->get('referrerId') : self::CHECK24_DE;
 

@@ -115,7 +115,7 @@ class Check24Fashion extends CSVPluginGenerator
      * @var SkuHelper
      */
     private $skuHelper;
-    
+
     /**
      * @var ArrayHelper $arrayHelper
      */
@@ -303,20 +303,20 @@ class Check24Fashion extends CSVPluginGenerator
     {
         // Get the price
         $recommendedRetailPriceInformation = $this->elasticExportPriceHelper->getRecommendedRetailPriceInformation($variation, $settings);
-        
+
         // Set SKU information
         $this->skuHelper->setSku($variation, self::CHECK24_DE, (int) $settings->get('marketAccountId'));
-        
+
         if (isset($variation['data']['attributes']) && is_array($variation['data']['attributes'])) {
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
             $colorAttributeValueId = $this->attributeHelper->getTargetAttributeValueId($variation['data']['attributes'], self::COLUMN_MANUFACTURER_COLOR);
         }
-        
+
         // Get images
         $imageList = $this->getImagesInOrder($variation);
 
         $lang = $settings->get('lang');
-        
+
         $data = [
             self::COLUMN_PRODUCT_NAME =>
                 $this->getPropertyOrRegularData($variation, $settings,self::COLUMN_PRODUCT_NAME),
@@ -476,7 +476,7 @@ class Check24Fashion extends CSVPluginGenerator
     private function getImagesInOrder(array $variation):array
     {
         $imageList = [];
-        
+
         if (isset($variation['data']['images']['variation']) &&
             is_array($variation['data']['images']['variation']) &&
             count($variation['data']['images']['variation']))
@@ -494,7 +494,7 @@ class Check24Fashion extends CSVPluginGenerator
                 return $a['position'] <=> $b['position'];
             });
         }
-        
+
         return $imageList;
     }
 }
