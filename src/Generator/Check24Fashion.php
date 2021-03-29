@@ -440,7 +440,7 @@ class Check24Fashion extends CSVPluginGenerator
                 case self::COLUMN_EAN:
                     return $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode'));
                 case self::COLUMN_MPNR:
-                    return $variation['data']['variation']['model'];
+                    return $variation['data']['variation']['model'] ?? '';
                 case self::COLUMN_UPC:
                     return $this->elasticExportHelper->getBarcodeByType($variation, ElasticExportCoreHelper::BARCODE_UPC);
                 case self::COLUMN_BRAND:
