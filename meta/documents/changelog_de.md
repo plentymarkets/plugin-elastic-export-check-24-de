@@ -4,8 +4,8 @@
 
 ### Behoben
 Format **Check24DE Fashion**:
-- Die Account-ID wird nicht mehr aus den Format-Einstellungen für die Generierung der SKU übernommen, weil es aktuell nicht möglich ist mehere Account anzulegen und die Einstellungen zu Fehlverhalten führen konnten. Die Account-ID ist standardmäßig 0.
-- Es führt nicht mehr zu einem Fehler, wenn das Model an der Variante leer ist.
+- Für das Generieren der SKU wird die Account-ID nicht mehr aus den Format-Einstellungen übernommen. Es ist aktuell nicht möglich, mehere Accounts zu erstellen. Deshalb konnten die Einstellungen zu Fehlern führen. Die Account-ID ist standardmäßig 0.
+- Es führt nicht mehr zu einem Fehler, wenn das Modell an der Variante leer ist.
 
 ## v1.2.6 (2021-01-21)
 
