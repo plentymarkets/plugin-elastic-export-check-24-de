@@ -1,5 +1,12 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.7 (2021-03-29)
+
+### Fixed
+Format **Check24DE Fashion**:
+- Account ID from format settings will be ignored for SKU generation as it is not possible to create multiple accounts right now and the setting could lead to errors. The account ID will be 0 by default.
+- It will no longer lead to an error if the model on a variation is empty.
+
 ## v1.2.6 (2021-01-21)
 
 ### Changed
