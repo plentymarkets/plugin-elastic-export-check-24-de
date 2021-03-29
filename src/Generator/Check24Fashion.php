@@ -305,7 +305,8 @@ class Check24Fashion extends CSVPluginGenerator
         $recommendedRetailPriceInformation = $this->elasticExportPriceHelper->getRecommendedRetailPriceInformation($variation, $settings);
 
         // Set SKU information
-        $this->skuHelper->setSku($variation, self::CHECK24_DE, (int) $settings->get('marketAccountId'));
+        // TODO (int) $settings->get('marketAccountId') has to be used as soon as multi accounting is available
+        $this->skuHelper->setSku($variation, self::CHECK24_DE, 0);
 
         if (isset($variation['data']['attributes']) && is_array($variation['data']['attributes'])) {
             $this->attributeHelper->addToAttributeLinkCache($variation['data']['attributes']);
@@ -440,7 +441,7 @@ class Check24Fashion extends CSVPluginGenerator
                 case self::COLUMN_EAN:
                     return $this->elasticExportHelper->getBarcodeByType($variation, $settings->get('barcode'));
                 case self::COLUMN_MPNR:
-                    return $variation['data']['variation']['model'];
+                    return $variation['data']['variation']['model'] ?? '';
                 case self::COLUMN_UPC:
                     return $this->elasticExportHelper->getBarcodeByType($variation, ElasticExportCoreHelper::BARCODE_UPC);
                 case self::COLUMN_BRAND:
