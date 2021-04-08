@@ -1,5 +1,11 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.2.8 (2021-04-08)
+
+### Behoben
+Format **Check24DE Fashion**:
+- During export, it was not recognised that a SKU already existed for Check24 with the account ID 0 if a different referrer was selected in the format setting.
+
 ## v1.2.7 (2021-03-29)
 
 ### Fixed
