@@ -4,7 +4,7 @@
 
 ### Behoben
 Format **Check24DE Fashion**:
-- During export, it was not recognised that a SKU already existed for Check24 with the account ID 0 if a different origin was selected in the format setting.
+- During export, it was not recognised that a SKU already existed for Check24 with the account ID 0 if a different referrer was selected in the format setting.
 
 ## v1.2.7 (2021-03-29)
 
