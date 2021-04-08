@@ -70,7 +70,7 @@ _Tab. 1: Settings for the data format **Check24DE-Plugin**_
 
 | **Column name**        | **Explanation** |
 | :---                   | :--- |
-| id                     | **Required**<br/> The Check24.de **SKU** for the variation. |
+| id                     | **Required**<br/> The Check24.de **SKU** with account ID 0 for the variation. |
 | manufacturer           | The **name of the manufacturer** of the item. The **external name** within the **Settings » Items » Manufacturer** menu is preferred if existing. |
 | mpnr                   | The **model** of the variation. |
 | ean                    | **Required**<br/> According to the format setting **Barcode**. |
@@ -161,7 +161,7 @@ _Tab. 3: Settings for the data format **Check24DE Fashion**_
 | EAN                               | **Required**<br/> According to the format setting **Barcode** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **EAN**. Characteristics will be prioritised. |
 | ASIN                              | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **ASIN**. |
 | MPNR                              | The **model** of the variation or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **MPNR**. Characteristics will be prioritised. |
-| SKU                               | The **SKU** of the variation for Check24.de. |
+| SKU                               | The **SKU** of the variation for Check24.de with account ID 0. |
 | UPC                               | Barcode of the type **UPC** or from a characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **UPC**. Characteristics will be prioritised. |
 | Bild-URL #1 - #20                 | **Required**<br/> The **URL path** of the images according to the format setting **Image**. If color variations exist, only images linked to the variation will be exported. Otherwise all images will be exported. |
 | Absatzform                        | Characteristic of the type **text** or **selection** with the **Check24 Fashion property** link **Absatzform**. |

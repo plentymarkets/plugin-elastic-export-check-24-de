@@ -71,7 +71,7 @@ _Tab. 1: Einstellungen für das Datenformat **Check24DE-Plugin**_
 
 | **Spaltenbezeichnung** | **Erläuterung** |
 | :---                   | :--- |
-| id                     | **Pflichtfeld**<br/> Die **SKU** der Variante für Check24.de. |
+| id                     | **Pflichtfeld**<br/> Die **SKU** der Variante für Check24.de mit Account-ID 0. |
 | manufacturer           | Der **Name des Herstellers** des Artikels. Der **Externe Name** unter **Einrichtung » Artikel »  Hersteller** wird bevorzugt, wenn vorhanden. |
 | mpnr                   | Das **Modell** der Variante. |
 | ean                    | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode**. |
@@ -163,7 +163,7 @@ _Tab. 3: Einstellungen für das Datenformat **Check24DE Fashion**_
 | EAN                               | **Pflichtfeld**<br/> Entsprechend der Formateinstellung **Barcode** oder ein Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **EAN**. Merkmale werden bevorzugt.|
 | ASIN                              | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **ASIN**. |
 | MPNR                              | Das **Modell** der Variante oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **MPNR**. Merkmale werden bevorzugt. |
-| SKU                               | Die **SKU** der Variante für Check24.de. |
+| SKU                               | Die **SKU** der Variante für Check24.de mit Account-ID 0. |
 | UPC                               | Barcode vom Typ **UPC** oder Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **UPC**. Merkmale werden bevorzugt. |
 | Bild-URL #1 - #20                 | **Pflichtfeld**<br/> Der **URL-Pfad** der Artikelbilder entsprechend der Formateinstellung **Bild**. Wenn Farbvariationen vorliegen, werden nur die Bilder, die mit der jeweiligen Variante verknüpft sind, übertragen. Ansonsten werden alle Bilder exportiert. |
 | Absatzform                        | Merkmal des Typs **Text** oder **Auswahl** mit der **Check24 Fashion-Merkmal**-Verknüpfung: **Absatzform**. |
