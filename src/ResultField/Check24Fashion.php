@@ -101,7 +101,8 @@ class Check24Fashion extends ResultFields
         $skuMutator = pluginApp(SkuMutator::class);
         if($skuMutator instanceof SkuMutator)
         {
-            $skuMutator->setMarket($reference);
+            $skuMutator->setMarket(self::CHECK24_DE);
+            $skuMutator->setAccount(0);
         }
 
         /**
