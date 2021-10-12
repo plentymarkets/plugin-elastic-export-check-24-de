@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.2.9 (2021-10-12)
+
+### Geändert
+- Kleine strukturelle Anpassung.
+
 ## v1.2.8 (2021-04-08)
 
 ### Behoben

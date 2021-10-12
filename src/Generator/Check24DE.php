@@ -68,10 +68,6 @@ class Check24DE extends CSVPluginGenerator
         $this->manufacturerHelper = $manufacturerHelper;
 
         $this->variationExportService = $variationExportService;
-		$this->variationExportService->addPreloadTypes([
-			VariationExportServiceContract::SALES_PRICE,
-			VariationExportServiceContract::STOCK
-		]);
     }
 
     /**
@@ -83,6 +79,11 @@ class Check24DE extends CSVPluginGenerator
      */
     protected function generatePluginContent($elasticSearch, array $formatSettings = [], array $filter = [])
     {
+        $this->variationExportService->addPreloadTypes([
+            VariationExportServiceContract::SALES_PRICE,
+            VariationExportServiceContract::STOCK
+        ]);
+        
         $settings = $this->arrayHelper->buildMapFromObjectList($formatSettings, 'key', 'value');
 
         $this->elasticExportHelper = pluginApp(ElasticExportCoreHelper::class);
