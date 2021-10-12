@@ -1,0 +1,24 @@
+{
+  "marketplaceName": {
+    "de":"CHECK24",
+    "en":"CHECK24"
+  },
+  "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
+  "price": 0.00,
+  "shortDescription": {
+    "de": "Die Integration des Datenformats Check24-Plugin ermöglicht die Artikeldatenübertragung zum Vergleichsportal Check24.de über den elastischen Export.",
+    "en": "The integration of the data format Check24-Plugin enables the transfer of item data to the comparison engine Check24.de via the elastic export."
+  },
+  "categories": [
+    "3881"
+  ],
+  "keywords": [
+    "plugins",
+    "check24.de",
+    "check24",
+    "check",
+    "24",
+    "Preisportal",
+    "Price comparison"
+  ]
+}

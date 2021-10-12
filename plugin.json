@@ -6,20 +6,9 @@
   "type": "export",
   "authorIcon": "icon_author_xs.png",
   "serviceProvider": "ElasticExportCheck24DE\\ElasticExportCheck24DEServiceProvider",
-  "license": "GNU AFFERO GENERAL PUBLIC LICENSE Version 3, 19 November 2007",
   "pluginIcon": "icon_plugin_md.png",
-  "price": 0.00,
-  "shortDescription": {
-    "de": "Die Integration des Datenformats Check24-Plugin ermöglicht die Artikeldatenübertragung zum Vergleichsportal Check24.de über den elastischen Export.",
-    "en": "The integration of the data format Check24-Plugin enables the transfer of item data to the comparison engine Check24.de via the elastic export."
-  },
-  "categories": ["3881"],
-  "version": "1.2.8",
+  "version": "1.2.9",
   "require": {
     "ElasticExport": ">= 1.6.6"
-  },
-  "marketplaceName": {
-    "de":"CHECK24",
-    "en":"CHECK24"
   }
 }
