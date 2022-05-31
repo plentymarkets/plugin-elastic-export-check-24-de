@@ -1,5 +1,9 @@
 # Release Notes for Elastic Export Check24.de
 
+## v1.3.1 (2022-05-31)
+### Fixed
+- Fixed PHP8 error.
+
 ## v1.3.0 (2022-05-26)
 
 ### Changed

@@ -56,7 +56,7 @@ class StockHelper
 
         // stock limitation use net stock
         elseif ($variation['data']['variation']['stockLimitation'] == self::USE_NET_STOCK) {
-			$stockNet = $stockNet - $this->stockBuffer;
+			$stockNet = (int)$stockNet - (int)$this->stockBuffer;
 
 			if ($stockNet > 999) {
 				$stockNet = 999;
