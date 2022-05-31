@@ -214,7 +214,7 @@ class Check24DE extends CSVPluginGenerator
                 'description'       => $this->elasticExportHelper->getMutatedDescription($variation, $settings),
                 'category_path'     => $this->elasticExportHelper->getCategory((int)$variation['data']['defaultCategories'][0]['id'], $settings->get('lang'), $settings->get('plentyId')),
                 'price'             => $price,
-                'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, $price, $settings->get('lang')),
+                'price_per_unit'    => $this->elasticExportPriceHelper->getBasePrice($variation, (float)$price, $settings->get('lang')),
                 'link'              => $this->elasticExportHelper->getMutatedUrl($variation, $settings, true, false),
                 'image_url'         => $imageList[0],
                 'delivery_time'     => $this->elasticExportHelper->getAvailability($variation, $settings, false),
