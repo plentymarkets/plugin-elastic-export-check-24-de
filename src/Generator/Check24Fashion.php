@@ -178,14 +178,14 @@ class Check24Fashion extends CSVPluginGenerator
                 // Get the data from Elastic Search
                 $resultList = $elasticSearch->execute();
 
-                if (count($resultList['error']) > 0) {
+                if (count($resultList['error'] ?? []) > 0) {
                     $this->getLogger(__METHOD__)->error('ElasticExportCheck24DE::logs.occurredElasticSearchErrors', [
                         'Error message' => $resultList['error'],
                     ]);
                     break;
                 }
 
-                if (is_array($resultList['documents']) && count($resultList['documents']) > 0) {
+                if (is_array($resultList['documents']) && count($resultList['documents'] ?? []) > 0) {
                     $previousItemId = null;
 
                     foreach ($resultList['documents'] as $variation) {
@@ -480,17 +480,17 @@ class Check24Fashion extends CSVPluginGenerator
 
         if (isset($variation['data']['images']['variation']) &&
             is_array($variation['data']['images']['variation']) &&
-            count($variation['data']['images']['variation']))
+            count($variation['data']['images']['variation'] ?? []))
         {
             $imageList = $variation['data']['images']['variation'];
         } elseif (isset($variation['data']['images']['all']) &&
                   is_array($variation['data']['images']['all']) &&
-                  count($variation['data']['images']['all']))
+                  count($variation['data']['images']['all'] ?? []))
         {
             $imageList = $variation['data']['images']['all'];
         }
 
-        if (count($imageList)) {
+        if (count($imageList) ?? []) {
             usort($imageList, function($a, $b) {
                 return $a['position'] <=> $b['position'];
             });

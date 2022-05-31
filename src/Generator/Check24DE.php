@@ -117,7 +117,7 @@ class Check24DE extends CSVPluginGenerator
                     break;
                 }
 
-                if(is_array($resultList['documents']) && count($resultList['documents']) > 0) {
+                if(is_array($resultList['documents']) && count($resultList['documents'] ?? []) > 0) {
                 	$this->variationExportService->resetPreLoadedData();
                 	$this->preloadExportServiceData($resultList['documents']);
                     $previousItemId = null;

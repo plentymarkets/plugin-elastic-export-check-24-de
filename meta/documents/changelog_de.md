@@ -1,5 +1,10 @@
 # Release Notes für Elastic Export Check24.de
 
+## v1.3.0 (2022-05-26)
+
+### Geändert
+- UPDATE - Zusätzliche Updates für Kompatibilität mit PHP 8.
+
 ## v1.2.9 (2021-10-12)
 
 ### Geändert
